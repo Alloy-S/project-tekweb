@@ -41,21 +41,19 @@ $data = query("SELECT * FROM resep");
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                    <img src="https://mdbcdn.b-cdn.net/img/logo/mdb-transaprent-noshadows.webp" height="15" alt="MDB Logo" loading="lazy" />
+                    <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
-                <!-- Left links -->
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Projects</a>
-                    </li>
-                </ul>
-                <!-- Left links -->
+                <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
+                    <div class="input-group d-flex justify-content-center">
+                        <div class="form-outline w-25">
+                            <input type="search" id="form1" class="form-control"/>
+                            <label class="form-label" for="form1">Search</label>
+                        </div>
+                        <button type="button" class="btn btn-outline-secondary">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                <!-- </div> -->
             </div>
             <!-- Collapsible wrapper -->
 
@@ -117,6 +115,22 @@ $data = query("SELECT * FROM resep");
     </nav>
     <!-- Navbar -->
     <div>
+          <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container h-50 d-inline-block mt-4" style='background-color:coral'>
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <h1>Better Solutions For Your Business</h1>
+          <h2>We are team of talented designers making websites with Bootstrap</h2>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="project\img\63708e6c90ecf.jpg" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section>
         <div class="">
 
         </div>
@@ -153,4 +167,3 @@ $data = query("SELECT * FROM resep");
 </body>
 
 </html>
-
