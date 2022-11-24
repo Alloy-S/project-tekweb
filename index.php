@@ -163,7 +163,7 @@ $data = query("SELECT * FROM resep");
             <?php endforeach; ?>
         </div>
     </div>
-
+    
 </body>
 
 </html>
