@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "cobadb");
+$conn = mysqli_connect("localhost", "root", "", "gudangresep", 3306);
 
 if ($conn->connect_error) {
     echo "Error: could no connect. " . mysqli_connect_error();
@@ -94,7 +94,7 @@ function tambah_resep($data)
 
         $qry = "INSERT INTO resep  
                 VALUES
-                ('', '$judul', '$deskripsi', '$langkah', '$gambar', '$username', '0');";
+                (null, '$judul', '$deskripsi', '$gambar', '$username', 0);";
 
         mysqli_query($conn, $qry);
 
