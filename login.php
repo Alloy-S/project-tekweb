@@ -1,7 +1,7 @@
 <?php 
 session_start();
 require("connect.php");
-
+echo 'hello';
 // if (isset($_COOKIE["id"]) && isset($_COOKIE["key"])) {
 //     $id = $_COOKIE["id"];
 //     $key = $_COOKIE["key"];
