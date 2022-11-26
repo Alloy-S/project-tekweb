@@ -60,10 +60,6 @@ $data = query("SELECT * FROM resep");
             <!-- Right elements -->
             <?php if (isset($_SESSION["login"])) : ?>
                 <div class="d-flex align-items-center">
-                    <!-- Icon -->
-                    <a class="text-reset me-3" href="#">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
 
                     <!-- Notifications -->
                     <div class="dropdown">
@@ -166,4 +162,4 @@ $data = query("SELECT * FROM resep");
     
 </body>
 
-</html>
+</html>8
