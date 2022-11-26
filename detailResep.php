@@ -1,10 +1,10 @@
 <?php
 require("connect.php");
 
-var_dump($_GET);
+// var_dump($_GET);
 $id = $_GET['id'];
 $data = query("SELECT * FROM resep WHERE id_resep = '$id';");
-var_dump($data);
+// var_dump($data);
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +22,51 @@ var_dump($data);
 </head>
 
 <body>
+<div class="blog-single gray-bg">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-lg-8 m-15px-tb">
+                    <article class="article">
+                        <div class="article-img">
+                            <img src="img/<?= $data[0]["gambar"]; ?>" title="" alt="">
+                        </div>
+                        <div class="article-title">
+                            <h2><?= $data[0]["nama_resep"]; ?></h2>
+                            <div class="media">
+                                <div class="media-body">
+                                    <label><?= $data[0]["author"]; ?></label>
+                                    <span>Tanggal</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="article-content">
+                            <p><?= $data[0]["deskripsi"]; ?></p>
     
+                        </div>
+                        
+                    </article>
+                </div>      
+                <div class="col-lg-4 m-15px-tb blog-aside">
+                    <!-- Author -->
+                    <div class="widget widget-author">
+                        <div class="widget-title">
+                            <h3>Comments</h3>
+                        </div>
+                        <div class="media m-b-20">
+                            <div class="d-flex mr-3">
+                                <a href="#"><img class="media-object rounded-circle thumb-sm" alt="64x64" src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                            </div>
+                            <div class="media-body">
+                                <h5 class="mt-0">Maxine Kennedy</h5>
+                                <p class="font-13 text-muted mb-0"><a href="" class="text-dark">@Michael</a> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio.</p><a href="" class="text-success font-13">Reply</a></div>
+                        </div>
+    
+                    </div>
+                    <!-- End Author -->
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
