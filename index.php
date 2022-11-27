@@ -27,7 +27,11 @@ $data = query("SELECT * FROM resep");
 
 <body style='background-color:#c6c9ca'>
     <!-- Navbar -->
+<<<<<<< Updated upstream
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+=======
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style='background-color:transparent'>
+>>>>>>> Stashed changes
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
@@ -99,7 +103,7 @@ $data = query("SELECT * FROM resep");
             <?php else : ?>
                 <div class="d-flex align-items-center">
                     <a class="text-reset me-3" href="login2.php">
-                        <button type="button" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">Login</button>
+                        <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Login</button>
                     </a>
                 </div>
             <?php endif; ?>
@@ -108,7 +112,12 @@ $data = query("SELECT * FROM resep");
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
+<<<<<<< Updated upstream
         <div id="background">
+=======
+    
+    <div id="background">
+>>>>>>> Stashed changes
         <div class="jumbotron">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio libero corrupti, consequuntur, blanditiis, sint quod maxime molestiae voluptatibus ratione neque</p>
             <h1>GUDANG RESEP</h1>

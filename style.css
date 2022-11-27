@@ -6,6 +6,10 @@ html {
     margin-top:-120px;
     background-image:url(img/sendok.jpg);
     background-size: cover;
+<<<<<<< Updated upstream
+=======
+    opacity: 1;
+>>>>>>> Stashed changes
     padding-top: 111px;
     height: 638px;
     max-height: 1112px;
