@@ -33,10 +33,11 @@ if (isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="MDB5/css/mdb.min.css" />
+    <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
+    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+
     <title>Tambah resep baru</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
@@ -65,86 +66,176 @@ if (isset($_POST["submit"])) {
             });
         });
     </script>
-    <!-- <style>
-        table, th, td {
-            border: solid black 1px;
+    <style>
+        body {
+            background-color: #E9ffda;
         }
-    </style> -->
+
+
+
+        .deskripsi {
+            background-color: white;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container orange-200">
-        <h1>tambah data data resep</h1>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Navbar brand -->
+                <a class="navbar-brand mt-2 mt-lg-0" href="index.php">
+                    <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
+                </a>
+                <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
+                <!-- <div class="input-group d-flex justify-content-center">
+                    <div class="form-outline w-25">
+                        <input type="search" id="form1" class="form-control" />
+                        <label class="form-label" for="form1">Search</label>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div> -->
+                <!-- </div> -->
+            </div>
+            <!-- Collapsible wrapper -->
+
+            <!-- Right elements -->
+            <?php if (isset($_SESSION["login"])) : ?>
+                <div class="d-flex align-items-center mt-md-4">
+
+                    <!-- Notifications -->
+                    <!-- <div class="dropdown">
+                        <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">Some news</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Another news</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </div> -->
+                    <!-- Avatar -->
+                    <div class="dropdown ">
+                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                            <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                            <li>
+                                <a class="dropdown-item" href="#">My profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Settings</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="logout.php">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            <?php else : ?>
+                <div class="d-flex align-items-center">
+                    <a class="text-reset me-3" href="login2.php">
+                        <button type="button" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">Login</button>
+                    </a>
+                </div>
+            <?php endif; ?>
+            <!-- Right elements -->
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+    <div class="container">
+        <h1 class="text-center m-3">tambah data data resep</h1>
 
         <form action="" method="post" enctype="multipart/form-data">
-            <ul>
-                <li>
-                    <label class="form-label" for="nama_resep">Judul Resep : </label>
-                    <input class="form-control" type="text" name="nama_resep" id="nama_resep" maxlength="30" required>
-                </li>
-                <li>
-                    <!-- <label for="nama">deskripsi : </label>
-                <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea> -->
-                    <label for="deskripsi" class="form-label">Example textarea</label>
-                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
-                </li>
-                <li>
-                    <label for="row-bahan">bahan-bahan</label>
-                    <table id="row-bahan">
+            <div class="deskripsi">
 
-                        <tr>
-                            <td class="pe-3 "><i class="fa-sharp fa-solid fa-arrow-right"></i></td>
-                            <td class="d-flex justify-content-between">
-                                <input type="text" class="form-control my-1" name="detail_bahan[]">
-                            </td>
-                            <!-- <td>
+                <label class="form-label" for="nama_resep">Judul Resep : </label>
+                <input class="form-control" type="text" name="nama_resep" id="nama_resep" maxlength="30" required>
+
+
+                <!-- <label for="nama">deskripsi : </label>
+                <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea> -->
+                <label for="deskripsi" class="form-label">Deskripsi resep</label>
+                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
+
+            </div>
+            <div class="deskripsi">
+                <label for="row-bahan">bahan-bahan</label>
+                <table id="row-bahan">
+
+                    <tr>
+                        <td class="pe-3 "><i class="fa-sharp fa-solid fa-arrow-right"></i></td>
+                        <td class="d-flex justify-content-between">
+                            <input type="text" class="form-control my-1" name="detail_bahan[]">
+                        </td>
+                        <!-- <td>
                                 <a class="px-1 delete-bahan"><i class="fa-sharp fa-solid fa-xmark"></i></a>
                             </td> -->
-                        </tr>
+                    </tr>
 
-                        <tr>
-                            <td class="pe-2"><i class="fa-sharp fa-solid fa-arrow-right"></i></td>
-                            <td><input type="text" class="form-control my-1" name="detail_bahan[]"></td>
-                        </tr>
+                    <tr>
+                        <td class="pe-2"><i class="fa-sharp fa-solid fa-arrow-right"></i></td>
+                        <td><input type="text" class="form-control my-1" name="detail_bahan[]"></td>
+                    </tr>
 
-                    </table>
-                    <button type="button" id="add-row-bahan" class="btn btn-outline-primary">add</button>
-                </li>
-                <li>
-                    <label for="row-langkah">Langkah-Langkah</label>
-                    <table id="row-langkah">
-                        <tr>
-                            <td class="pe-3 ">1</td>
-                            <td><input type="text" class="form-control my-1" name="detail_langkah[]"></td>
-                            <!-- <td>
+                </table>
+                <button type="button" id="add-row-bahan" class="btn btn-outline-primary">add</button>
+            </div>
+            <div class="deskripsi">
+                <label for="row-langkah">Langkah-Langkah</label>
+                <table id="row-langkah">
+                    <tr>
+                        <td class="pe-3 ">1</td>
+                        <td><input type="text" class="form-control my-1" name="detail_langkah[]"></td>
+                        <!-- <td>
                                 <a class="px-1 delete"><i class="fa-sharp fa-solid fa-xmark"></i></a>
                             </td> -->
-                        </tr>
-                        <tr>
-                            <td class="pe-2">2</td>
-                            <td><input type="text" class="form-control my-1" name="detail_langkah[]"></td>
-                        </tr>
-                        <tr>
-                            <td class="pe-2">3</td>
-                            <td><input type="text" class="form-control my-1" name="detail_langkah[]"></td>
-                        </tr>
-                    </table>
-                    <button type="button" id="add-row-langkah" class="btn btn-outline-primary">add</button>
-                </li>
-                <li>
-                    <label for="jurusan">Gambar : </label>
-                    <!-- <input type="file" name="gambar" id="gambar"> -->
-                    <input class="form-control" type="file" id="gamabar" name="gambar">
-                </li>
-                <!-- <li>
+                    </tr>
+                    <tr>
+                        <td class="pe-2">2</td>
+                        <td><input type="text" class="form-control my-1" name="detail_langkah[]"></td>
+                    </tr>
+                    <tr>
+                        <td class="pe-2">3</td>
+                        <td><input type="text" class="form-control my-1" name="detail_langkah[]"></td>
+                    </tr>
+                </table>
+                <button type="button" id="add-row-langkah" class="btn btn-outline-primary">add</button>
+            </div>
+            <div class="deskripsi">
+                <label for="jurusan">Gambar : </label>
+                <!-- <input type="file" name="gambar" id="gambar"> -->
+                <input class="form-control" type="file" id="gamabar" name="gambar">
+            </div>
+            <!-- <li>
                 <label for="gambar">Gambar : </label>
                 <input type="file" name="gambar" id ="gambar">
             </li> -->
 
-                <li>
-                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
-                </li>
-            </ul>
+            <div class="deskripsi">
+                <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+            </div>
 
         </form>
         <a href="index.php">Halaman utama</a>

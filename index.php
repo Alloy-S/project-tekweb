@@ -16,10 +16,7 @@ $data = query("SELECT * FROM resep");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS only
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <!-- JavaScript Bundle with Popper -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> -->
+
     <title>Home</title>
     <link rel="stylesheet" href="MDB5/css/mdb.min.css" />
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
@@ -44,15 +41,15 @@ $data = query("SELECT * FROM resep");
                     <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
-                    <div class="input-group d-flex justify-content-center">
-                        <div class="form-outline w-25">
-                            <input type="search" id="form1" class="form-control"/>
-                            <label class="form-label" for="form1">Search</label>
-                        </div>
-                        <button type="button" class="btn btn-outline-secondary">
-                            <i class="fas fa-search"></i>
-                        </button>
+                <div class="input-group d-flex justify-content-center">
+                    <div class="form-outline w-25">
+                        <input type="search" id="form1" class="form-control" />
+                        <label class="form-label" for="form1">Search</label>
                     </div>
+                    <button type="button" class="btn btn-outline-secondary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
                 <!-- </div> -->
             </div>
             <!-- Collapsible wrapper -->
@@ -111,22 +108,22 @@ $data = query("SELECT * FROM resep");
     </nav>
     <!-- Navbar -->
     <div>
-          <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
+        <!-- ======= Hero Section ======= -->
+        <section id="hero" class="d-flex align-items-center">
 
-    <div class="container h-50 d-inline-block mt-4" style='background-color:coral'>
-      <div class="row">
-        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-          <h1>Better Solutions For Your Business</h1>
-          <h2>We are team of talented designers making websites with Bootstrap</h2>
-        </div>
-        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
-          <img src="project\img\63708e6c90ecf.jpg" class="img-fluid animated" alt="">
-        </div>
-      </div>
-    </div>
+            <div class="container h-50 d-inline-block mt-4" style='background-color:coral'>
+                <div class="row">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+                        <h1>Better Solutions For Your Business</h1>
+                        <h2>We are team of talented designers making websites with Bootstrap</h2>
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="project\img\63708e6c90ecf.jpg" class="img-fluid animated" alt="">
+                    </div>
+                </div>
+            </div>
 
-  </section>
+        </section>
         <div class="">
 
         </div>
@@ -146,20 +143,24 @@ $data = query("SELECT * FROM resep");
                 </a>
             <?php endif; ?>
         </div>
-        <div class="d-flex">
+        <div class="row row-cols-4">
             <?php foreach ($data as $row) : ?>
-                <div class="card m-2" style="width: 18rem;">
-                    <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
-                        <!-- <p class="card-text"><?= $row["deskripsi"]; ?></p> -->
-                        <a href="detailResep.php?id=<?= $row["id_resep"]; ?>" class="btn btn-primary sticky-bottom">More</a>
-                    </div>
+                <div class="col">
+                    <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
+                        <div class="card m-2" style="width: 18rem;">
+                            <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+                                <!-- <p class="card-text"><?= $row["deskripsi"]; ?></p> -->
+                                <!-- <a href="detailResep.php?id=<?= $row["id_resep"]; ?>" class="btn btn-primary sticky-bottom">More</a> -->
+                            </div>
+                        </div>
+                    </a>
                 </div>
             <?php endforeach; ?>
         </div>
     </div>
-    
+
 </body>
 
 </html>8
