@@ -75,7 +75,7 @@ if (isset($_POST["submit"])) {
         }
 
         .content {
-            width: 50%;
+            width: 40%;
         }
 
         @media screen and (max-width: 992px) {
@@ -83,8 +83,6 @@ if (isset($_POST["submit"])) {
                 width: 100%;
             }
         }
-
-        
     </style>
 </head>
 
@@ -142,10 +140,12 @@ if (isset($_POST["submit"])) {
                     </div> -->
                     <!-- Avatar -->
                     <div class="dropdown ">
+
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-user fa-xl"></i>
                             <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
                         </a>
+
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
                                 <a class="dropdown-item" href="#">My profile</a>
@@ -173,95 +173,94 @@ if (isset($_POST["submit"])) {
     <!-- Navbar -->
     <div class="container-fluid d-flex align-items-center justify-content-center">
         <div class="content">
-        <h1 class="text-center m-3">Tulis Resep Baru</h1>
+            <h1 class="text-center m-3">Tulis Resep Baru</h1>
 
-        <form action="" method="post" enctype="multipart/form-data">
-            <div class="field-input">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="field-input">
 
-                <label class="form-label" for="nama_resep">Judul Resep : </label>
-                <input class="form-control" type="text" name="nama_resep" id="nama_resep" maxlength="30" required>
+                    <label class="form-label" for="nama_resep">Judul Resep : </label>
+                    <input class="form-control" type="text" name="nama_resep" id="nama_resep" maxlength="30" required>
 
 
-                <!-- <label for="nama">deskripsi : </label>
+                    <!-- <label for="nama">deskripsi : </label>
                 <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea> -->
-                <label for="deskripsi" class="form-label">Deskripsi resep</label>
-                <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
+                    <label for="deskripsi" class="form-label">Deskripsi resep</label>
+                    <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
 
-            </div>
-            <div class="field-input">
-                <label for="row-bahan">bahan-bahan</label>
-                <ol id="row-bahan">
-                    <li>
-                        <div class="row my-2">
-                            <div class="col-6"><input type="text" class="form-control" name="detail_bahan[]"></div>
-                            <div class="col-2"><a class="delete-bahan"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a></div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row my-2">
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="detail_bahan[]">
+                </div>
+                <div class="field-input">
+                    <label for="row-bahan">bahan-bahan</label>
+                    <ol id="row-bahan">
+                        <li>
+                            <div class="row my-2">
+                                <div class="col-6"><input type="text" class="form-control" name="detail_bahan[]"></div>
+                                <div class="col-2"><a class="delete-bahan"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a></div>
                             </div>
-                            <div class="col-2">
-                                <a class="delete-bahan"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                        </li>
+                        <li>
+                            <div class="row my-2">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" name="detail_bahan[]">
+                                </div>
+                                <div class="col-2">
+                                    <a class="delete-bahan"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                </ol>
-                <button type="button" id="add-row-bahan" class="btn btn-outline-primary">add</button>
-            </div>
-            <div class="field-input">
-                <label for="row-langkah">Langkah-Langkah</label>
-                <ol id="row-langkah">
-                    <li>
-                        <div class="row my-2">
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="detail_langkah[]">
+                        </li>
+                    </ol>
+                    <button type="button" id="add-row-bahan" class="btn btn-outline-primary">add</button>
+                </div>
+                <div class="field-input">
+                    <label for="row-langkah">Langkah-Langkah</label>
+                    <ol id="row-langkah">
+                        <li>
+                            <div class="row my-2">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" name="detail_langkah[]">
+                                </div>
+                                <div class="col-2">
+                                    <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                                </div>
                             </div>
-                            <div class="col-2">
-                                <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                        </li>
+                        <li>
+                            <div class="row my-2">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" name="detail_langkah[]">
+                                </div>
+                                <div class="col-2">
+                                    <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row my-2">
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="detail_langkah[]">
+                        </li>
+                        <li>
+                            <div class="row my-2">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" name="detail_langkah[]">
+                                </div>
+                                <div class="col-2">
+                                    <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                                </div>
                             </div>
-                            <div class="col-2">
-                                <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="row my-2">
-                            <div class="col-6">
-                                <input type="text" class="form-control" name="detail_langkah[]">
-                            </div>
-                            <div class="col-2">
-                                <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
-                            </div>
-                        </div>
-                    </li>
-                </ol>
-                <button type="button" id="add-row-langkah" class="btn btn-outline-primary">add</button>
-            </div>
-            <div class="field-input">
-                <label for="jurusan">Gambar : </label>
-                <!-- <input type="file" name="gambar" id="gambar"> -->
-                <input class="form-control" type="file" id="gamabar" name="gambar">
-            </div>
-            <!-- <li>
+                        </li>
+                    </ol>
+                    <button type="button" id="add-row-langkah" class="btn btn-outline-primary">add</button>
+                </div>
+                <div class="field-input">
+                    <label for="jurusan">Gambar : </label>
+                    <!-- <input type="file" name="gambar" id="gambar"> -->
+                    <input class="form-control" type="file" id="gamabar" name="gambar">
+                </div>
+                <!-- <li>
                 <label for="gambar">Gambar : </label>
                 <input type="file" name="gambar" id ="gambar">
             </li> -->
 
-            <div class="field-input">
-                <button class="btn btn-primary" type="submit" name="submit">Submit</button>
-            </div>
+                <div class="field-input">
+                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                </div>
 
-        </form>
-        <a href="index.php">Halaman utama</a>
+            </form>
         </div>
     </div>
 
