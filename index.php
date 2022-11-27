@@ -27,11 +27,8 @@ $data = query("SELECT * FROM resep");
 
 <body style='background-color:#c6c9ca'>
     <!-- Navbar -->
-<<<<<<< Updated upstream
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
-=======
     <nav class="navbar navbar-expand-lg navbar-light sticky-top" style='background-color:transparent'>
->>>>>>> Stashed changes
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
@@ -112,16 +109,8 @@ $data = query("SELECT * FROM resep");
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-<<<<<<< Updated upstream
-        <div id="background">
-=======
-    
-    <div id="background">
->>>>>>> Stashed changes
-        <div class="jumbotron">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio libero corrupti, consequuntur, blanditiis, sint quod maxime molestiae voluptatibus ratione neque</p>
             <h1>GUDANG RESEP</h1>
-            <button type="button" class="btn btn-primary" id='bounce' onClick="document.getElementById('card-resep').scrollIntoView();">
                 <i class="fa-regular fa-solid fa-arrow-down fa-xl"></i>
             </button>
         </div>
