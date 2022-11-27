@@ -27,7 +27,6 @@ $data = query("SELECT * FROM resep");
 
 <body style='background-color:#c6c9ca'>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
     <nav class="navbar navbar-expand-lg navbar-light sticky-top" style='background-color:transparent'>
         <!-- Container wrapper -->
         <div class="container-fluid">
