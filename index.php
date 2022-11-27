@@ -109,6 +109,8 @@ $data = query("SELECT * FROM resep");
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
+    <div id="background">
+        <div class="jumbotron">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio libero corrupti, consequuntur, blanditiis, sint quod maxime molestiae voluptatibus ratione neque</p>
             <h1>GUDANG RESEP</h1>
                 <i class="fa-regular fa-solid fa-arrow-down fa-xl"></i>
@@ -148,7 +150,5 @@ $data = query("SELECT * FROM resep");
             <?php endforeach; ?>
         </div>
     </div>
-
 </body>
-
-</html>8
+</html>
