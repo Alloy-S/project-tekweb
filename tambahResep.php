@@ -33,7 +33,7 @@ if (isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="MDB5/css/mdb.min.css" />
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
@@ -43,26 +43,21 @@ if (isset($_POST["submit"])) {
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <script>
         $(document).ready(function() {
-            var countLangkah = 4;
-            var countBahan = 3;
             $("#add-row-langkah").click(function() {
-                $("#row-langkah").append("<tr><td class='pe-3 '>" + countLangkah + "</td><td><input type='text' class='form-control my-1' name='detail_bahan[]'></td><td><a class='px-1 delete-langkah'><i class='fa-sharp fa-solid fa-xmark'></i></a></td></tr>");
-                countLangkah++;
+                $("#row-langkah").append("<li><div class='row my-2'><div class='col-6'><input type='text' class='form-control' name='detail_langkah[]'></div><div class='col-2'><a class='delete-langkah'><i class='fa-sharp fa-solid fa-xmark fa-xl'></i></a></div></div></li>");
             });
 
             $("#add-row-bahan").click(function() {
-                $("#row-bahan").append("<tr><td class='pe-2><i class='fa-sharp fa-solid fa-arrow-right'></i></td><td><input type='text' class='form-control my-1' name='detail_langkah[]'></td><td><a class='px-1 delete-bahan'><i class='fa-sharp fa-solid fa-xmark'></i></a></td></tr>");
-                countBahan++;
+                $("#row-bahan").append("<li><div class='row my-2'><div class='col-6'><input type='text' class='form-control' name='detail_bahan[]'></div><div class='col-2'><a class='delete-bahan'><i class='fa-sharp fa-solid fa-xmark fa-xl'></i></a></div></div></li>");
+
             });
 
             $(document).on("click", ".delete-langkah", function(e) {
-                $(this).parent().parent().remove()
-                countLangkah--;
+                $(this).parent().parent().parent().remove()
             });
 
             $(document).on("click", ".delete-bahan", function(e) {
-                $(this).parent().parent().remove()
-
+                $(this).parent().parent().parent().remove()
             });
         });
     </script>
@@ -73,11 +68,23 @@ if (isset($_POST["submit"])) {
 
 
 
-        .deskripsi {
+        .field-input {
             background-color: white;
             padding: 10px;
             margin-bottom: 15px;
         }
+
+        .content {
+            width: 50%;
+        }
+
+        @media screen and (max-width: 992px) {
+            .content {
+                width: 100%;
+            }
+        }
+
+        
     </style>
 </head>
 
@@ -164,11 +171,12 @@ if (isset($_POST["submit"])) {
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    <div class="container">
-        <h1 class="text-center m-3">tambah data data resep</h1>
+    <div class="container-fluid d-flex align-items-center justify-content-center">
+        <div class="content">
+        <h1 class="text-center m-3">Tulis Resep Baru</h1>
 
         <form action="" method="post" enctype="multipart/form-data">
-            <div class="deskripsi">
+            <div class="field-input">
 
                 <label class="form-label" for="nama_resep">Judul Resep : </label>
                 <input class="form-control" type="text" name="nama_resep" id="nama_resep" maxlength="30" required>
@@ -180,50 +188,65 @@ if (isset($_POST["submit"])) {
                 <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
 
             </div>
-            <div class="deskripsi">
+            <div class="field-input">
                 <label for="row-bahan">bahan-bahan</label>
-                <table id="row-bahan">
-
-                    <tr>
-                        <td class="pe-3 "><i class="fa-sharp fa-solid fa-arrow-right"></i></td>
-                        <td class="d-flex justify-content-between">
-                            <input type="text" class="form-control my-1" name="detail_bahan[]">
-                        </td>
-                        <!-- <td>
-                                <a class="px-1 delete-bahan"><i class="fa-sharp fa-solid fa-xmark"></i></a>
-                            </td> -->
-                    </tr>
-
-                    <tr>
-                        <td class="pe-2"><i class="fa-sharp fa-solid fa-arrow-right"></i></td>
-                        <td><input type="text" class="form-control my-1" name="detail_bahan[]"></td>
-                    </tr>
-
-                </table>
+                <ol id="row-bahan">
+                    <li>
+                        <div class="row my-2">
+                            <div class="col-6"><input type="text" class="form-control" name="detail_bahan[]"></div>
+                            <div class="col-2"><a class="delete-bahan"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a></div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row my-2">
+                            <div class="col-6">
+                                <input type="text" class="form-control" name="detail_bahan[]">
+                            </div>
+                            <div class="col-2">
+                                <a class="delete-bahan"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
                 <button type="button" id="add-row-bahan" class="btn btn-outline-primary">add</button>
             </div>
-            <div class="deskripsi">
+            <div class="field-input">
                 <label for="row-langkah">Langkah-Langkah</label>
-                <table id="row-langkah">
-                    <tr>
-                        <td class="pe-3 ">1</td>
-                        <td><input type="text" class="form-control my-1" name="detail_langkah[]"></td>
-                        <!-- <td>
-                                <a class="px-1 delete"><i class="fa-sharp fa-solid fa-xmark"></i></a>
-                            </td> -->
-                    </tr>
-                    <tr>
-                        <td class="pe-2">2</td>
-                        <td><input type="text" class="form-control my-1" name="detail_langkah[]"></td>
-                    </tr>
-                    <tr>
-                        <td class="pe-2">3</td>
-                        <td><input type="text" class="form-control my-1" name="detail_langkah[]"></td>
-                    </tr>
-                </table>
+                <ol id="row-langkah">
+                    <li>
+                        <div class="row my-2">
+                            <div class="col-6">
+                                <input type="text" class="form-control" name="detail_langkah[]">
+                            </div>
+                            <div class="col-2">
+                                <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row my-2">
+                            <div class="col-6">
+                                <input type="text" class="form-control" name="detail_langkah[]">
+                            </div>
+                            <div class="col-2">
+                                <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="row my-2">
+                            <div class="col-6">
+                                <input type="text" class="form-control" name="detail_langkah[]">
+                            </div>
+                            <div class="col-2">
+                                <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
                 <button type="button" id="add-row-langkah" class="btn btn-outline-primary">add</button>
             </div>
-            <div class="deskripsi">
+            <div class="field-input">
                 <label for="jurusan">Gambar : </label>
                 <!-- <input type="file" name="gambar" id="gambar"> -->
                 <input class="form-control" type="file" id="gamabar" name="gambar">
@@ -233,12 +256,13 @@ if (isset($_POST["submit"])) {
                 <input type="file" name="gambar" id ="gambar">
             </li> -->
 
-            <div class="deskripsi">
+            <div class="field-input">
                 <button class="btn btn-primary" type="submit" name="submit">Submit</button>
             </div>
 
         </form>
         <a href="index.php">Halaman utama</a>
+        </div>
     </div>
 
 </body>

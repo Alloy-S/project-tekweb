@@ -66,8 +66,21 @@ if (isset($_POST["submit"])) {
 
     <style>
         .login {
-            width: 30%;
-            
+            width: 35%;
+            margin-top: 100px;
+        }
+
+        @media screen and (max-width: 1114px) and (min-width: 330px) {
+            .login {
+                width: 60%;
+            }
+        }
+
+
+        @media screen and (max-width: 480px) {
+            .login {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -76,7 +89,7 @@ if (isset($_POST["submit"])) {
     <?php if (isset($_POST["eror"])) : ?>
         <p>eror</p>
     <?php endif; ?>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="container-fluid d-flex justify-content-center">
         <div class="login">
             <!-- Pills navs -->
             <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
