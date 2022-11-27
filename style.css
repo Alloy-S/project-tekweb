@@ -1,0 +1,63 @@
+html {
+  scroll-behavior: smooth;
+ }
+ 
+#background{
+    margin-top:-120px;
+    background-image:url(img/sendok.jpg);
+    background-size: cover;
+    padding-top: 111px;
+    height: 638px;
+    max-height: 1112px;
+    margin-bottom: 50px;
+}
+
+#background .jumbotron{
+    background: none;
+    margin-left: 137px;
+    max-width: 1000px;
+    margin-top: 22px;
+}
+
+#background .jumbotron h1{
+    font-family: nexa;
+    color: white;
+    margin-bottom: -12px;
+}
+
+#background .jumbotron p{
+    font-family: raleway;
+    color: white;
+    margin-bottom: -12px;
+    margin-top: 27px;
+    padding-right: 307px;
+}
+
+@-webkit-keyframes bounce {
+        0% {
+    transform: scale(1,1) translate(0px, 0px);
+  }
+  
+  30%{
+    transform: scale(1,0.8) translate(0px, 10px); 
+  }
+
+  75%{
+    transform: scale(1,1.1) translate(0px, -25px); 
+  }
+  
+ 100% {
+    transform: scale(1,1) translate(0px, 0px);
+  }
+}
+
+
+#bounce {
+      text-align:center;
+      margin:0 auto;
+      margin-top:100px;
+      padding:20px;  
+      background:tomato;
+     -webkit-animation: bounce 1s infinite;
+     border-radius: 50%;
+}
