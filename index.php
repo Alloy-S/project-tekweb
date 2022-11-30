@@ -62,7 +62,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 0");
                     <!-- Notifications -->
                     <div class="dropdown">
                         <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-bell"></i>
+                            <i class="fas fa-bell" style="color: white;"></i>
                             <span class="badge rounded-pill badge-notification bg-danger">1</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
@@ -80,7 +80,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 0");
                     <!-- Avatar -->
                     <div class="dropdown">
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i>
+                            <i class="fa-solid fa-user" style="color: white;"></i>
                             <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
@@ -153,5 +153,6 @@ $data = query("SELECT * FROM resep WHERE is_approved = 0");
             <?php endforeach; ?>
         </div>
     </div>
+    
 </body>
 </html>
