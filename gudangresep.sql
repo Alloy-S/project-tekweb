@@ -38,6 +38,8 @@ CREATE TABLE `bahan` (
 --
 
 INSERT INTO `bahan` (`id_resep`, `urutan`, `takaran_bahan`) VALUES
+(1, 0, 'Bawang 2 siung'),
+(1, 1, 'minyak 2L'),
 (9, 0, 'iris buah'),
 (9, 1, 'ulek gula jawa'),
 (10, 0, 'panaskan minyak'),
@@ -60,22 +62,22 @@ CREATE TABLE `langkah` (
 --
 
 INSERT INTO `langkah` (`id_resep`, `urutan`, `langkah`) VALUES
-(0, 0, 'asda'),
-(0, 1, 'asda'),
-(0, 2, 'dasd'),
-(0, 0, 'goreng'),
-(0, 1, 'rebus'),
-(0, 2, 'godog'),
-(0, 0, 'tuang kopi ke dalam cangkir'),
-(0, 1, 'seduh dengan air panas'),
-(0, 2, 'aduk-aduk hingga merata'),
-(0, 3, 'tambah gula'),
-(0, 4, 'tambah garam'),
-(0, 5, 'jadi deh tinggal minum'),
-(0, 0, 'asdaasd'),
-(0, 1, 'asdadadsfgdhg'),
-(0, 2, 'hfktuyikfkfghkm'),
-(0, 3, 'asdad'),
+(1, 0, 'asda'),
+(1, 1, 'asda'),
+(1, 2, 'dasd'),
+(1, 0, 'goreng'),
+(2, 1, 'rebus'),
+(2, 2, 'godog'),
+(3, 0, 'tuang kopi ke dalam cangkir'),
+(3, 1, 'seduh dengan air panas'),
+(3, 2, 'aduk-aduk hingga merata'),
+(3, 3, 'tambah gula'),
+(3, 4, 'tambah garam'),
+(3, 5, 'jadi deh tinggal minum'),
+(4, 0, 'asdaasd'),
+(4, 1, 'asdadadsfgdhg'),
+(4, 2, 'hfktuyikfkfghkm'),
+(4, 3, 'asdad'),
 (7, 0, 'qwert'),
 (7, 1, 'asdf'),
 (7, 2, 'zxcvb'),
@@ -124,6 +126,27 @@ INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `tanggal`, `gambar`,
 
 -- --------------------------------------------------------
 
+--
+-- Struktur dari tabel `comment`
+
+
+-- CREATE TABLE `comment` (
+--   `id_user` int(11) NOT NULL,
+--   `urutan` int(11) NOT NULL,
+--   `takaran_bahan` varchar(30) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `bahan`
+--
+
+INSERT INTO `bahan` (`id_resep`, `urutan`, `takaran_bahan`) VALUES
+(9, 0, 'iris buah'),
+(9, 1, 'ulek gula jawa'),
+(10, 0, 'panaskan minyak'),
+(10, 1, 'goreng ayam');
+
+-- --------------------------------------------------------
 --
 -- Struktur dari tabel `user`
 --
