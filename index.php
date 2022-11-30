@@ -111,7 +111,8 @@ $data = query("SELECT * FROM resep");
     <div id="background">
         <div class="jumbotron">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio libero corrupti, consequuntur, blanditiis, sint quod maxime molestiae voluptatibus ratione neque</p>
-            <h1>GUDANG RESEP</h1>
+            <hr class="my-8">
+            <h1 class="display-5">GUDANG RESEP</h1>
             <button type="button" class="btn btn-primary" id='bounce' onClick="document.getElementById('card-resep').scrollIntoView();">
                 <i class="fa-regular fa-solid fa-arrow-down fa-xl"></i>
             </button>
@@ -135,10 +136,12 @@ $data = query("SELECT * FROM resep");
         </div>
         <div class="row row-cols-4">
             <?php foreach ($data as $row) : ?>
-                <div class="col">
+                <div class="col" style="padding-top: 10px;">
                     <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
                         <div class="card m-2" style="width: 18rem;">
-                            <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>">
+                            <div class="ratio ratio-16x9">
+                                <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
                                 <!-- <p class="card-text"><?= $row["deskripsi"]; ?></p> -->
