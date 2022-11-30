@@ -8,6 +8,7 @@
     $qry = "SELECT name FROM admin_acc 
     WHERE username LIKE '".$_SESSION['username']."';";
     $data_nama = query($qry);
+    
 ?>
 
 <!DOCTYPE html>
