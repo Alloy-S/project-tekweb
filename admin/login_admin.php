@@ -3,7 +3,7 @@ session_start();
 require("../connect.php");
 
 if (isset($_SESSION["login_admin"])) {
-    header("Location: admin_page.php");
+    header("Location: index.php");
 }
 
 if (isset($_POST["submit"])) {
@@ -18,7 +18,7 @@ if (isset($_POST["submit"])) {
             <script>
             alert('eror');
             </script>";
-        // header("Location: login2.php");
+        header("Location: login_admin.php");
         exit;
     }
 
