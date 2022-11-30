@@ -45,7 +45,7 @@ if (isset($_POST["submit"])) {
     //     setcookie("id", $row["id"], time() + 60);
     //     setcookie("key", hash("sha256", $row["username"]), time() + 60);
     // }
-    header("Location: admin_page.php");
+    header("Location: index.php");
 }
 ?>
 
