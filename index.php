@@ -5,7 +5,7 @@ require("connect.php");
 //     header("Location: login.php");
 // }
 
-$data = query("SELECT * FROM resep WHERE is_approved = 0");
+$data = query("SELECT * FROM resep");
 // var_dump($data);
 // print_r($_SESSION);
 ?>
@@ -16,7 +16,10 @@ $data = query("SELECT * FROM resep WHERE is_approved = 0");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <!-- CSS only
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> -->
     <title>Home</title>
     <link rel="stylesheet" href="MDB5/css/mdb.min.css" />
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
@@ -43,9 +46,9 @@ $data = query("SELECT * FROM resep WHERE is_approved = 0");
                 </a>
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
                     <div class="input-group d-flex justify-content-center">
-                        <div class="form-outline w-25">
-                            <input type="search" id="form1" class="form-control text-light"/>
-                            <label class="form-label text-light" for="form1">Search</label>
+                        <div class="form-outline w-25 rounded border border-light p-1" style="--bs-border-opacity: .5;">
+                            <input id="search-input" type="search" placeholder="Search" id="form1" class="form-control text-light"/>
+                            <!-- <label class="form-label text-light" for="form1">Search</label> -->
                         </div>
                         <button type="button" class="btn" style="background-color:transparent">
                             <i class="fas fa-search text-light"></i>
@@ -58,11 +61,15 @@ $data = query("SELECT * FROM resep WHERE is_approved = 0");
             <!-- Right elements -->
             <?php if (isset($_SESSION["login"])) : ?>
                 <div class="d-flex align-items-center">
+                    <!-- Icon -->
+                    <a class="text-reset me-3" href="#">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
 
                     <!-- Notifications -->
                     <div class="dropdown">
                         <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-bell" style="color: white;"></i>
+                            <i class="fas fa-bell"></i>
                             <span class="badge rounded-pill badge-notification bg-danger">1</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
@@ -80,7 +87,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 0");
                     <!-- Avatar -->
                     <div class="dropdown">
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user" style="color: white;"></i>
+                            <i class="fa-solid fa-user"></i>
                             <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
@@ -108,11 +115,11 @@ $data = query("SELECT * FROM resep WHERE is_approved = 0");
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
+    
     <div id="background">
         <div class="jumbotron">
             <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio libero corrupti, consequuntur, blanditiis, sint quod maxime molestiae voluptatibus ratione neque</p>
-            <hr class="my-8">
-            <h1 class="display-5">GUDANG RESEP</h1>
+            <h1>GUDANG RESEP</h1>
             <button type="button" class="btn btn-primary" id='bounce' onClick="document.getElementById('card-resep').scrollIntoView();">
                 <i class="fa-regular fa-solid fa-arrow-down fa-xl"></i>
             </button>
@@ -134,25 +141,20 @@ $data = query("SELECT * FROM resep WHERE is_approved = 0");
                 </a>
             <?php endif; ?>
         </div>
-        <div class="row row-cols-4">
+        <div class="d-flex">
             <?php foreach ($data as $row) : ?>
-                <div class="col" style="padding-top: 10px;">
-                    <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
-                        <div class="card m-2" style="width: 18rem;">
-                            <div class="ratio ratio-16x9">
-                                <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
-                                <!-- <p class="card-text"><?= $row["deskripsi"]; ?></p> -->
-                                <!-- <a href="detailResep.php?id=<?= $row["id_resep"]; ?>" class="btn btn-primary sticky-bottom">More</a> -->
-                            </div>
-                        </div>
-                    </a>
+                <div class="card m-2" style="width: 18rem;">
+                    <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+                        <!-- <p class="card-text"><?= $row["deskripsi"]; ?></p> -->
+                        <a href="detailResep.php?id=<?= $row["id_resep"]; ?>" class="btn btn-primary sticky-bottom">More</a>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
     </div>
-    
+
 </body>
+
 </html>

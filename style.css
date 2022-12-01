@@ -34,31 +34,13 @@ html {
     padding-right: 307px;
 }
 
-@-webkit-keyframes bounce {
-  0% {
-    transform: scale(1,1) translate(0px, 0px);
-  }
-  
-  30%{
-    transform: scale(1,0.8) translate(0px, 10px); 
-  }
-
-  75%{
-    transform: scale(1,1.1) translate(0px, -25px); 
-  }
-  
- 100% {
-    transform: scale(1,1) translate(0px, 0px);
-  }
-}
-
-
 #bounce {
       text-align:center;
       margin:0 auto;
       margin-top:100px;
       padding:20px;  
       background:tomato;
-     -webkit-animation: bounce 1s infinite;
+      width: 54px;
+      height: 54px;
      border-radius: 50%;
 }
