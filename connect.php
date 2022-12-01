@@ -93,16 +93,17 @@ function tambah_resep($data)
 
         $qry = "INSERT INTO resep  
                 VALUES
-                (null, '$judul', '$deskripsi', SYSDATE(),'$gambar', '$username', 0);";
+                (null, '$judul', '$deskripsi', 'makanan', SYSDATE(),'$gambar', '$username', 0);";
 
         mysqli_query($conn, $qry);
 
         $result = query("SELECT id_resep FROM resep ORDER BY id_resep DESC LIMIT 1;");
         $id_resep = $result[0]['id_resep'];
         foreach($data['detail_bahan'] as $row => $value) {
-            $detail_bahan = $data['detail_langkah'][$row];
+            $detail_bahan = $data['detail_bahan'][$row];
+            $detail_takaran = $data['detail_takaran'][$row];
 
-            $qry = "INSERT INTO bahan VALUES ('$id_resep', '$row', '$detail_bahan');";
+            $qry = "INSERT INTO bahan VALUES ('$id_resep', '$row', '$detail_takaran', '$detail_bahan');";
             mysqli_query($conn, $qry); 
         }
 

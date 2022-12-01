@@ -48,7 +48,7 @@ if (isset($_POST["submit"])) {
             });
 
             $("#add-row-bahan").click(function() {
-                $("#row-bahan").append("<li><div class='row my-2'><div class='col-6'><input type='text' class='form-control' name='detail_bahan[]'></div><div class='col-2'><a class='delete-bahan'><i class='fa-sharp fa-solid fa-xmark fa-xl'></i></a></div></div></li>");
+                $("#row-bahan").append("<li><div class='row'><div class='col-5'><input type='text' class='form-control' name='detail_takaran[]' placeholder='takran'></div><div class='col-5'><input type='text' class='form-control' name='detail_bahan[]' placeholder='bahan'></div><div class='col-2'><a class='delete-bahan'><i class='fa-sharp fa-solid fa-xmark fa-xl'></i></a></div></div></li>");
 
             });
 
@@ -192,15 +192,19 @@ if (isset($_POST["submit"])) {
                     <label for="row-bahan">bahan-bahan</label>
                     <ol id="row-bahan">
                         <li>
-                            <div class="row my-2">
-                                <div class="col-6"><input type="text" class="form-control" name="detail_bahan[]"></div>
-                                <div class="col-2"><a class="delete-bahan"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a></div>
+                            <div class="row ">
+                                <div class="col-5"><input type="text" class="form-control" name="detail_takaran[]" placeholder="takran"></div>
+                                <div class="col-5"><input type="text" class="form-control" name="detail_bahan[]" placeholder="bahan"></div>
+                                <div class="col-2"><a class="delete-bahan"><i class="fa-solid fa-xmark fa-xl"></i></a></div>
                             </div>
                         </li>
                         <li>
                             <div class="row my-2">
-                                <div class="col-6">
-                                    <input type="text" class="form-control" name="detail_bahan[]">
+                                <div class="col-5">
+                                    <input type="text" class="form-control" name="detail_takaran[]" placeholder="takaran">
+                                </div>
+                                <div class="col-5">
+                                    <input type="text" class="form-control" name="detail_bahan[]" placeholder="bahan">
                                 </div>
                                 <div class="col-2">
                                     <a class="delete-bahan"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>

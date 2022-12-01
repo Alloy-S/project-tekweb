@@ -133,7 +133,7 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id'");
                                 <p> Bahan & Takaran </p>
                                 <?php while($r = mysqli_fetch_array($bahan,MYSQLI_ASSOC) ){?>
                                     <ul class="list-group">
-                                        <li class="list-group-item"><?php echo $r['urutan'] ?>.   <?php echo $r['takaran_bahan'] ?> </li>
+                                        <li class="list-group-item"><?php echo $r['urutan'] + 1 ?>.   <?php echo $r['takaran'] ?> </li>
                                     </ul>
                                 
                                 <?php }?>
@@ -142,7 +142,7 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id'");
                                 <p> Langkah Pembuatan </p>
                                 <?php while($r = mysqli_fetch_array($langkah,MYSQLI_ASSOC) ){?>
                                     <ul class="list-group">
-                                        <li class="list-group-item"><?php echo $r['urutan'] ?>.   <?php echo $r['langkah'] ?> </li>
+                                        <li class="list-group-item"><?php echo $r['urutan'] + 1 ?>.   <?php echo $r['langkah'] ?> </li>
                                     </ul>
                                 
                                 <?php }?>
