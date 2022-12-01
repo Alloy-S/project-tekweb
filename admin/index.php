@@ -111,13 +111,13 @@
 
         <!-- Table -->
         <table class="table align-middle mb-0 bg-secondary text-white">
-            <thead class="bg-secondary text-white">
+            <thead class="bg-secondary text-white h5 fw-bold">
                 <tr>
-                <th>Daftar Nama</th>
-                <th>Title</th>
-                <th>Status</th>
-                <th>Position</th>
-                <th>Actions</th>
+                <th><strong>Menu Name</strong></th>
+                <th><strong>Category</strong></th>
+                <th><strong>Status</strong></th>
+                <th><strong>Author</strong></th>
+                <th><strong>Actions</strong></th>
                 </tr>
             </thead>
             <tbody>
