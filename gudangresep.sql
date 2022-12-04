@@ -99,7 +99,7 @@ INSERT INTO `langkah` (`id_resep`, `urutan`, `langkah`) VALUES
 --
 
 CREATE TABLE `resep` (
-  `id_resep` int(11) NOT NULL,
+  `id_resep` int(11) NOT NULL PRIMARY KEY,
   `nama_resep` varchar(30) NOT NULL,
   `deskripsi` varchar(1000) NOT NULL,
   `tanggal` date NOT NULL DEFAULT current_timestamp(),
@@ -127,14 +127,19 @@ INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `tanggal`, `gambar`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `comment`
+Struktur dari tabel `comment`
 
 
--- CREATE TABLE `comment` (
---   `id_user` int(11) NOT NULL,
---   `urutan` int(11) NOT NULL,
---   `takaran_bahan` varchar(30) NOT NULL
--- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `comments` (
+  `comment_id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `author` varchar(50) NOT NULL,
+  `resep_id` INTEGER NOT NULL,
+  `comment` varchar(255),
+  `date_created` DATETIME NOT NULL,
+  `reply` int(11) NOT NULL,
+  
+  CONSTRAINT fk_comments_resep_id FOREIGN KEY (id_resep) REFERENCES resep(id_resep)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `bahan`
