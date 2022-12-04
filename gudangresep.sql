@@ -29,21 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bahan` (
   `id_resep` int(11) NOT NULL,
-  `urutan` int(11) NOT NULL,
-  `takaran_bahan` varchar(30) NOT NULL
+  `jenis` varchar(30) NOT NULL,
+  `takaran` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `bahan`
 --
 
-INSERT INTO `bahan` (`id_resep`, `urutan`, `takaran_bahan`) VALUES
-(1, 0, 'Bawang 2 siung'),
-(1, 1, 'minyak 2L'),
-(9, 0, 'iris buah'),
-(9, 1, 'ulek gula jawa'),
-(10, 0, 'panaskan minyak'),
-(10, 1, 'goreng ayam');
+INSERT INTO `bahan` (`id_resep`, `jenis`, `takaran`) VALUES
+(1, 'Bawang', '2 siung'),
+(1, 'Minyak', '2L'),
+(9, 'Buah', 'selain mangga'),
+(9, 'Gula Jawa', '500gr'),
+(10, 'Minyak', 'gatau dah'),
+(10, 'Ayam', 'punya tetangga');
 
 -- --------------------------------------------------------
 
@@ -140,16 +140,6 @@ CREATE TABLE `comments` (
   
   CONSTRAINT fk_comments_resep_id FOREIGN KEY (id_resep) REFERENCES resep(id_resep)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `bahan`
---
-
-INSERT INTO `bahan` (`id_resep`, `urutan`, `takaran_bahan`) VALUES
-(9, 0, 'iris buah'),
-(9, 1, 'ulek gula jawa'),
-(10, 0, 'panaskan minyak'),
-(10, 1, 'goreng ayam');
 
 -- --------------------------------------------------------
 --
