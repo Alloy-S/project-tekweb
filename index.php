@@ -118,8 +118,9 @@ $data = query("SELECT * FROM resep");
     
     <div id="background">
         <div class="jumbotron">
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio libero corrupti, consequuntur, blanditiis, sint quod maxime molestiae voluptatibus ratione neque</p>
-            <h1>GUDANG RESEP</h1>
+            <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio libero corrupti, consequuntur, blanditiis, sint quod maxime molestiae voluptatibus ratione neque</p>
+            <hr class="my-4">
+            <h1 class="display-4">GUDANG RESEP</h1>
             <button type="button" class="btn btn-primary" id='bounce' onClick="document.getElementById('card-resep').scrollIntoView();">
                 <i class="fa-regular fa-solid fa-arrow-down fa-xl"></i>
             </button>
@@ -129,29 +130,39 @@ $data = query("SELECT * FROM resep");
     <div class="container" id='card-resep'>
         <div class="d-flex">
             <?php if (isset($_SESSION["login"])) : ?>
-
-                <a href="logout.php">
-                    <button type="button" class="btn btn-primary">Logout</button>
-                </a>
-                <a href="tambah.php">
-                    <button type="button" class="btn btn-primary">tambah</button>
-                </a>
-                <a href="tambahResep.php">
-                    <button type="button" class="btn btn-primary">tambah resep</button>
-                </a>
+                <div class="button-group">
+                    <a href="logout.php">
+                        <button type="button" class="btn btn-primary">Logout</button>
+                    </a>
+                    <a href="tambah.php">
+                        <button type="button" class="btn btn-primary">tambah</button>
+                    </a>
+                    <a href="tambahResep.php">
+                        <button type="button" class="btn btn-primary">tambah resep</button>
+                    </a>
+                </div>
             <?php endif; ?>
         </div>
+        <br>
         <div class="d-flex">
-            <?php foreach ($data as $row) : ?>
-                <div class="card m-2" style="width: 18rem;">
-                    <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
-                        <!-- <p class="card-text"><?= $row["deskripsi"]; ?></p> -->
-                        <a href="detailResep.php?id=<?= $row["id_resep"]; ?>" class="btn btn-primary sticky-bottom">More</a>
+            <div class="row g-2">
+                <?php foreach ($data as $row) : ?>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="card m-2">
+                            <div class="ratio ratio-16x9">
+                                <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
+                            </div>
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+                                    <!-- <p class="card-text"><?= $row["deskripsi"]; ?></p> -->
+                                    <a href="detailResep.php?id=<?= $row["id_resep"]; ?>" class="btn btn-primary sticky-bottom">More</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 
