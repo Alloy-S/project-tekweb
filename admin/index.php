@@ -147,7 +147,7 @@
                         </td>
                         <td>Senior</td>
                         <td>
-                            <button type="button" class="btn btn-link btn-sm btn-rounded">
+                            <button type="button" name="edit" class="btn btn-link btn-sm btn-danger btn-rounded text-white">
                             Edit
                             </button>
                         </td>
