@@ -9,6 +9,7 @@ require("connect.php");
         header("Location: login2.php");
     } else {
         echo mysqli_error($conn);
+        
     }
 // }
 
