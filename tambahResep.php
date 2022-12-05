@@ -33,14 +33,24 @@ if (isset($_POST["submit"])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Tambah resep baru</title>
+    <!-- bootstrap -->
     <link rel="stylesheet" href="MDB5/css/mdb.min.css" />
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
+    <!-- bootstrap -->
+    <!-- font awesome -->
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+    <!-- font awesome -->
 
-    <title>Tambah resep baru</title>
+    <!-- jQUERY -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+    <!-- jQUERY -->
+
+    <!-- CROPPER JS -->
+    <link href="cropperjs/cropper.min.css" rel="stylesheet" type="text/css" />
+    <script src="cropperjs/cropper.min.js" type="text/javascript"></script>
+    <!-- CROPPER JS -->
+
     <script>
         $(document).ready(function() {
             $("#add-row-langkah").click(function() {
@@ -59,6 +69,88 @@ if (isset($_POST["submit"])) {
             $(document).on("click", ".delete-bahan", function(e) {
                 $(this).parent().parent().parent().remove()
             });
+
+            // cropper
+            var bs_modal = $('#modal');
+            var image = document.getElementById('image-cropper');
+            var cropper, reader, file;
+
+
+            $("body").on("change", ".image", function(e) {
+                // console.log("wkwkwkw");
+                $("#image-data").val("")
+                var files = e.target.files;
+                var done = function(url) {
+                    image.src = url;
+                    bs_modal.modal('show');
+                };
+
+
+                if (files && files.length > 0) {
+                    file = files[0];
+
+                    if (URL) {
+                        done(URL.createObjectURL(file));
+                    } else if (FileReader) {
+                        reader = new FileReader();
+                        reader.onload = function(e) {
+                            done(reader.result);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+
+            bs_modal.on('shown.bs.modal', function() {
+                cropper = new Cropper(image, {
+                    // aspectRatio: 16 / 9,
+                    // viewMode: 3,
+                    dragMode: 'move',
+                    preview: '.preview',
+                    autoCropArea: 0.8,
+                    restore: false,
+                    guides: false,
+                    center: false,
+                    highlight: false,
+                    cropBoxMovable: false,
+                    cropBoxResizable: false,
+                    toggleDragModeOnDblclick: false,
+                });
+            }).on('hidden.bs.modal', function() {
+                cropper.destroy();
+                cropper = null;
+            });
+
+            $("#crop").click(function() {
+                canvas = cropper.getCroppedCanvas({
+                    width: 160,
+                    height: 160,
+                });
+
+                canvas.toBlob(function(blob) {
+                    url = URL.createObjectURL(blob);
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onloadend = function() {
+                        var base64data = reader.result;
+                        $("#image-data").val(base64data);
+
+                        bs_modal.modal('hide');
+                        // $.ajax({
+                        //     type: "POST",
+                        //     dataType: "json",
+                        //     url: "coba3.php",
+                        //     data: {image: base64data},
+                        //     success: function(data) { 
+                        //         bs_modal.modal('hide');
+                        //         alert("success upload image");
+
+                        //     }
+                        // });
+                    };
+                });
+            });
+            // cropper  
         });
     </script>
     <style>
@@ -76,6 +168,19 @@ if (isset($_POST["submit"])) {
 
         .content {
             width: 40%;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .preview {
+            overflow: hidden;
+            width: 160px;
+            height: 160px;
+            margin: 10px;
+            border: 1px solid red;
         }
 
         @media screen and (max-width: 992px) {
@@ -252,8 +357,9 @@ if (isset($_POST["submit"])) {
                 </div>
                 <div class="field-input">
                     <label for="jurusan">Gambar : </label>
-                    <!-- <input type="file" name="gambar" id="gambar"> -->
-                    <input class="form-control" type="file" id="gamabar" name="gambar">
+                    <input class="form-control image" type="file" name="gambar">
+                    <input type="hidden" name="image-data" id="image-data" disabled>
+
                 </div>
                 <!-- <li>
                 <label for="gambar">Gambar : </label>
@@ -268,6 +374,37 @@ if (isset($_POST["submit"])) {
         </div>
     </div>
 
-</body>
+    <!-- MODAL CROPPER -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">Crop image</h5>
+                    <button type="button" class="close" data-mdb-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="img-container">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <!--  default image where we will set the src via jquery-->
+                                <img id="image-cropper">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="preview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdn-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL CROPPER -->
+
 
 </html>
