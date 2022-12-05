@@ -145,9 +145,6 @@ $data = query("SELECT * FROM resep");
                     <a href="logout.php">
                         <button type="button" class="btn btn-primary">Logout</button>
                     </a>
-                    <a href="tambah.php">
-                        <button type="button" class="btn btn-primary">tambah</button>
-                    </a>
                     <a href="tambahResep.php">
                         <button type="button" class="btn btn-primary">tambah resep</button>
                     </a>

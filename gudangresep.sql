@@ -137,7 +137,7 @@ CREATE TABLE `comments` (
   `date_created` DATETIME NOT NULL,
   `reply` int(11) NOT NULL,
   
-  CONSTRAINT fk_comments_resep_id FOREIGN KEY (id_resep) REFERENCES resep(id_resep)
+  CONSTRAINT fk_comments_resep_id FOREIGN KEY (resep_id) REFERENCES resep(id_resep)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
