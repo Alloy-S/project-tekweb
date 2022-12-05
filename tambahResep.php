@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('connect.php');
 if (!isset($_SESSION["login"])) {
     header("Location: login.php");
 }
@@ -23,6 +24,8 @@ if (isset($_POST["submit"])) {
     </script>
     ";
     }
+
+    $data = query("SELECT * FROM kategori");
 }
 
 ?>
@@ -291,7 +294,12 @@ if (isset($_POST["submit"])) {
                 <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea> -->
                     <label for="deskripsi" class="form-label">Deskripsi resep</label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
-
+                    <select class="form-select mt-3" aria-label="Default select example" id="kategori">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
                 </div>
                 <div class="field-input">
                     <label for="row-bahan">bahan-bahan</label>

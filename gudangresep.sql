@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Des 2022 pada 17.43
+-- Waktu pembuatan: 05 Des 2022 pada 18.08
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.5
 
@@ -84,6 +84,17 @@ CREATE TABLE `comments` (
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `kategori`
+--
+
+CREATE TABLE `kategori` (
+  `id_kategori` int(11) NOT NULL,
+  `nama` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `langkah`
 --
 
@@ -138,27 +149,29 @@ CREATE TABLE `resep` (
   `id_resep` int(11) NOT NULL,
   `nama_resep` varchar(30) NOT NULL,
   `deskripsi` varchar(1000) NOT NULL,
+  `kategori` varchar(30) NOT NULL,
   `tanggal` date NOT NULL DEFAULT current_timestamp(),
   `gambar` varchar(255) NOT NULL,
   `author` varchar(30) NOT NULL,
-  `is_approved` tinyint(1) NOT NULL DEFAULT 0
+  `is_approved` tinyint(1) NOT NULL DEFAULT 0,
+  `is_private` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `resep`
 --
 
-INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `tanggal`, `gambar`, `author`, `is_approved`) VALUES
-(1, 'Nasi goreng sederhan', 'Nasi goreng merupakan makanan khas Indonesia, dan pada dasarnya sama seperti makanan Indonesia lainnya yang memiliki banyak sekali variasi. Meski sudah ada berbagai macam variasi, pada dasarnya nasi goreng adalah nasi yang digoreng yang kemudian ditambahi dengan berbagai bumbu untuk kenikmatan yang lebih lagi.', '2022-11-26', 'resep-nasi-goreng-jawa.jpg', 'admin', 0),
-(2, 'lkasandas', 'asdasdajsndkaj', '2022-11-26', '636dffb528c45.png', 'admin', 0),
-(3, 'asda', 'dasda', '2022-11-26', '63708b8d35637.jpg', 'admin', 0),
-(4, 'qwerty', 'qwerty', '2022-11-26', '63708c54216c2.png', 'admin2', 0),
-(5, 'kopi', 'kopi josss', '2022-11-26', '63708e6c90ecf.jpg', 'admin2', 0),
-(6, 'asda', 'asdasd', '2022-11-26', '637090071203b.png', 'admin2', 0),
-(7, 'adfada', 'dasdasda', '2022-11-26', '6370908cb44c7.png', 'admin2', 0),
-(8, 'pecel', 'pecel enak', '2022-11-26', '637f3c4586bff.jpg', 'admin', 0),
-(9, 'rujak', 'rujak jossss', '0000-00-00', '638246b240d31.jpg', 'admin', 0),
-(10, 'ayam goreng', 'enak enak enak', '2022-11-27', '638247b6ea95c.jpg', 'admin', 0);
+INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `kategori`, `tanggal`, `gambar`, `author`, `is_approved`, `is_private`) VALUES
+(1, 'Nasi goreng sederhan', 'Nasi goreng merupakan makanan khas Indonesia, dan pada dasarnya sama seperti makanan Indonesia lainnya yang memiliki banyak sekali variasi. Meski sudah ada berbagai macam variasi, pada dasarnya nasi goreng adalah nasi yang digoreng yang kemudian ditambahi dengan berbagai bumbu untuk kenikmatan yang lebih lagi.', '', '2022-11-26', 'resep-nasi-goreng-jawa.jpg', 'admin', 0, 0),
+(2, 'lkasandas', 'asdasdajsndkaj', '', '2022-11-26', '636dffb528c45.png', 'admin', 0, 0),
+(3, 'asda', 'dasda', '', '2022-11-26', '63708b8d35637.jpg', 'admin', 0, 0),
+(4, 'qwerty', 'qwerty', '', '2022-11-26', '63708c54216c2.png', 'admin2', 0, 0),
+(5, 'kopi', 'kopi josss', '', '2022-11-26', '63708e6c90ecf.jpg', 'admin2', 0, 0),
+(6, 'asda', 'asdasd', '', '2022-11-26', '637090071203b.png', 'admin2', 0, 0),
+(7, 'adfada', 'dasdasda', '', '2022-11-26', '6370908cb44c7.png', 'admin2', 0, 0),
+(8, 'pecel', 'pecel enak', '', '2022-11-26', '637f3c4586bff.jpg', 'admin', 0, 0),
+(9, 'rujak', 'rujak jossss', '', '0000-00-00', '638246b240d31.jpg', 'admin', 0, 0),
+(10, 'ayam goreng', 'enak enak enak', '', '2022-11-27', '638247b6ea95c.jpg', 'admin', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -173,6 +186,13 @@ CREATE TABLE `user` (
   `nama` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `user`
+--
+
+INSERT INTO `user` (`id`, `username`, `password`, `nama`, `email`) VALUES
+(0, 'admin', '$2y$10$XnTpXHQuFABWxuuE1EaWX.H5kPBqEC/OEO7AZZAm71lA2nMhAT4j6', 'admin', 'admin@wkwk.com');
 
 --
 -- Indexes for dumped tables
@@ -196,6 +216,12 @@ ALTER TABLE `bahan`
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`),
   ADD KEY `resep_id` (`resep_id`);
+
+--
+-- Indeks untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  ADD PRIMARY KEY (`id_kategori`);
 
 --
 -- Indeks untuk tabel `langkah`
@@ -230,6 +256,12 @@ ALTER TABLE `admin_acc`
 --
 ALTER TABLE `comments`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT untuk tabel `kategori`
+--
+ALTER TABLE `kategori`
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
