@@ -29,7 +29,7 @@ while ($r = mysqli_fetch_object($que))
     <!-- CSS only -->
     <link rel="stylesheet" href="detail.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+    <!-- <link rel="stylesheet" href="assets/fontawesome/css/all.css"> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
@@ -38,6 +38,7 @@ while ($r = mysqli_fetch_object($que))
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
+    <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
     <title><?= $data[0]["nama_resep"]; ?></title>
 </head>
 
@@ -179,18 +180,18 @@ while ($r = mysqli_fetch_object($que))
                 </div>
                 <div class="col-lg-4 m-15px-tb blog-aside">
                     <!-- Author -->
-                    <div class="widget widget-author">
+                    <div class="widget widget-author mt-5">
                         <div class="widget-title">
-                            <h3>Action</h3>
+                            <h3 class="text-center mb-3">Action</h3>
                         </div>
                         <div class="card text-center">
-                        <div class="card-header">Featured</div>
+                        <div class="card-header">Opsi Pilihan</div>
                         <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="#" class="btn btn-primary">Button</a>
+                            <button type="button" class="btn btn-primary"> Publish <i class="fa fa-check" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-warning text-white"> Takedown <i class="fa-regular fa-clock"></i></button>
+                            <button type="button" class="btn btn-danger    "> Delete <i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
-                        <div class="card-footer text-muted">2 days ago</div>
+                        <!-- <div class="card-footer text-muted">2 days ago</div> -->
                         </div>
                         <?php           
                         foreach ($comments as $comment_key => $comment)
