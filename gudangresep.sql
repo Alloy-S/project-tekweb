@@ -126,8 +126,7 @@ INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `tanggal`, `gambar`,
 
 -- --------------------------------------------------------
 
---
-Struktur dari tabel `comment`
+--Struktur dari tabel `comment`
 
 
 CREATE TABLE `comments` (
