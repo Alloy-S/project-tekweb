@@ -6,53 +6,52 @@ if (isset($_SESSION["login"])) {
     header("Location: index.php");
 }
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["login"])) {
     $username = $_POST["loginName"];
     $password = $_POST["loginPassword"];
-    $result = $conn->query("SELECT * FROM user WHERE username = '$username';");
-    // $result = mysqli_query($database, "SELECT * FROM user WHERE username = '$username';");
-    // print_r($result);
-    if (mysqli_num_rows($result) !== 1) {
-        $eror = true;
-        echo "
-            <script>
-            alert('eror');
-            </script>";
-        // header("Location: login2.php");
-        exit;
+
+    $result = mysqli_query($conn, "SELECT username, password FROM user WHERE username = '$username';");
+
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+        
+        if (password_verify($password, $row["password"])) {
+            $_SESSION["login"] = true;
+            $_SESSION["username"] = $username;
+            // cek remember
+            // if (isset($_POST["remember"])) {
+            //     setcookie("id", $row["id"], time() + 60);
+            //     setcookie("key", hash("sha256", $row["username"]), time() + 60);
+            // }
+
+            header("Location: index.php");
+            exit;
+        } else {
+            echo '<script>alert("password salah!")</script>';
+        }
     }
-
-    $row = mysqli_fetch_assoc($result);
-    // echo "<br>";
-    // print_r($row);
-
-    if ($password !== $row["password"]) {
-        $_POST["eror"] = true;
-        $eror = true;
-        echo "
-            <script>
-            alert('password salah');
-            </script>";
-        // header("Location: login2.php");
-        exit;
-    }
-
-    // echo "hello world";
-    $_SESSION["login"] = true;
-    $_SESSION["username"] = $username;
-    // cek remember
-    // if(isset($_POST["remember"])) {
-    //     setcookie("id", $row["id"], time() + 60);
-    //     setcookie("key", hash("sha256", $row["username"]), time() + 60);
-    // }
-    header("Location: index.php");
 }
+
+if (isset($_POST['regis'])) {
+    if(registrasi($_POST) > 0) {
+        echo "
+            <script>
+            alert('user baru berhasil ditambah!');
+            </script>";
+        header("Location: login2.php");
+    } else {
+        echo mysqli_error($conn);
+        
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -105,7 +104,7 @@ if (isset($_POST["submit"])) {
             <!-- Pills content -->
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                    <form method="POST">
+                    <form action="" method="POST">
                         <div class="text-center mb-3">
                             <p>Sign in with:</p>
                             <!-- Email input -->
@@ -137,7 +136,7 @@ if (isset($_POST["submit"])) {
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" name="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                            <button type="submit" name="login" class="btn btn-primary btn-block mb-4">Sign in</button>
 
                             <!-- Register buttons -->
                             <div class="text-center">
@@ -147,7 +146,7 @@ if (isset($_POST["submit"])) {
                     </form>
                 </div>
                 <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                    <form action="registrasi.php" method="POST">
+                    <form action="" method="POST">
                         <div class="text-center mb-3">
                             <p>Sign up with:</p>
 
@@ -190,7 +189,7 @@ if (isset($_POST["submit"])) {
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                            <button type="submit" class="btn btn-primary btn-block mb-3" name="regis">Sign in</button>
                     </form>
                 </div>
             </div>

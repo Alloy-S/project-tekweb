@@ -21,6 +21,7 @@ function registrasi($data)
         echo "<script>
                 alert('Username sudah terdaftar');
         </script>";
+        header("Location: login2.php");
         return false;
     }
 
@@ -33,7 +34,7 @@ function registrasi($data)
     }
 
     //enkripsi password
-    // $password = password_hash($password, PASSWORD_DEFAULT);
+    $password = password_hash($password, PASSWORD_DEFAULT);
 
     //tambah user baru ke data base
     $qry = "INSERT INTO user VALUES('', '$username', '$password', '$nama', '$email');";
@@ -81,11 +82,12 @@ function tambah_resep($data)
 {
 
     global $conn;
+    var_dump($data);
     $judul = htmlspecialchars($data["nama_resep"]);
     $deskripsi = htmlspecialchars($data["deskripsi"]);
     $username = $_SESSION["username"];
     // upload gambar
-    $gambar = upload();
+    $gambar = upload($data);
     if (!$gambar) {
         return false;
         exit;
@@ -117,6 +119,28 @@ function tambah_resep($data)
 
     return mysqli_affected_rows($conn);
 }
+
+function upload2($data)
+{   
+    try {
+    $folderPath = 'img/';
+
+	$image_parts = explode(";base64,", $data['image-data']);
+	$image_type_aux = explode("image/", $image_parts[0]);
+	$image_type = $image_type_aux[1];
+	$image_base64 = base64_decode($image_parts[1]);
+    $filename = uniqid().'.png';
+	$file = $folderPath . $filename;
+	file_put_contents($file, $image_base64);
+	// echo '<script>alert("suskes terupload") </script>';
+	// echo json_encode(["image uploaded successfully."]);
+
+    } catch(Exception $e) {
+       
+    }
+    return $filename;
+}
+
 
 function upload()
 {
