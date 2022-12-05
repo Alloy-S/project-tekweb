@@ -9,44 +9,29 @@ if (isset($_SESSION["login_admin"])) {
 if (isset($_POST["submit"])) {
     $username = $_POST["loginName"];
     $password = $_POST["loginPassword"];
-    $result = $conn->query("SELECT * FROM admin_acc WHERE username = '$username';");
-    // $result = mysqli_query($database, "SELECT * FROM user WHERE username = '$username';");
-    // print_r($result);
-    if (mysqli_num_rows($result) !== 1) {
-        $eror = true;
-        echo "
-            <script>
-            alert('eror');
-            </script>";
-        header("Location: login_admin.php");
-        exit;
+
+    $result = mysqli_query($conn, "SELECT username, password FROM admin_acc WHERE username = '$username';");
+
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+        var_dump($row);
+        if (password_verify($password, $row["password"])) {
+            $_SESSION["login_admin"] = true;
+            $_SESSION["username"] = $username;
+            // cek remember
+            // if (isset($_POST["remember"])) {
+            //     setcookie("id", $row["id"], time() + 60);
+            //     setcookie("key", hash("sha256", $row["username"]), time() + 60);
+            // }
+            echo '<script>alert("password benar!")</script>';
+            header("Location: index.php");
+            exit;
+        } else {
+            echo '<script>alert("password salah!")</script>';
+        }
     }
-
-    $row = mysqli_fetch_assoc($result);
-    // echo "<br>";
-    // print_r($row);
-
-    if ($password !== $row["password"]) {
-        $_POST["eror"] = true;
-        $eror = true;
-        echo "
-            <script>
-            alert('password salah');
-            </script>";
-        // header("Location: login2.php");
-        exit;
-    }
-
-    // echo "hello world";
-    $_SESSION["login_admin"] = true;
-    $_SESSION["username"] = $username;
-    // cek remember
-    // if(isset($_POST["remember"])) {
-    //     setcookie("id", $row["id"], time() + 60);
-    //     setcookie("key", hash("sha256", $row["username"]), time() + 60);
-    // }
-    header("Location: index.php");
 }
+
 ?>
 
 <!DOCTYPE html>
