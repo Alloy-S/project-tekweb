@@ -152,7 +152,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
             <?php endif; ?>
         </div>
         <br>
-        <div class="d-flex">
+        <div>
             <div class="row g-2">
                 <?php foreach ($data as $row) : ?>
                     <div class="col-12 col-md-6 col-lg-3">
