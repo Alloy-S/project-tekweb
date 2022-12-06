@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('connect.php');
+
 if (!isset($_SESSION["login"])) {
     header("Location: login.php");
 }
@@ -24,10 +24,9 @@ if (isset($_POST["submit"])) {
     </script>
     ";
     }
-
-    $data = query("SELECT * FROM kategori");
 }
 
+$data = query("SELECT * FROM kategori");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -210,17 +209,7 @@ if (isset($_POST["submit"])) {
                 <a class="navbar-brand mt-2 mt-lg-0" href="index.php">
                     <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
-                <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
-                <!-- <div class="input-group d-flex justify-content-center">
-                    <div class="form-outline w-25">
-                        <input type="search" id="form1" class="form-control" />
-                        <label class="form-label" for="form1">Search</label>
-                    </div>
-                    <button type="button" class="btn btn-outline-secondary">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div> -->
-                <!-- </div> -->
+
             </div>
             <!-- Collapsible wrapper -->
 
@@ -294,11 +283,13 @@ if (isset($_POST["submit"])) {
                 <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea> -->
                     <label for="deskripsi" class="form-label">Deskripsi resep</label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
-                    <select class="form-select mt-3" aria-label="Default select example" id="kategori">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+
+                    <select class="form-select mt-3" aria-label="Default select example" name="kategori" required>
+                        <option selected>Pilih Kategori</option>
+                        <?php foreach ($data as $row) : ?>
+
+                            <option value="<?= $row['id_kategori']; ?>"><?= $row['nama']; ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="field-input">
@@ -367,7 +358,10 @@ if (isset($_POST["submit"])) {
                     <label for="jurusan">Gambar : </label>
                     <input class="form-control image" type="file" name="gambar">
                     <input type="hidden" name="image-data" id="image-data" disabled>
-
+                    <select class="form-select mt-3" aria-label="Default select example" name="is_private" id="is_private" required>
+                        <option value="false">Public</option>
+                        <option value="true">Private</option>
+                    </select>
                 </div>
                 <!-- <li>
                 <label for="gambar">Gambar : </label>
