@@ -9,11 +9,11 @@ require("../connect.php");
 $id = $_GET['id'];
 $data = query("SELECT * FROM resep WHERE id_resep = '$id';");
 $bahan = mysqli_query($conn, "SELECT * FROM bahan WHERE id_resep = '$id';");
-$langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
+$langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
 // var_dump($data);
 
 // $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
- 
+
 // save all records from database in an array
 // $comments = array();
 // while ($r = mysqli_fetch_object($que))
@@ -39,27 +39,56 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-    </script>
+        </script>
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
     <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        $(document).ready(function() {
-            $('#publish').click(function() {
-                    var id = $("#id").val();
-                    $.ajax({
+        $(document).ready(function () {
+            $('#publish').click(function () {
+                var id = $(this).val();
+                $.ajax({
                     type: 'POST',
-                    url: 'connect_btn.php',
+                    url: '../ajax/connect_btn.php',
                     data: 'id=' + id,
-                    success: function(response) {
-                    alert("DATA BERHASIL DI UPDATE");
+                    success: function (response) {
+                        Swal.fire(
+                            response,
+                            'You clicked the button!',
+                            'success'
+                        )
+                    }
+                });
+            });
+            $('#takedown').click(function () {
+                var id = $("#id").val();
+                $.ajax({
+                    type: 'POST',
+                    url: '../ajax/connect_btn.php',
+                    data: 'id=' + id,
+                    success: function (response) {
+                        alert("RESEP BERHASIL DI TAKEDOWN");
+                    }
+                });
+            });
+            $('#delete').click(function () {
+                var id = $("#id").val();
+                $.ajax({
+                    type: 'POST',
+                    url: '../ajax/connect_btn.php',
+                    data: 'id=' + id,
+                    success: function (response) {
+                        alert("RESEP BERHASIL DI DELETE");
                     }
                 });
             });
         });
     </script>
-    <title><?= $data[0]["nama_resep"]; ?></title>
+    <title>
+        <?= $data[0]["nama_resep"]; ?>
+    </title>
 </head>
 
 <body>
@@ -94,7 +123,7 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
             <!-- Collapsible wrapper -->
 
             <!-- Right elements -->
-            <?php if (isset($_SESSION["login"])) : ?>
+            <?php if (isset($_SESSION["login"])): ?>
             <div class="d-flex align-items-center">
 
                 <!-- Notifications -->
@@ -136,7 +165,7 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
                     </ul>
                 </div>
             </div>
-            <?php else : ?>
+            <?php else: ?>
             <div class="d-flex align-items-center">
                 <a class="text-reset me-3" href="login2.php">
                     <!-- <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Login</button> -->
@@ -157,7 +186,9 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
                             <img src="../img/<?= $data[0]["gambar"]; ?>" title="" alt="" style="max-width: 750px;">
                         </div>
                         <div class="article-title mt-4">
-                            <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
+                            <h2 style="display:inline;">
+                                <?= $data[0]["nama_resep"]; ?>
+                            </h2>
                             <!-- <button class="btn-secondary like">
                                             <i class="fa fa-heart" aria-hidden="true"></i> Like
                                         </button>
@@ -165,35 +196,46 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
                                      -->
                             <div class="media">
                                 <div class="media-body">
-                                    <label><?= $data[0]["author"]; ?></label>
-                                    <span><?= $data[0]["tanggal"]; ?></span>
+                                    <label>
+                                        <?= $data[0]["author"]; ?>
+                                    </label>
+                                    <span>
+                                        <?= $data[0]["tanggal"]; ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                         <div class="article-content mt-4">
-                            <p><?= $data[0]["deskripsi"]; ?></p>
+                            <p>
+                                <?= $data[0]["deskripsi"]; ?>
+                            </p>
 
                         </div>
                         <div class="bahan-content">
                             <p> Bahan & Takaran </p>
-                            <?php while($r = mysqli_fetch_array($bahan,MYSQLI_ASSOC) ){?>
+                            <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
                             <ul class="list-group">
-                                <li class="list-group-item"><b> <?php echo $r['takaran'] ?> </b>
-                                    <?php echo $r['jenis'] ?> </li>
+                                <li class="list-group-item"><b>
+                                        <?php echo $r['takaran'] ?>
+                                    </b>
+                                    <?php echo $r['jenis'] ?>
+                                </li>
                             </ul>
 
-                            <?php }?>
+                            <?php } ?>
                         </div>
                         <div class="langkah-content mb-5">
                             <br>
                             <p> Langkah Pembuatan </p>
-                            <?php while($r = mysqli_fetch_array($langkah,MYSQLI_ASSOC) ){?>
+                            <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
                             <ul class="list-group">
-                                <li class="list-group-item"><?php echo $r['urutan'] + 1 ?>. <?php echo $r['langkah'] ?>
+                                <li class="list-group-item">
+                                    <?php echo $r['urutan'] + 1 ?>.
+                                    <?php echo $r['langkah'] ?>
                                 </li>
                             </ul>
 
-                            <?php }?>
+                            <?php } ?>
                         </div>
 
                     </article>
@@ -206,20 +248,24 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
                         </div>
                         <div class="card text-center">
 
-                        <div class="card-header">Opsi Pilihan</div>
-                        <div class="card-body">
-                            <button type="button" value="1" id="publish" class="btn btn-primary" onclick=""> Publish <i class="fa fa-check" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-warning text-white"> Takedown <i class="fa-regular fa-clock"></i></button>
-                            <button type="button" class="btn btn-danger    "> Delete <i class="fa fa-times" aria-hidden="true"></i></button>
+                            <div class="card-header">Opsi Pilihan</div>
+                            <div class="card-body">
+                                <button type="button" value="<?= $data[0]["id_resep"]; ?>" id="publish"
+                                    class="btn btn-primary" onclick=""> Publish <i class="fa fa-check"
+                                        aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-warning text-white"> Takedown <i
+                                        class="fa-regular fa-clock"></i></button>
+                                <button type="button" class="btn btn-danger    "> Delete <i class="fa fa-times"
+                                        aria-hidden="true"></i></button>
+                            </div>
+                            <!-- <div class="card-footer text-muted">2 days ago</div> -->
                         </div>
-                        <!-- <div class="card-footer text-muted">2 days ago</div> -->
-                        </div>
-                        <?php           
+                        <?php
                         // foreach ($comments as $comment_key => $comment)
                         //         {
                         //             // initialize replies array for each comment
                         //             $replies = array();
-                                
+                        
                         //             // check if it is a comment to post, not a reply to comment
                         //             if ($comment->reply == 0)
                         //             {
@@ -231,18 +277,18 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
                         //                     {
                         //                         // add in replies array
                         //                         array_push($replies, $rep);
-                                
+                        
                         //                         // remove from comments array
                         //                         unset($comments[$reply_key]);
                         //                     }
                         //                 }
                         //             }
-                                
+                        
                         //             // assign replies to comments object
                         //             $comment->replies = $replies;
                         //         }
-                                
-                                ?>
+                        
+                        ?>
 
                         <script>
                             function showFormReply(self) {
@@ -254,12 +300,12 @@ $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
                                 }
                             }
                         </script>
-                        
-                    <!-- End Author -->
+
+                        <!-- End Author -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 </body>
 
