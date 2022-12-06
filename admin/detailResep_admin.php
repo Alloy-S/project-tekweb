@@ -39,6 +39,23 @@ while ($r = mysqli_fetch_object($que))
     </script>
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
     <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#publish').click(function() {
+                    var id = $("#id").val();
+                    $.ajax({
+                    type: 'POST',
+                    url: 'connect_btn.php',
+                    data: 'id=' + id,
+                    success: function(response) {
+                    alert("DATA BERHASIL DI UPDATE");
+                    }
+                });
+            });
+        });
+    </script>
     <title><?= $data[0]["nama_resep"]; ?></title>
 </head>
 
@@ -185,9 +202,10 @@ while ($r = mysqli_fetch_object($que))
                             <h3 class="text-center mb-3">Action</h3>
                         </div>
                         <div class="card text-center">
+
                         <div class="card-header">Opsi Pilihan</div>
                         <div class="card-body">
-                            <button type="button" class="btn btn-primary"> Publish <i class="fa fa-check" aria-hidden="true"></i></button>
+                            <button type="button" value="1" id="publish" class="btn btn-primary" onclick=""> Publish <i class="fa fa-check" aria-hidden="true"></i></button>
                             <button type="button" class="btn btn-warning text-white"> Takedown <i class="fa-regular fa-clock"></i></button>
                             <button type="button" class="btn btn-danger    "> Delete <i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>

@@ -5,7 +5,7 @@ require("connect.php");
 //     header("Location: login.php");
 // }
 
-$data = query("SELECT * FROM resep");
+$data = query("SELECT * FROM resep WHERE is_approved = 1");
 // var_dump($data);
 // print_r($_SESSION);
 ?>
