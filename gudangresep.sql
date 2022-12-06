@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Des 2022 pada 05.55
+-- Waktu pembuatan: 06 Des 2022 pada 17.27
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.5
 
@@ -42,7 +42,8 @@ CREATE TABLE `admin_acc` (
 INSERT INTO `admin_acc` (`id`, `username`, `password`, `name`, `privilage`) VALUES
 (1, 'gil123', '$2y$10$8oHZyJZyP.T4YbCiCAbf2.VyWQttnvsi4CO6adUssHLZkZKntJeJy', 'gilbert', 0),
 (2, 'ipen123', '$2y$10$ZBG4GTX4ajo2DrnQzdu3IecLBKpWfX2rXitQEiyGPxsnQHYuFwLZO', 'Alloysius', 0),
-(4, 'superadmin', '$2y$10$47KlOfq3kXOUN507kZvJoes.1Z8CV98bs/LW3bOX3ftl5yC91UbfG', 'Alloysius', 1);
+(4, 'superadmin', '$2y$10$47KlOfq3kXOUN507kZvJoes.1Z8CV98bs/LW3bOX3ftl5yC91UbfG', 'Alloysius', 1),
+(5, 'kar123', '$2y$10$JHToNu9UWaobqIyzyDMen.VBSEuvMJY6ci0v3FBzmklOJnt0odRZC', 'karen', 0);
 
 -- --------------------------------------------------------
 
@@ -133,6 +134,8 @@ CREATE TABLE `resep` (
   `tanggal` date NOT NULL DEFAULT current_timestamp(),
   `gambar` varchar(255) NOT NULL,
   `author` varchar(30) NOT NULL,
+  `likes` int(11) NOT NULL,
+  `views` int(11) NOT NULL,
   `is_approved` tinyint(1) NOT NULL DEFAULT 0,
   `is_private` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -141,8 +144,8 @@ CREATE TABLE `resep` (
 -- Dumping data untuk tabel `resep`
 --
 
-INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `id_kategori`, `tanggal`, `gambar`, `author`, `is_approved`, `is_private`) VALUES
-(9, 'asda', 'sdasdasd', 1, '2022-12-06', '638ec85c62da6.jpg', 'admin', 0, 0);
+INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `id_kategori`, `tanggal`, `gambar`, `author`, `likes`, `views`, `is_approved`, `is_private`) VALUES
+(9, 'asda', 'sdasdasd', 1, '2022-12-06', '638ec85c62da6.jpg', 'admin', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -185,6 +188,7 @@ ALTER TABLE `bahan`
 -- Indeks untuk tabel `comments`
 --
 ALTER TABLE `comments`
+  ADD PRIMARY KEY (`comment_id`),
   ADD KEY `id_resep` (`id_resep`);
 
 --
@@ -220,7 +224,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `admin_acc`
 --
 ALTER TABLE `admin_acc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`

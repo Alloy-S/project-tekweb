@@ -8,7 +8,6 @@ require('connect.php');
 
 if (isset($_POST["submit"])) {
 
-
     if (tambah_resep($_POST) > 0) {
         echo "
     <script>
@@ -72,10 +71,12 @@ $data = query("SELECT * FROM kategori");
                 $(this).parent().parent().parent().remove()
             });
 
+
+
             // cropper
             var bs_modal = $('#modal');
             var image = document.getElementById('image-cropper');
-            var cropper, reader, file;
+            var cropper, reader, file, base64data;
 
 
             $("body").on("change", ".image", function(e) {
@@ -134,33 +135,41 @@ $data = query("SELECT * FROM kategori");
                     var reader = new FileReader();
                     reader.readAsDataURL(blob);
                     reader.onloadend = function() {
-                        var base64data = reader.result;
-                        $("#image-data").val(base64data);
+                        base64data = reader.result;
+
+                        // $("#image-data").val(base64data);
 
                         bs_modal.modal('hide');
-                        // $.ajax({
-                        //     type: "POST",
-                        //     dataType: "json",
-                        //     url: "coba3.php",
-                        //     data: {image: base64data},
-                        //     success: function(data) { 
-                        //         bs_modal.modal('hide');
-                        //         alert("success upload image");
 
-                        //     }
-                        // });
                     };
                 });
             });
             // cropper  
+
+            // submit form
+            $("#submit").click(function() {
+                console.log(base64data);
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "ajax/saveFile.php",
+                    data: {
+                        image: base64data
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        // alert("success upload image" + data);
+                        $("#image-data").val(data);
+                    }
+                });
+                // $("#form-addResep").submit();
+            });
         });
     </script>
     <style>
         body {
-            background-color: #E9ffda;
+            background-color: #D0d2d2;
         }
-
-
 
         .field-input {
             background-color: white;
@@ -272,7 +281,7 @@ $data = query("SELECT * FROM kategori");
         <div class="content">
             <h1 class="text-center m-3">Tulis Resep Baru</h1>
 
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post" id="form-addResep" enctype="multipart/form-data">
                 <div class="field-input">
 
                     <label class="form-label" for="nama_resep">Judul Resep : </label>
@@ -357,7 +366,8 @@ $data = query("SELECT * FROM kategori");
                 <div class="field-input">
                     <label for="jurusan">Gambar : </label>
                     <input class="form-control image" type="file" name="gambar">
-                    <input type="hidden" name="image-data" id="image-data" disabled>
+                    <input type="text" name="image-data" id="image-data" disabled>
+
                     <select class="form-select mt-3" aria-label="Default select example" name="is_private" id="is_private" required>
                         <option value="false">Public</option>
                         <option value="true">Private</option>
@@ -369,7 +379,7 @@ $data = query("SELECT * FROM kategori");
             </li> -->
 
                 <div class="field-input">
-                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                    <button class="btn btn-primary" id="submit" type="button" name="submit">Submit</button>
                 </div>
 
             </form>

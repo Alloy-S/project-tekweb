@@ -5,7 +5,7 @@
         header("Location: login_admin.php");
     }
 
-    $qry = "SELECT name FROM admin_acc 
+    $qry = "SELECT name, privilage FROM admin_acc 
     WHERE username LIKE '".$_SESSION['username']."';";
     $data_nama = query($qry);
 
@@ -78,9 +78,11 @@
                         <li>
                             <a class="dropdown-item" href="#">My profile</a>
                         </li>
+                        <?php if($data_nama[0]['privilage'] === "1"):?>
                         <li>
-                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="tambahAdmin.php">Add new Admin</a>
                         </li>
+                        <?php endif;?>
                         <li>
                             <a class="dropdown-item" href="logout_admin.php">Logout</a>
                         </li>
@@ -152,10 +154,6 @@
                     </tr>
 
                 <?php endforeach; ?>
-
-
-                
-
             </tbody>
         </table>
 
