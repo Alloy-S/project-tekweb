@@ -86,6 +86,8 @@ function tambah_resep($data)
     $judul = htmlspecialchars($data["nama_resep"]);
     $deskripsi = htmlspecialchars($data["deskripsi"]);
     $username = $_SESSION["username"];
+    $kategori = intval($data["kategori"]);
+    $is_private = $data["is_private"];
     // upload gambar
     $gambar = upload($data);
     if (!$gambar) {
@@ -95,7 +97,7 @@ function tambah_resep($data)
 
         $qry = "INSERT INTO resep  
                 VALUES
-                (null, '$judul', '$deskripsi', 'makanan', SYSDATE(),'$gambar', '$username', 0);";
+                (null, '$judul', '$deskripsi', '$kategori', SYSDATE(),'$gambar', '$username', 0, '$is_private');";
 
         mysqli_query($conn, $qry);
 
@@ -105,7 +107,7 @@ function tambah_resep($data)
             $detail_bahan = $data['detail_bahan'][$row];
             $detail_takaran = $data['detail_takaran'][$row];
 
-            $qry = "INSERT INTO bahan VALUES ('$id_resep', '$row', '$detail_takaran', '$detail_bahan');";
+            $qry = "INSERT INTO bahan VALUES ('$id_resep', '$detail_takaran', '$detail_bahan');";
             mysqli_query($conn, $qry); 
         }
 

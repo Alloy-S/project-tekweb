@@ -1,0 +1,3 @@
+ALTER TABLE resep
+ADD CONSTRAINT FOREIGN KEY (id_kategori) REFERENCES kategori (id_kategori) ;
+    
