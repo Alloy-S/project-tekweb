@@ -96,9 +96,9 @@
     <div class="container-fluid bg-secondary text-white">
         <!-- Search Bar -->
         <div class="d-flex justify-content-between py-3 ps-3 text-dark">
-            <h3>Hello <?= $data_nama[0]['name']; ?>, welcome to Admin Dashboard</h3>
+            <h3 class="mt-3">Hello <?= $data_nama[0]['name']; ?>, welcome to Admin Dashboard</h3>
 
-            <div class="input-group w-25 d-flex justify-content-between">
+            <div class="input-group w-25 d-flex justify-content-between mt-2">
                 <div class="form-outline">
                     <input id="search-focus" type="search" id="form1" class="form-control" />
                     <label class="form-label" for="form1">Search</label>
@@ -147,9 +147,7 @@
                         </td>
                         <td>Senior</td>
                         <td>
-                            <button type="button" name="edit" class="btn btn-link btn-sm btn-danger btn-rounded text-white">
-                            Edit
-                            </button>
+                        <a href="detailResep_admin.php?id=<?= $row["id_resep"]; ?>"> <button type="button" class="btn btn-primary btn-rounded btn-sm" data-mdb-ripple-color="#f4ecb8"> ACTION </button></a>
                         </td>
                     </tr>
 
