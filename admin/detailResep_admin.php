@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["login_admin"])) {
+    header("Location: login_admin.php");
+}
 require("../connect.php");
 
 // var_dump($_GET);
@@ -9,14 +12,14 @@ $bahan = mysqli_query($conn, "SELECT * FROM bahan WHERE id_resep = '$id';");
 $langkah = mysqli_query($conn,"SELECT * FROM langkah WHERE id_resep = '$id';");
 // var_dump($data);
 
-$que = mysqli_query($conn, "SELECT * FROM comments WHERE resep_id = '$id';");
+// $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
  
 // save all records from database in an array
-$comments = array();
-while ($r = mysqli_fetch_object($que))
-{
-    array_push($comments, $r);
-}
+// $comments = array();
+// while ($r = mysqli_fetch_object($que))
+// {
+//     array_push($comments, $r);
+// }
 ?>
 
 <!DOCTYPE html>
@@ -194,32 +197,32 @@ while ($r = mysqli_fetch_object($que))
                         <!-- <div class="card-footer text-muted">2 days ago</div> -->
                         </div>
                         <?php           
-                        foreach ($comments as $comment_key => $comment)
-                                {
-                                    // initialize replies array for each comment
-                                    $replies = array();
+                        // foreach ($comments as $comment_key => $comment)
+                        //         {
+                        //             // initialize replies array for each comment
+                        //             $replies = array();
                                 
-                                    // check if it is a comment to post, not a reply to comment
-                                    if ($comment->reply == 0)
-                                    {
-                                        // loop through all comments again
-                                        foreach ($comments as $reply_key => $rep)
-                                        {
-                                            // check if comment is a reply
-                                            if ($rep->reply == $comment->comment_id)
-                                            {
-                                                // add in replies array
-                                                array_push($replies, $rep);
+                        //             // check if it is a comment to post, not a reply to comment
+                        //             if ($comment->reply == 0)
+                        //             {
+                        //                 // loop through all comments again
+                        //                 foreach ($comments as $reply_key => $rep)
+                        //                 {
+                        //                     // check if comment is a reply
+                        //                     if ($rep->reply == $comment->comment_id)
+                        //                     {
+                        //                         // add in replies array
+                        //                         array_push($replies, $rep);
                                 
-                                                // remove from comments array
-                                                unset($comments[$reply_key]);
-                                            }
-                                        }
-                                    }
+                        //                         // remove from comments array
+                        //                         unset($comments[$reply_key]);
+                        //                     }
+                        //                 }
+                        //             }
                                 
-                                    // assign replies to comments object
-                                    $comment->replies = $replies;
-                                }
+                        //             // assign replies to comments object
+                        //             $comment->replies = $replies;
+                        //         }
                                 
                                 ?>
 
@@ -233,51 +236,7 @@ while ($r = mysqli_fetch_object($que))
                                 }
                             }
                         </script>
-                        <ul class="comments">
-                            <?php foreach ($comments as $comment): ?>
-                                <li>
-                                    <p>
-                                        <?php echo $comment->author; ?>
-                                    </p>
-
-                                    <p>
-                                        <?php echo $comment->comment; ?>
-                                    </p>
-
-                                    <p>
-                                        <?php echo date("F d, Y h:i a", strtotime($comment->date_created)); ?>
-                                    </p>
-
-                                    <div data-id="<?php echo $comment->comment_id; ?>" onclick="showFormReply(this);">
-                                        <button>Reply</button></div>
-
-                                    <form action="detailResep.php" method="post" id="form-<?php echo $comment->id; ?>" style="display: none;">
-                                            
-                                        <input type="hidden" name="reply" value="<?php echo $comment->id; ?>" required>
-                                        <input type="hidden" name="resep_id" value="<?php echo $post_id; ?>" required>
-
-                                        <p>
-                                            <label>Your name</label>
-                                            <input type="text" name="name" required>
-                                        </p>
-
-                                        <p>
-                                            <label>Your email address</label>
-                                            <input type="email" name="email" required>
-                                        </p>
-
-                                        <p>
-                                            <label>Comment</label>
-                                            <textarea name="comment" required></textarea>
-                                        </p>
-
-                                        <p>
-                                            <input type="submit" value="Reply" name="do_reply">
-                                        </p>
-                                    </form>
-                                </li>
-                            <?php endforeach; ?>
-                    </div>
+                        
                     <!-- End Author -->
                 </div>
             </div>
