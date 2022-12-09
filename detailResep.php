@@ -4,6 +4,7 @@ require("connect.php");
 
 // var_dump($_GET);
 $id = $_GET['id'];
+// $view = query("");
 $data = query("SELECT * FROM resep WHERE id_resep = '$id';");
 $bahan = mysqli_query($conn, "SELECT * FROM bahan WHERE id_resep = '$id';");
 $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
@@ -126,7 +127,7 @@ while ($r = mysqli_fetch_object($que)) {
                 <div class="col-lg-8 m-15px-tb">
                     <article class="article">
                         <div class="article-img">
-                            <img src="img/<?= $data[0]["gambar"]; ?>" title="" alt="">
+                            <img src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
                         </div>
                         <div class="article-title">
                             <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>

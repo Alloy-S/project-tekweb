@@ -183,7 +183,7 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                 <div class="col-lg-8 m-15px-tb">
                     <article class="article">
                         <div class="article-img mt-5">
-                            <img src="../img/<?= $data[0]["gambar"]; ?>" title="" alt="" style="max-width: 750px;">
+                            <img src="../img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="" style="max-width: 750px;">
                         </div>
                         <div class="article-title mt-4">
                             <h2 style="display:inline;">

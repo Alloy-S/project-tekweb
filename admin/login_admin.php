@@ -17,7 +17,7 @@ if (isset($_POST["submit"])) {
         var_dump($row);
         if (password_verify($password, $row["password"])) {
             $_SESSION["login_admin"] = true;
-            $_SESSION["username"] = $username;
+            $_SESSION["username_admin"] = $username;
             // cek remember
             // if (isset($_POST["remember"])) {
             //     setcookie("id", $row["id"], time() + 60);
