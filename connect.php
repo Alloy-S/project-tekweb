@@ -54,29 +54,6 @@ function query($query)
     return $rows;
 }
 
-function tambah($data)
-{
-
-    global $conn;
-    $nrp = htmlspecialchars($data["nrp"]);
-    $nama = htmlspecialchars($data["nama"]);
-    $alamat = htmlspecialchars($data["alamat"]);
-    $username = $_SESSION["username"];
-    $domisili = htmlspecialchars($data["domisili"]);
-    //upload gambar
-    // $gambar = upload();
-    // if (!$gambar) {
-    //     return false;
-    // }
-
-    $qry = "INSERT INTO mahasiswa  
-                VALUES
-                ('$nrp', '$username', '$nama', '$domisili', '$alamat');";
-
-    mysqli_query($conn, $qry);
-
-    return mysqli_affected_rows($conn);
-}
 
 function tambah_resep($data)
 {
@@ -86,57 +63,55 @@ function tambah_resep($data)
     $judul = htmlspecialchars($data["nama_resep"]);
     $deskripsi = htmlspecialchars($data["deskripsi"]);
     $username = $_SESSION["username"];
+    $kategori = intval($data["kategori"]);
+    $is_private = $data["is_private"];
     // upload gambar
-    $gambar = upload($data);
-    if (!$gambar) {
-        return false;
-        exit;
-    } else {
+    // $gambar = upload($data);
+    $gambar = $data["image-data"];
 
-        $qry = "INSERT INTO resep  
+    $qry = "INSERT INTO resep  
                 VALUES
-                (null, '$judul', '$deskripsi', 'makanan', SYSDATE(),'$gambar', '$username', 0);";
+                (null, '$judul', '$deskripsi', '$kategori', SYSDATE(),'$gambar', '$username', 0, 0, 0, '$is_private');";
 
+    mysqli_query($conn, $qry);
+
+    $result = query("SELECT id_resep FROM resep ORDER BY id_resep DESC LIMIT 1;");
+    $id_resep = $result[0]['id_resep'];
+    foreach ($data['detail_bahan'] as $row => $value) {
+        $detail_bahan = $data['detail_bahan'][$row];
+        $detail_takaran = $data['detail_takaran'][$row];
+
+        $qry = "INSERT INTO bahan VALUES ('$id_resep', '$detail_takaran', '$detail_bahan');";
         mysqli_query($conn, $qry);
-
-        $result = query("SELECT id_resep FROM resep ORDER BY id_resep DESC LIMIT 1;");
-        $id_resep = $result[0]['id_resep'];
-        foreach($data['detail_bahan'] as $row => $value) {
-            $detail_bahan = $data['detail_bahan'][$row];
-            $detail_takaran = $data['detail_takaran'][$row];
-
-            $qry = "INSERT INTO bahan VALUES ('$id_resep', '$row', '$detail_takaran', '$detail_bahan');";
-            mysqli_query($conn, $qry); 
-        }
-
-        foreach($data['detail_langkah'] as $row => $value) {
-            $detail_langkah = $data['detail_langkah'][$row];
-
-            $qry = "INSERT INTO langkah VALUES ('$id_resep', '$row', '$detail_langkah');";
-            mysqli_query($conn, $qry); 
-        }
     }
+
+    foreach ($data['detail_langkah'] as $row => $value) {
+        $detail_langkah = $data['detail_langkah'][$row];
+
+        $qry = "INSERT INTO langkah VALUES ('$id_resep', '$row', '$detail_langkah');";
+        mysqli_query($conn, $qry);
+    }
+
 
     return mysqli_affected_rows($conn);
 }
 
 function upload2($data)
-{   
+{
     try {
-    $folderPath = 'img/';
+        $folderPath = 'img/';
 
-	$image_parts = explode(";base64,", $data['image-data']);
-	$image_type_aux = explode("image/", $image_parts[0]);
-	$image_type = $image_type_aux[1];
-	$image_base64 = base64_decode($image_parts[1]);
-    $filename = uniqid().'.png';
-	$file = $folderPath . $filename;
-	file_put_contents($file, $image_base64);
-	// echo '<script>alert("suskes terupload") </script>';
-	// echo json_encode(["image uploaded successfully."]);
+        $image_parts = explode(";base64,", $data['image-data']);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $filename = uniqid() . '.png';
+        $file = $folderPath . $filename;
+        file_put_contents($file, $image_base64);
+        // echo '<script>alert("suskes terupload") </script>';
+        // echo json_encode(["image uploaded successfully."]);
 
-    } catch(Exception $e) {
-       
+    } catch (Exception $e) {
     }
     return $filename;
 }

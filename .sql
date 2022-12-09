@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Des 2022 pada 17.27
+-- Waktu pembuatan: 05 Des 2022 pada 18.08
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.5
 
@@ -31,19 +31,16 @@ CREATE TABLE `admin_acc` (
   `id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `privilage` tinyint(1) NOT NULL DEFAULT 0
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `admin_acc`
 --
 
-INSERT INTO `admin_acc` (`id`, `username`, `password`, `name`, `privilage`) VALUES
-(1, 'gil123', '$2y$10$8oHZyJZyP.T4YbCiCAbf2.VyWQttnvsi4CO6adUssHLZkZKntJeJy', 'gilbert', 0),
-(2, 'ipen123', '$2y$10$ZBG4GTX4ajo2DrnQzdu3IecLBKpWfX2rXitQEiyGPxsnQHYuFwLZO', 'Alloysius', 0),
-(4, 'superadmin', '$2y$10$47KlOfq3kXOUN507kZvJoes.1Z8CV98bs/LW3bOX3ftl5yC91UbfG', 'Alloysius', 1),
-(5, 'kar123', '$2y$10$JHToNu9UWaobqIyzyDMen.VBSEuvMJY6ci0v3FBzmklOJnt0odRZC', 'karen', 0);
+INSERT INTO `admin_acc` (`id`, `username`, `password`, `name`) VALUES
+(1, 'gil123', '$2y$10$8oHZyJZyP.T4YbCiCAbf2.VyWQttnvsi4CO6adUssHLZkZKntJeJy', 'gilbert'),
+(2, 'ipen123', '$2y$10$ZBG4GTX4ajo2DrnQzdu3IecLBKpWfX2rXitQEiyGPxsnQHYuFwLZO', 'Alloysius');
 
 -- --------------------------------------------------------
 
@@ -53,17 +50,21 @@ INSERT INTO `admin_acc` (`id`, `username`, `password`, `name`, `privilage`) VALU
 
 CREATE TABLE `bahan` (
   `id_resep` int(11) NOT NULL,
-  `takaran` varchar(30) NOT NULL,
-  `jenis` varchar(30) NOT NULL
+  `jenis` varchar(30) NOT NULL,
+  `takaran` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `bahan`
 --
 
-INSERT INTO `bahan` (`id_resep`, `takaran`, `jenis`) VALUES
-(9, 'asda', 'asdas'),
-(9, 'asdasd', 'dasda');
+INSERT INTO `bahan` (`id_resep`, `jenis`, `takaran`) VALUES
+(1, 'Bawang', '2 siung'),
+(1, 'Minyak', '2L'),
+(9, 'Buah', 'selain mangga'),
+(9, 'Gula Jawa', '500gr'),
+(10, 'Minyak', 'gatau dah'),
+(10, 'Ayam', 'punya tetangga');
 
 -- --------------------------------------------------------
 
@@ -74,9 +75,9 @@ INSERT INTO `bahan` (`id_resep`, `takaran`, `jenis`) VALUES
 CREATE TABLE `comments` (
   `comment_id` int(11) NOT NULL,
   `author` varchar(50) NOT NULL,
-  `id_resep` int(11) NOT NULL,
-  `comment` varchar(255) NOT NULL,
-  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `resep_id` int(11) NOT NULL,
+  `comment` varchar(255) DEFAULT NULL,
+  `date_created` datetime NOT NULL,
   `reply` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -88,16 +89,8 @@ CREATE TABLE `comments` (
 
 CREATE TABLE `kategori` (
   `id_kategori` int(11) NOT NULL,
-  `nama` varchar(30) NOT NULL
+  `nama` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `kategori`
---
-
-INSERT INTO `kategori` (`id_kategori`, `nama`) VALUES
-(1, 'makanan'),
-(2, 'minuman');
 
 -- --------------------------------------------------------
 
@@ -106,9 +99,9 @@ INSERT INTO `kategori` (`id_kategori`, `nama`) VALUES
 --
 
 CREATE TABLE `langkah` (
-  `id_resep` int(11) NOT NULL,
+  `id_resep` int(30) NOT NULL,
   `urutan` int(11) NOT NULL,
-  `langkah` varchar(1000) NOT NULL
+  `langkah` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -116,9 +109,35 @@ CREATE TABLE `langkah` (
 --
 
 INSERT INTO `langkah` (`id_resep`, `urutan`, `langkah`) VALUES
-(9, 0, 'dasdaa'),
-(9, 1, 'daasd'),
-(9, 2, 'asdad');
+(1, 0, 'asda'),
+(1, 1, 'asda'),
+(1, 2, 'dasd'),
+(1, 0, 'goreng'),
+(2, 1, 'rebus'),
+(2, 2, 'godog'),
+(3, 0, 'tuang kopi ke dalam cangkir'),
+(3, 1, 'seduh dengan air panas'),
+(3, 2, 'aduk-aduk hingga merata'),
+(3, 3, 'tambah gula'),
+(3, 4, 'tambah garam'),
+(3, 5, 'jadi deh tinggal minum'),
+(4, 0, 'asdaasd'),
+(4, 1, 'asdadadsfgdhg'),
+(4, 2, 'hfktuyikfkfghkm'),
+(4, 3, 'asdad'),
+(7, 0, 'qwert'),
+(7, 1, 'asdf'),
+(7, 2, 'zxcvb'),
+(8, 0, 'langkah 1'),
+(8, 1, 'langkah 2'),
+(8, 2, 'langkah 3'),
+(8, 3, 'langkah 4'),
+(9, 0, 'iris buah'),
+(9, 1, 'ulek gula jawa'),
+(9, 2, 'tambah kacang'),
+(10, 0, 'panaskan minyak'),
+(10, 1, 'goreng ayam'),
+(10, 2, 'selamat mencoba');
 
 -- --------------------------------------------------------
 
@@ -130,12 +149,10 @@ CREATE TABLE `resep` (
   `id_resep` int(11) NOT NULL,
   `nama_resep` varchar(30) NOT NULL,
   `deskripsi` varchar(1000) NOT NULL,
-  `id_kategori` int(11) NOT NULL,
+  `kategori` varchar(30) NOT NULL,
   `tanggal` date NOT NULL DEFAULT current_timestamp(),
   `gambar` varchar(255) NOT NULL,
   `author` varchar(30) NOT NULL,
-  `likes` int(11) NOT NULL,
-  `views` int(11) NOT NULL,
   `is_approved` tinyint(1) NOT NULL DEFAULT 0,
   `is_private` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -144,8 +161,17 @@ CREATE TABLE `resep` (
 -- Dumping data untuk tabel `resep`
 --
 
-INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `id_kategori`, `tanggal`, `gambar`, `author`, `likes`, `views`, `is_approved`, `is_private`) VALUES
-(9, 'asda', 'sdasdasd', 1, '2022-12-06', '638ec85c62da6.jpg', 'admin', 0, 0, 0, 0);
+INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `kategori`, `tanggal`, `gambar`, `author`, `is_approved`, `is_private`) VALUES
+(1, 'Nasi goreng sederhan', 'Nasi goreng merupakan makanan khas Indonesia, dan pada dasarnya sama seperti makanan Indonesia lainnya yang memiliki banyak sekali variasi. Meski sudah ada berbagai macam variasi, pada dasarnya nasi goreng adalah nasi yang digoreng yang kemudian ditambahi dengan berbagai bumbu untuk kenikmatan yang lebih lagi.', '', '2022-11-26', 'resep-nasi-goreng-jawa.jpg', 'admin', 0, 0),
+(2, 'lkasandas', 'asdasdajsndkaj', '', '2022-11-26', '636dffb528c45.png', 'admin', 0, 0),
+(3, 'asda', 'dasda', '', '2022-11-26', '63708b8d35637.jpg', 'admin', 0, 0),
+(4, 'qwerty', 'qwerty', '', '2022-11-26', '63708c54216c2.png', 'admin2', 0, 0),
+(5, 'kopi', 'kopi josss', '', '2022-11-26', '63708e6c90ecf.jpg', 'admin2', 0, 0),
+(6, 'asda', 'asdasd', '', '2022-11-26', '637090071203b.png', 'admin2', 0, 0),
+(7, 'adfada', 'dasdasda', '', '2022-11-26', '6370908cb44c7.png', 'admin2', 0, 0),
+(8, 'pecel', 'pecel enak', '', '2022-11-26', '637f3c4586bff.jpg', 'admin', 0, 0),
+(9, 'rujak', 'rujak jossss', '', '0000-00-00', '638246b240d31.jpg', 'admin', 0, 0),
+(10, 'ayam goreng', 'enak enak enak', '', '2022-11-27', '638247b6ea95c.jpg', 'admin', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -189,7 +215,7 @@ ALTER TABLE `bahan`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `id_resep` (`id_resep`);
+  ADD KEY `resep_id` (`resep_id`);
 
 --
 -- Indeks untuk tabel `kategori`
@@ -207,8 +233,7 @@ ALTER TABLE `langkah`
 -- Indeks untuk tabel `resep`
 --
 ALTER TABLE `resep`
-  ADD PRIMARY KEY (`id_resep`),
-  ADD KEY `id_kategori` (`id_kategori`);
+  ADD PRIMARY KEY (`id_resep`);
 
 --
 -- Indeks untuk tabel `user`
@@ -224,19 +249,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `admin_acc`
 --
 ALTER TABLE `admin_acc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT untuk tabel `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `resep`
---
-ALTER TABLE `resep`
-  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -252,19 +277,14 @@ ALTER TABLE `bahan`
 -- Ketidakleluasaan untuk tabel `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`id_resep`) REFERENCES `resep` (`id_resep`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`resep_id`) REFERENCES `resep` (`id_resep`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_comments_resep_id` FOREIGN KEY (`resep_id`) REFERENCES `resep` (`id_resep`);
 
 --
 -- Ketidakleluasaan untuk tabel `langkah`
 --
 ALTER TABLE `langkah`
   ADD CONSTRAINT `langkah_ibfk_1` FOREIGN KEY (`id_resep`) REFERENCES `resep` (`id_resep`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `resep`
---
-ALTER TABLE `resep`
-  ADD CONSTRAINT `resep_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

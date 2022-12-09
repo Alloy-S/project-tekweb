@@ -1,12 +1,12 @@
 <?php
 session_start();
+
 if (!isset($_SESSION["login"])) {
     header("Location: login.php");
 }
 require('connect.php');
 
 if (isset($_POST["submit"])) {
-
 
     if (tambah_resep($_POST) > 0) {
         echo "
@@ -25,6 +25,7 @@ if (isset($_POST["submit"])) {
     }
 }
 
+$data = query("SELECT * FROM kategori");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,10 +71,12 @@ if (isset($_POST["submit"])) {
                 $(this).parent().parent().parent().remove()
             });
 
+
+
             // cropper
             var bs_modal = $('#modal');
             var image = document.getElementById('image-cropper');
-            var cropper, reader, file;
+            var cropper, reader, file, base64data;
 
 
             $("body").on("change", ".image", function(e) {
@@ -132,33 +135,41 @@ if (isset($_POST["submit"])) {
                     var reader = new FileReader();
                     reader.readAsDataURL(blob);
                     reader.onloadend = function() {
-                        var base64data = reader.result;
-                        $("#image-data").val(base64data);
+                        base64data = reader.result;
+
+                        // $("#image-data").val(base64data);
 
                         bs_modal.modal('hide');
-                        // $.ajax({
-                        //     type: "POST",
-                        //     dataType: "json",
-                        //     url: "coba3.php",
-                        //     data: {image: base64data},
-                        //     success: function(data) { 
-                        //         bs_modal.modal('hide');
-                        //         alert("success upload image");
 
-                        //     }
-                        // });
                     };
                 });
             });
             // cropper  
+
+            // submit form
+            $("#submit").click(function() {
+                console.log(base64data);
+                $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "ajax/saveFile.php",
+                    data: {
+                        image: base64data
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        // alert("success upload image" + data);
+                        $("#image-data").val(data);
+                    }
+                });
+                // $("#form-addResep").submit();
+            });
         });
     </script>
     <style>
         body {
-            background-color: #E9ffda;
+            background-color: #D0d2d2;
         }
-
-
 
         .field-input {
             background-color: white;
@@ -207,17 +218,7 @@ if (isset($_POST["submit"])) {
                 <a class="navbar-brand mt-2 mt-lg-0" href="index.php">
                     <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
-                <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
-                <!-- <div class="input-group d-flex justify-content-center">
-                    <div class="form-outline w-25">
-                        <input type="search" id="form1" class="form-control" />
-                        <label class="form-label" for="form1">Search</label>
-                    </div>
-                    <button type="button" class="btn btn-outline-secondary">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div> -->
-                <!-- </div> -->
+
             </div>
             <!-- Collapsible wrapper -->
 
@@ -280,7 +281,7 @@ if (isset($_POST["submit"])) {
         <div class="content">
             <h1 class="text-center m-3">Tulis Resep Baru</h1>
 
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post" id="form-addResep" enctype="multipart/form-data">
                 <div class="field-input">
 
                     <label class="form-label" for="nama_resep">Judul Resep : </label>
@@ -292,6 +293,13 @@ if (isset($_POST["submit"])) {
                     <label for="deskripsi" class="form-label">Deskripsi resep</label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
 
+                    <select class="form-select mt-3" aria-label="Default select example" name="kategori" required>
+                        <option selected>Pilih Kategori</option>
+                        <?php foreach ($data as $row) : ?>
+
+                            <option value="<?= $row['id_kategori']; ?>"><?= $row['nama']; ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
                 <div class="field-input">
                     <label for="row-bahan">bahan-bahan</label>
@@ -358,8 +366,12 @@ if (isset($_POST["submit"])) {
                 <div class="field-input">
                     <label for="jurusan">Gambar : </label>
                     <input class="form-control image" type="file" name="gambar">
-                    <input type="hidden" name="image-data" id="image-data" disabled>
+                    <input type="text" name="image-data" id="image-data" disabled>
 
+                    <select class="form-select mt-3" aria-label="Default select example" name="is_private" id="is_private" required>
+                        <option value="false">Public</option>
+                        <option value="true">Private</option>
+                    </select>
                 </div>
                 <!-- <li>
                 <label for="gambar">Gambar : </label>
@@ -367,7 +379,7 @@ if (isset($_POST["submit"])) {
             </li> -->
 
                 <div class="field-input">
-                    <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                    <button class="btn btn-primary" id="submit" type="button" name="submit">Submit</button>
                 </div>
 
             </form>

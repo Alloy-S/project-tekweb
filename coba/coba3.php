@@ -4,7 +4,7 @@ if (isset($_POST['submit'])) {
 
 
 	var_dump($_POST);
-	$folderPath = 'upload/';
+	$folderPath = '../img/';
 
 	$image_parts = explode(";base64,", $_POST['image-data']);
 	$image_type_aux = explode("image/", $image_parts[0]);

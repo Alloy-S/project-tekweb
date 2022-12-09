@@ -9,8 +9,8 @@ $bahan = mysqli_query($conn, "SELECT * FROM bahan WHERE id_resep = '$id';");
 $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
 // var_dump($data);
 
-$que = mysqli_query($conn, "SELECT * FROM comments WHERE resep_id = '$id';");
-
+$que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
+ 
 // save all records from database in an array
 $comments = array();
 while ($r = mysqli_fetch_object($que)) {

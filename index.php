@@ -5,7 +5,7 @@ require("connect.php");
 //     header("Location: login.php");
 // }
 
-$data = query("SELECT * FROM resep");
+$data = query("SELECT * FROM resep WHERE is_approved = 1");
 // var_dump($data);
 // print_r($_SESSION);
 ?>
@@ -138,9 +138,6 @@ $data = query("SELECT * FROM resep");
                     <a href="logout.php">
                         <button type="button" class="btn btn-primary">Logout</button>
                     </a>
-                    <a href="tambah.php">
-                        <button type="button" class="btn btn-primary">tambah</button>
-                    </a>
                     <a href="tambahResep.php">
                         <button type="button" class="btn btn-primary">tambah resep</button>
                     </a>
@@ -148,7 +145,7 @@ $data = query("SELECT * FROM resep");
             <?php endif; ?>
         </div>
         <br>
-        <div class="d-flex">
+        <div>
             <div class="row g-2">
                 <?php foreach ($data as $row) : ?>
                     <div class="col-12 col-md-6 col-lg-3">
