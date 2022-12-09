@@ -2,7 +2,7 @@
 
 
 
-$folderPath = '../img/';
+$folderPath = '../img/resep_img/';
 
 $image_parts = explode(";base64,", $_POST['image']);
 $image_type_aux = explode("image/", $image_parts[0]);

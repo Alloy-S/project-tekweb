@@ -60,7 +60,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
             </div>
             <!-- Collapsible wrapper -->
             <!-- Right elements -->
-            <?php if (isset($_SESSION["login"])) : ?>
+            <?php if (isset($_SESSION["login_user"])) : ?>
                 <div class="d-flex align-items-center">
                     <!-- Icon -->
                     <a class="text-reset me-3" href="#">
@@ -133,7 +133,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
 
     <div class="container" id='card-resep'>
         <div class="d-flex">
-            <?php if (isset($_SESSION["login"])) : ?>
+            <?php if (isset($_SESSION["login_user"])) : ?>
                 <div class="button-group">
                     <a href="logout.php">
                         <button type="button" class="btn btn-primary">Logout</button>
@@ -151,11 +151,14 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card m-2">
                             <div class="ratio ratio-16x9">
-                                <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
+                                <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
                             </div>
                             <div class="card text-center">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+                                    <div>
+                                        </span><i class="fa-solid fa-eye"></i><span id="like"><?= $row['views']; ?> 
+                                    </div>
                                     <!-- <p class="card-text"><?= $row["deskripsi"]; ?></p> -->
                                     <a href="detailResep.php?id=<?= $row["id_resep"]; ?>" class="btn btn-primary sticky-bottom">More</a>
                                 </div>

@@ -1,8 +1,7 @@
 <?php 
 session_start();
-$_SESSION = [];
-session_unset();
-session_destroy();
+unset($_SESSION['login_user']);
+unset($_SESSION['username_user']);
 
 setcookie("id", "", time() - 3600);
 setcookie("key", "", time() - 3600);

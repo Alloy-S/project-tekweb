@@ -67,7 +67,7 @@
                     aria-expanded="false"
                     >
                     <img
-                        src="ipen.jpg"
+                        src="../img/anonymous.jpg"
                         class="rounded-circle"
                         height="35"
                         alt="Profile"
@@ -129,7 +129,7 @@
                         <td style="padding-right: 50px";>
                             <div class="d-flex align-items-center">
                             <img
-                                src="../img/<?= $row['gambar']; ?>"
+                                src="../img/resep_img/<?= $row['gambar']; ?>"
                                 alt=""
                                 style="width: 135px; height: 95px"
                                 class="rounded"

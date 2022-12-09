@@ -62,7 +62,7 @@ function tambah_resep($data)
     var_dump($data);
     $judul = htmlspecialchars($data["nama_resep"]);
     $deskripsi = htmlspecialchars($data["deskripsi"]);
-    $username = $_SESSION["username"];
+    $username = $_SESSION["username_user"];
     $kategori = intval($data["kategori"]);
     $is_private = $data["is_private"];
     // upload gambar
@@ -71,7 +71,7 @@ function tambah_resep($data)
 
     $qry = "INSERT INTO resep  
                 VALUES
-                (null, '$judul', '$deskripsi', '$kategori', SYSDATE(),'$gambar', '$username', 0, 0, 0, '$is_private');";
+                (null, '$judul', '$deskripsi', '$kategori', SYSDATE(),'$gambar', '$username', 0, 0, 0, $is_private);";
 
     mysqli_query($conn, $qry);
 

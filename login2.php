@@ -2,7 +2,7 @@
 session_start();
 require("connect.php");
 
-if (isset($_SESSION["login"])) {
+if (isset($_SESSION["login_user"])) {
     header("Location: index.php");
 }
 
@@ -16,8 +16,8 @@ if (isset($_POST["login"])) {
         $row = mysqli_fetch_assoc($result);
 
         if (password_verify($password, $row["password"])) {
-            $_SESSION["login"] = true;
-            $_SESSION["username"] = $username;
+            $_SESSION["login_user"] = true;
+            $_SESSION["username_user"] = $username;
             // cek remember
             // if (isset($_POST["remember"])) {
             //     setcookie("id", $row["id"], time() + 60);
