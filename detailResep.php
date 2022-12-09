@@ -4,14 +4,22 @@ require("connect.php");
 
 // var_dump($_GET);
 $id = $_GET['id'];
-// $view = query("");
+
+
+$count = query("SELECT views FROM resep WHERE id_resep = $id;");
+$count =  ((int)$count[0]['views']) + 1;
+
+
+$qry = "UPDATE resep SET views = $count WHERE id_resep = $id;";
+$view = mysqli_query($conn, $qry);
+
 $data = query("SELECT * FROM resep WHERE id_resep = '$id';");
 $bahan = mysqli_query($conn, "SELECT * FROM bahan WHERE id_resep = '$id';");
 $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
 // var_dump($data);
 
 $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
- 
+
 // save all records from database in an array
 $comments = array();
 while ($r = mysqli_fetch_object($que)) {

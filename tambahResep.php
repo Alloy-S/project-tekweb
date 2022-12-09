@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["login"])) {
-    header("Location: login.php");
+if (!isset($_SESSION["login_user"])) {
+    header("Location: login2.php");
 }
 require('connect.php');
 // var_dump($_POST);

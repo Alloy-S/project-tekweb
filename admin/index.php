@@ -6,7 +6,7 @@
     }
 
     $qry = "SELECT name, privilage FROM admin_acc 
-    WHERE username LIKE '".$_SESSION['username']."';";
+    WHERE username LIKE '".$_SESSION['username_admin']."';";
     $data_nama = query($qry);
 
     $data = query("SELECT * FROM resep WHERE is_approved = 0");
