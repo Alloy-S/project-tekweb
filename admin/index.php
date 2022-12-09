@@ -9,7 +9,7 @@
     WHERE username LIKE '".$_SESSION['username']."';";
     $data_nama = query($qry);
 
-    $data = query("SELECT * FROM resep WHERE is_approved = 0");
+    $data = query("SELECT * FROM resep");
 ?>
 
 <!DOCTYPE html>
@@ -145,7 +145,15 @@
                             <p class="text-muted mb-0">IT department</p>
                         </td>
                         <td>
-                            <span class="badge badge-success rounded-pill d-inline">Active</span>
+                            <?php if($data[0]['is_approved'] === "1" and $data[0]['is_private'] === "0"):?>
+                                <span class="badge badge-success rounded-pill d-inline">Live</span>
+                            <?php endif;?>
+                            <?php if($data[0]['is_approved'] === "0" and $data[0]['is_private'] === "0"):?>
+                                <span class="badge badge-warning rounded-pill d-inline">Pending</span>
+                            <?php endif;?>
+                            <?php if($data[0]['is_approved'] === "0" and $data[0]['is_private'] === "1"):?>
+                                <span class="badge badge-primary rounded-pill d-inline">Private</span>
+                            <?php endif;?>
                         </td>
                         <td>Senior</td>
                         <td>

@@ -137,8 +137,8 @@ if (isset($_POST["submit"])) {
     <p>eror</p>
     <?php endif; ?>
     <div class="d-flex justify-content-center align-items-center">
-        <div class="login">
-            <h4 class="text-center mb-4 mt-5">Welcome Admin</h4>
+        <div class="login card p-4 rounded shadow-sm col-10 mt-5">
+            <h4 class="text-center mb-4"><strong>Welcome Admin</strong></h4>
             <!-- Pills navs -->
             <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -155,13 +155,13 @@ if (isset($_POST["submit"])) {
                         <div class="text-center mb-3">
                             <!-- <p>Sign in with:</p> -->
                             <!-- Email input -->
-                            <div class="form-outline mb-4">
+                            <div class="form-outline mb-4 mt-2">
                                 <input type="text" id="loginName" name="loginName" class="form-control" />
                                 <label class="form-label" for="loginName">Email or username</label>
                             </div>
 
                             <!-- Password input -->
-                            <div class="form-outline mb-4">
+                            <div class="form-outline mb-4 mt-2">
                                 <input type="password" id="loginPassword" name="loginPassword" class="form-control" />
                                 <label class="form-label" for="loginPassword">Password</label>
                             </div>
@@ -176,7 +176,7 @@ if (isset($_POST["submit"])) {
                                 <!-- </div> -->
                                 <!-- </div> -->
 
-                                <div class="col-md-6 d-flex justify-content-center">
+                                <div class="col-md-12 d-flex justify-content-center">
                                     <!-- Simple link -->
                                     <a href="#!">Forgot password?</a>
                                 </div>
