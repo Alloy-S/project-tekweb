@@ -4,7 +4,7 @@ require("connect.php");
 
 if (isset($_POST["submit_btn"])) {
     $str = $_POST["search_index"];
-    $sql = "SELECT * FROM resep WHERE nama_resep = '$str'";
+    $sql = "SELECT * FROM resep WHERE nama_resep like '%$str%'";
     $result = mysqli_query($conn, $sql);
 ?>
     <!DOCTYPE html>
@@ -116,45 +116,30 @@ if (isset($_POST["submit_btn"])) {
         <!-- Navbar -->
 
         <div class="container" id='card-resep'>
-            <div class="d-flex">
-                <?php if (isset($_SESSION["login"])) : ?>
-                    <div class="button-group">
-                        <a href="logout.php">
-                            <button type="button" class="btn btn-primary">Logout</button>
-                        </a>
-                        <a href="tambah.php">
-                            <button type="button" class="btn btn-primary">tambah</button>
-                        </a>
-                        <a href="tambahResep.php">
-                            <button type="button" class="btn btn-primary">tambah resep</button>
-                        </a>
-                    </div>
-                <?php endif; ?>
-            </div>
-            <br>
             <div class="d-flex justify-content-center">
                 <div class="row g-2">
                     <?php
                     $row_cnt = mysqli_num_rows($result);
                     if ($row_cnt > 0) {
-                        $row = mysqli_fetch_assoc($result);
+                        while ($row = mysqli_fetch_assoc($result)) :
                     ?>
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card m-2">
-                                <div class="ratio ratio-16x9">
-                                    <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
-                                </div>
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
-                                        <a href="detailResep.php?id=<?= $row["id_resep"] ?>" class="btn btn-primary sticky-bottom">More</a>
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="card m-2">
+                                    <div class="ratio ratio-16x9">
+                                        <img src="img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
+                                    </div>
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+                                            <a href="detailResep.php?id=<?= $row["id_resep"] ?>" class="btn btn-primary sticky-bottom">More</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php
+                        <?php
+                        endwhile;
                     } else {
-                    ?>
+                        ?>
                         <img src="img/404 Error.gif" style="height: auto; max-width: 60%; margin-left: auto; margin-right: auto; margin-top:30vh">
                 </div>
         <?php }
