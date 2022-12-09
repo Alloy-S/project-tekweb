@@ -14,7 +14,7 @@ if (isset($_POST["login"])) {
 
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
-        
+
         if (password_verify($password, $row["password"])) {
             $_SESSION["login"] = true;
             $_SESSION["username"] = $username;
@@ -33,7 +33,7 @@ if (isset($_POST["login"])) {
 }
 
 if (isset($_POST['regis'])) {
-    if(registrasi($_POST) > 0) {
+    if (registrasi($_POST) > 0) {
         echo "
             <script>
             alert('user baru berhasil ditambah!');
@@ -41,7 +41,6 @@ if (isset($_POST['regis'])) {
         header("Location: login2.php");
     } else {
         echo mysqli_error($conn);
-        
     }
 }
 
@@ -51,7 +50,7 @@ if (isset($_POST['regis'])) {
 <html lang="en">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

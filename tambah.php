@@ -1,40 +1,41 @@
-<?php 
+<?php
 session_start();
-if(!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"])) {
     header("Location: login.php");
 }
 require('connect.php');
 
-if(isset($_POST["submit"])) {
+if (isset($_POST["submit"])) {
 
-    
-if (tambah($_POST) > 0) {
-    echo "
+
+    if (tambah($_POST) > 0) {
+        echo "
     <script>
         alert('data berhasil ditambahkan!');
         document.location.href = 'index.php';
     </script>
     ";
-} else {
-    echo "
+    } else {
+        echo "
     <script>
         alert('data gagal ditambahkan!');
         document.location.href = 'index.php';
     </script>
     ";
-}
-    
+    }
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah data Mahasiswa</title>
 </head>
+
 <body>
     <h1>tambah data mahasiswa</h1>
 
@@ -53,7 +54,7 @@ if (tambah($_POST) > 0) {
                 <input type="text" name="domisili" id="domisili">
             </li>
             <li>
-                <label for="jurusan">Alamat  : </label>
+                <label for="jurusan">Alamat : </label>
                 <input type="text" name="alamat" id="alamat">
             </li>
             <!-- <li>
@@ -67,4 +68,5 @@ if (tambah($_POST) > 0) {
     </form>
     <a href="index.php">Halaman utama</a>
 </body>
+
 </html>

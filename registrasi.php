@@ -1,16 +1,15 @@
-<?php 
+<?php
 require("connect.php");
 // if (isset($_POST["submit"])) {
-    if(registrasi($_POST) > 0) {
-        echo "
+if (registrasi($_POST) > 0) {
+    echo "
             <script>
             alert('user baru berhasil ditambah!');
             </script>";
-        header("Location: login2.php");
-    } else {
-        echo mysqli_error($conn);
-        
-    }
+    header("Location: login2.php");
+} else {
+    echo mysqli_error($conn);
+}
 // }
 
 
