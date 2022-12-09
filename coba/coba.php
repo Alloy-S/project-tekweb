@@ -1,5 +1,5 @@
 <?php
-
+var_dump($_POST);
 ?>
 
 
@@ -12,6 +12,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+</head>
+
+<body>
+	<input type="text" name="" id="id">
+	<button class="submit" value="1" method="takedown">takedown</button>
+	<button class="submit" value="1" method="approve">approve</button>
+	
+	<div id="info"></div>
+	<form action="" method="POST" id="form">
+		<input type="text" name="halo">
+		<input type="text" name="budi">
+		<button id="submit" type="button" name="submit">submit</button>
+	</form>
 	<script>
 		$(document).ready(function() {
 			$('.submit').click(function() {
@@ -26,16 +40,14 @@
 					}
 				});
 			});
-		});
-	</script>
-</head>
 
-<body>
-	<input type="text" name="" id="id">
-	<button class="submit" value="1" method="takedown">takedown</button>
-	<button class="submit" value="1" method="approve">approve</button>
-	
-	<div id="info"></div>
+			$("#submit").click(function() {
+				$("#form").submit();
+			});
+		});
+
+
+	</script>
 	
 </body>
 

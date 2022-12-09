@@ -5,21 +5,23 @@ if (!isset($_SESSION["login"])) {
     header("Location: login.php");
 }
 require('connect.php');
-
+// var_dump($_POST);
 if (isset($_POST["submit"])) {
 
     if (tambah_resep($_POST) > 0) {
+        $_POST = array();
         echo "
     <script>
         alert('data berhasil ditambahkan!');
-        document.location.href = 'index.php';
+        // document.location.href = 'index.php';
     </script>
     ";
     } else {
+        $_POST = array();
         echo "
     <script>
         alert('data gagal ditambahkan!');
-        document.location.href = 'index.php';
+        // document.location.href = 'index.php';
     </script>
     ";
     }
@@ -51,7 +53,7 @@ $data = query("SELECT * FROM kategori");
     <link href="cropperjs/cropper.min.css" rel="stylesheet" type="text/css" />
     <script src="cropperjs/cropper.min.js" type="text/javascript"></script>
     <!-- CROPPER JS -->
-
+    <script src="function/fungtion.js" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
             $("#add-row-langkah").click(function() {
@@ -146,23 +148,48 @@ $data = query("SELECT * FROM kategori");
             });
             // cropper  
 
-            // submit form
-            $("#submit").click(function() {
-                console.log(base64data);
-                $.ajax({
-                    type: "POST",
-                    dataType: "json",
-                    url: "ajax/saveFile.php",
-                    data: {
-                        image: base64data
-                    },
-                    success: function(data) {
-                        console.log(data);
-                        // alert("success upload image" + data);
-                        $("#image-data").val(data);
-                    }
-                });
-                // $("#form-addResep").submit();
+            $("#form-addResep").submit(function(e) {
+                e.preventDefault();
+                if (base64data != null) {
+                    var uid = unique() + ".png";
+                    $("#image-name").val(uid);
+                    console.log(uid)
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "function/saveFile.php",
+                        data: {
+                            image: base64data,
+                            uid: uid
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            alert("success upload image" + data);
+                            // $("#image-data").val(data);
+                        }
+                    });
+                    var form = $(this);
+                    var formUrl = $(this).attr("action");
+                    console.log(form.serialize());
+                    $.ajax({
+                        type: "POST",
+                        url: formUrl,
+                        data: form.serialize(),
+                        // dataType: "json",
+                        success: function(response) {
+                            console.log("data berhasil ditambahkan");
+                            console.log(response);
+                            window.location.href = "index.php";
+                        }, 
+                        error: function() {
+                            alert('eror');
+                        }
+                        
+                    });
+                } else {
+                    alert("pilih gambar terlebih dahulu");
+                }
+
             });
         });
     </script>
@@ -281,7 +308,7 @@ $data = query("SELECT * FROM kategori");
         <div class="content">
             <h1 class="text-center m-3">Tulis Resep Baru</h1>
 
-            <form action="" method="post" id="form-addResep" enctype="multipart/form-data">
+            <form action="function/tambahResepDb.php" method="post" id="form-addResep" enctype="multipart/form-data">
                 <div class="field-input">
 
                     <label class="form-label" for="nama_resep">Judul Resep : </label>
@@ -365,21 +392,17 @@ $data = query("SELECT * FROM kategori");
                 </div>
                 <div class="field-input">
                     <label for="jurusan">Gambar : </label>
-                    <input class="form-control image" type="file" name="gambar">
-                    <input type="text" name="image-data" id="image-data" disabled>
+                    <input class="form-control image" type="file">
+                    <input type="hidden" name="image-name" id="image-name">
 
                     <select class="form-select mt-3" aria-label="Default select example" name="is_private" id="is_private" required>
                         <option value="false">Public</option>
                         <option value="true">Private</option>
                     </select>
                 </div>
-                <!-- <li>
-                <label for="gambar">Gambar : </label>
-                <input type="file" name="gambar" id ="gambar">
-            </li> -->
 
                 <div class="field-input">
-                    <button class="btn btn-primary" id="submit" type="button" name="submit">Submit</button>
+                    <button class="btn btn-primary" type="submit" id="submit" name="submit">Submit</button>
                 </div>
 
             </form>

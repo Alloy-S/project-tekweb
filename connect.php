@@ -67,7 +67,7 @@ function tambah_resep($data)
     $is_private = $data["is_private"];
     // upload gambar
     // $gambar = upload($data);
-    $gambar = $data["image-data"];
+    $gambar = $data["image-name"];
 
     $qry = "INSERT INTO resep  
                 VALUES
