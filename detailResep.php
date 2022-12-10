@@ -156,7 +156,7 @@ while ($r = mysqli_fetch_object($que)) {
 
                         </div>
                         <div class="bahan-content">
-                            <p> Bahan & Takaran </p>
+                            <p><strong> Bahan & Takaran </strong></p>
                             <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
                                 <ul class="list-group">
                                     <li class="list-group-item"><b> <?php echo $r['takaran'] ?> </b>
@@ -167,7 +167,7 @@ while ($r = mysqli_fetch_object($que)) {
                         </div>
                         <div class="langkah-content">
                             <br>
-                            <p> Langkah Pembuatan </p>
+                            <p><strong> Langkah Pembuatan</strong> </p>
                             <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
                                 <ul class="list-group">
                                     <li class="list-group-item"><?php echo $r['urutan'] + 1 ?>. <?php echo $r['langkah'] ?>

@@ -137,7 +137,7 @@ if (isset($_POST["submit"])) {
     <p>eror</p>
     <?php endif; ?>
     <div class="d-flex justify-content-center align-items-center">
-        <div class="login card p-4 rounded shadow-sm col-10 mt-5">
+        <div class="login card p-4 rounded-lg shadow-sm col-10 mt-5">
             <h4 class="text-center mb-4"><strong>Welcome Admin</strong></h4>
             <!-- Pills navs -->
             <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">

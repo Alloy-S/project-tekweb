@@ -191,7 +191,7 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
 
                         </div>
                         <div class="bahan-content">
-                            <p> Bahan & Takaran </p>
+                            <p><strong> Bahan & Takaran </strong></p>
                             <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
                                 <ul class="list-group">
                                     <li class="list-group-item"><b>
@@ -205,7 +205,7 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                         </div>
                         <div class="langkah-content mb-5">
                             <br>
-                            <p> Langkah Pembuatan </p>
+                            <p><strong> Langkah Pembuatan </strong></p>
                             <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
                                 <ul class="list-group">
                                     <li class="list-group-item">
@@ -229,9 +229,9 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
 
                             <div class="card-header">Opsi Pilihan</div>
                             <div class="card-body">
-                                <button type="button" value="<?= $data[0]["id_resep"]; ?>" id="publish" class="btn btn-primary btn-action p-3 me-2">Publish <i class="fa fa-check btn-action" aria-hidden="true"></i></button>
-                                <button type="button" value="<?= $data[0]["id_resep"]; ?>" id="takedown" class="btn btn-warning text-white btn-action p-3 me-2"> Takedown <i class="fa-regular fa-clock btn-action"></i></button>
-                                <button type="button" value="<?= $data[0]["id_resep"]; ?>" id="delete" class="btn btn-danger btn-action p-3"> Delete <i class="fa fa-times btn-action" aria-hidden="true"></i></button>
+                                <button method="publish" type="button" value="<?= $data[0]["id_resep"]; ?>" id="publish" class="btn btn-primary btn-action p-3 me-2">Publish <i class="fa fa-check" aria-hidden="true"></i></button>
+                                <button method="takedown" type="button" value="<?= $data[0]["id_resep"]; ?>" id="takedown" class="btn btn-warning text-white btn-action p-3 me-2"> Takedown <i class="fa-regular fa-clock"></i></button>
+                                <button method="delete" type="button" value="<?= $data[0]["id_resep"]; ?>" id="delete" class="btn btn-danger btn-action p-3"> Delete <i class="fa fa-times" aria-hidden="true"></i></button>
                             </div>
                             <!-- <div class="card-footer text-muted">2 days ago</div> -->
                         </div>
