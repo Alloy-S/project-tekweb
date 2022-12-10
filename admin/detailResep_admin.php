@@ -34,53 +34,36 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
     <link rel="stylesheet" href="style.css">
     <!-- <link rel="stylesheet" href="assets/fontawesome/css/all.css"> -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <!-- JavaScript Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
-        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
     <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Admin Detail Recipe</title>
 
     <script>
-        $(document).ready(function () {
-            $('#publish').click(function () {
+        $(document).ready(function() {
+            $('.btn-action').click(function() {
                 var id = $(this).val();
+                var method = $(this).attr("method");
                 $.ajax({
                     type: 'POST',
                     url: '../ajax/connect_btn.php',
-                    data: 'id=' + id,
-                    success: function (response) {
-                        Swal.fire(
-                            response,
-                            'You clicked the button!',
-                            'success'
-                        )
-                    }
-                });
-            });
-            $('#takedown').click(function () {
-                var id = $("#id").val();
-                $.ajax({
-                    type: 'POST',
-                    url: '../ajax/connect_btn.php',
-                    data: 'id=' + id,
-                    success: function (response) {
-                        alert("RESEP BERHASIL DI TAKEDOWN");
-                    }
-                });
-            });
-            $('#delete').click(function () {
-                var id = $("#id").val();
-                $.ajax({
-                    type: 'POST',
-                    url: '../ajax/connect_btn.php',
-                    data: 'id=' + id,
-                    success: function (response) {
-                        alert("RESEP BERHASIL DI DELETE");
+                    data: {
+                        id: id,
+                        method: method
+                    },
+                    success: function(response) {
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: response,
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
                     }
                 });
             });
@@ -96,9 +79,7 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
 
@@ -123,54 +104,52 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
             <!-- Collapsible wrapper -->
 
             <!-- Right elements -->
-            <?php if (isset($_SESSION["login"])): ?>
-            <div class="d-flex align-items-center">
+            <?php if (isset($_SESSION["login"])) : ?>
+                <div class="d-flex align-items-center">
 
-                <!-- Notifications -->
-                <div class="dropdown">
-                    <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink"
-                        role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-bell"></i>
-                        <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                        <li>
-                            <a class="dropdown-item" href="#">Some news</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another news</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </li>
-                    </ul>
+                    <!-- Notifications -->
+                    <div class="dropdown">
+                        <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge rounded-pill badge-notification bg-danger">1</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                            <li>
+                                <a class="dropdown-item" href="#">Some news</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Another news</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Avatar -->
+                    <div class="dropdown">
+                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                            <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                            <li>
+                                <a class="dropdown-item" href="#">My profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Settings</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="logout.php">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- Avatar -->
-                <div class="dropdown">
-                    <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
-                        id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i>
-                        <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
+            <?php else : ?>
+                <div class="d-flex align-items-center">
+                    <a class="text-reset me-3" href="login2.php">
+                        <!-- <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Login</button> -->
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                        <li>
-                            <a class="dropdown-item" href="#">My profile</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Settings</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="logout.php">Logout</a>
-                        </li>
-                    </ul>
                 </div>
-            </div>
-            <?php else: ?>
-            <div class="d-flex align-items-center">
-                <a class="text-reset me-3" href="login2.php">
-                    <!-- <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Login</button> -->
-                </a>
-            </div>
             <?php endif; ?>
             <!-- Right elements -->
         </div>
@@ -214,13 +193,13 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                         <div class="bahan-content">
                             <p> Bahan & Takaran </p>
                             <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
-                            <ul class="list-group">
-                                <li class="list-group-item"><b>
-                                        <?php echo $r['takaran'] ?>
-                                    </b>
-                                    <?php echo $r['jenis'] ?>
-                                </li>
-                            </ul>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><b>
+                                            <?php echo $r['takaran'] ?>
+                                        </b>
+                                        <?php echo $r['jenis'] ?>
+                                    </li>
+                                </ul>
 
                             <?php } ?>
                         </div>
@@ -228,12 +207,12 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                             <br>
                             <p> Langkah Pembuatan </p>
                             <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    <?php echo $r['urutan'] + 1 ?>.
-                                    <?php echo $r['langkah'] ?>
-                                </li>
-                            </ul>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <?php echo $r['urutan'] + 1 ?>.
+                                        <?php echo $r['langkah'] ?>
+                                    </li>
+                                </ul>
 
                             <?php } ?>
                         </div>
@@ -244,19 +223,15 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                     <!-- Author -->
                     <div class="widget widget-author mt-5">
                         <div class="widget-title">
-                            <h3 class="text-center mb-3">Action</h3>
+                            <h3 class="text-center mt-4 mb-3">Action</h3>
                         </div>
                         <div class="card text-center">
 
                             <div class="card-header">Opsi Pilihan</div>
                             <div class="card-body">
-                                <button type="button" value="<?= $data[0]["id_resep"]; ?>" id="publish"
-                                    class="btn btn-primary" onclick=""> Publish <i class="fa fa-check"
-                                        aria-hidden="true"></i></button>
-                                <button type="button" class="btn btn-warning text-white"> Takedown <i
-                                        class="fa-regular fa-clock"></i></button>
-                                <button type="button" class="btn btn-danger    "> Delete <i class="fa fa-times"
-                                        aria-hidden="true"></i></button>
+                                <button type="button" value="<?= $data[0]["id_resep"]; ?>" id="publish" class="btn btn-primary btn-action p-3 me-2">Publish <i class="fa fa-check btn-action" aria-hidden="true"></i></button>
+                                <button type="button" value="<?= $data[0]["id_resep"]; ?>" id="takedown" class="btn btn-warning text-white btn-action p-3 me-2"> Takedown <i class="fa-regular fa-clock btn-action"></i></button>
+                                <button type="button" value="<?= $data[0]["id_resep"]; ?>" id="delete" class="btn btn-danger btn-action p-3"> Delete <i class="fa fa-times btn-action" aria-hidden="true"></i></button>
                             </div>
                             <!-- <div class="card-footer text-muted">2 days ago</div> -->
                         </div>
@@ -265,7 +240,7 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                         //         {
                         //             // initialize replies array for each comment
                         //             $replies = array();
-                        
+
                         //             // check if it is a comment to post, not a reply to comment
                         //             if ($comment->reply == 0)
                         //             {
@@ -277,17 +252,17 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                         //                     {
                         //                         // add in replies array
                         //                         array_push($replies, $rep);
-                        
+
                         //                         // remove from comments array
                         //                         unset($comments[$reply_key]);
                         //                     }
                         //                 }
                         //             }
-                        
+
                         //             // assign replies to comments object
                         //             $comment->replies = $replies;
                         //         }
-                        
+
                         ?>
 
                         <script>
