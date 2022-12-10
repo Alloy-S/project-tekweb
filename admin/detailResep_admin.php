@@ -52,7 +52,6 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                 $.ajax({
                     type: 'POST',
                     url: '../ajax/connect_btn.php',
-<<<<<<< Updated upstream
                     data: {
                         id: id,
                         method: method
@@ -65,37 +64,6 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                             showConfirmButton: false,
                             timer: 2000
                         })
-=======
-                    data: 'id=' + id,
-                    success: function (response) {
-                        Swal.fire(
-                            response,
-                            '',
-                            'success'
-                        )
-                    }
-                });
-            });
-            $('#takedown').click(function () {
-                var id = $(this).val();
-                $.ajax({
-                    type: 'POST',
-                    url: '../ajax/connect_btn.php',
-                    data: 'id=' + id,
-                    success: function (response) {
-                        alert("RESEP BERHASIL DI TAKEDOWN");
-                    }
-                });
-            });
-            $('#delete').click(function () {
-                var id = $(this).val();
-                $.ajax({
-                    type: 'POST',
-                    url: '../ajax/connect_btn.php',
-                    data: 'id=' + id,
-                    success: function (response) {
-                        alert("RESEP BERHASIL DI DELETE");
->>>>>>> Stashed changes
                     }
                 });
             });
