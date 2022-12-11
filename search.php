@@ -116,7 +116,7 @@ if (isset($_POST["submit_btn"])) {
         <!-- Navbar -->
 
         <div class="container" id='card-resep'>
-            <div class="d-flex justify-content-center">
+            <div class="justify-content-center">
                 <div class="row g-2">
                     <?php
                     $row_cnt = mysqli_num_rows($result);
