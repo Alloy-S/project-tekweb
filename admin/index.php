@@ -68,7 +68,7 @@
                     <img
                         src="../img/anonymous.jpg"
                         class="rounded-circle"
-                        height="35"
+                        height="40"
                         alt="Profile"
                         loading="lazy"
                     />
@@ -144,13 +144,11 @@
                             <p class="text-muted mb-0">IT department</p>
                         </td>
                         <td>
-                            <?php if($data[0]['is_approved'] === "1" and $data[0]['is_private'] === "0"):?>
+                            <?php if($row['is_approved'] === "1" and $row['is_private'] === "0"):?>
                                 <span class="badge badge-success rounded-pill d-inline">Live</span>
-                            <?php endif;?>
-                            <?php if($data[0]['is_approved'] === "0" and $data[0]['is_private'] === "0"):?>
+                            <?php elseif($row['is_approved'] === "0" and $row['is_private'] === "0"):?>
                                 <span class="badge badge-warning rounded-pill d-inline">Pending</span>
-                            <?php endif;?>
-                            <?php if($data[0]['is_approved'] === "0" and $data[0]['is_private'] === "1"):?>
+                            <?php elseif($row['is_approved'] === "0" and $row['is_private'] === "1"):?>
                                 <span class="badge badge-primary rounded-pill d-inline">Private</span>
                             <?php endif;?>
                         </td>
