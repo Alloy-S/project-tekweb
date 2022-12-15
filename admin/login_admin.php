@@ -10,14 +10,15 @@ if (isset($_POST["submit"])) {
     $username = $_POST["loginName"];
     $password = $_POST["loginPassword"];
 
-    $result = mysqli_query($conn, "SELECT username, password FROM admin_acc WHERE username = '$username';");
+    $result = mysqli_query($conn, "SELECT * FROM admin_acc WHERE username = '$username';");
 
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
         var_dump($row);
         if (password_verify($password, $row["password"])) {
-            $_SESSION["login_admin"] = true;
+            $_SESSION["login_admin"] = $row['privilage'];
             $_SESSION["username_admin"] = $username;
+            $_SESSION["name_admin"] = $row['name'];
             // cek remember
             // if (isset($_POST["remember"])) {
             //     setcookie("id", $row["id"], time() + 60);

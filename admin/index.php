@@ -5,10 +5,6 @@
         header("Location: login_admin.php");
     }
 
-    $qry = "SELECT name, privilage FROM admin_acc 
-    WHERE username LIKE '".$_SESSION['username_admin']."';";
-    $data_nama = query($qry);
-
     $data = query("SELECT * FROM resep");
 ?>
 
@@ -47,10 +43,13 @@
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-0 ms-3 mb-lg-0">
                     <li class="nav-item ms-3">
-                        <a class="nav-link active" href="#">Live Website</a>
+                        <a class="nav-link" href="../index.php">Live Website</a>
                     </li>
                     <li class="nav-item ms-4">
                         <a class="nav-link active" href="#">Admin Dashboard</a>
+                    </li>
+                    <li class="nav-item ms-4">
+                        <a class="nav-link" href="tambahKategori.php">Tambah Kategori</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -78,7 +77,7 @@
                         <li>
                             <a class="dropdown-item" href="#">My profile</a>
                         </li>
-                        <?php if($data_nama[0]['privilage'] === "1"):?>
+                        <?php if($_SESSION['login_admin'] === "1"):?>
                         <li>
                             <a class="dropdown-item" href="tambahAdmin.php">Add new Admin</a>
                         </li>
@@ -98,7 +97,7 @@
     <div class="container-fluid bg-secondary text-white">
         <!-- Search Bar -->
         <div class="d-flex justify-content-between py-3 ps-3 text-dark">
-            <h3 class="mt-3">Hello <?= $data_nama[0]['name']; ?>, welcome to Admin Dashboard</h3>
+            <h3 class="mt-3">Hello <?= $_SESSION['name_admin']; ?>, welcome to Admin Dashboard</h3>
 
             <div class="input-group w-25 d-flex justify-content-between mt-2">
                 <div class="form-outline">
