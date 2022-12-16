@@ -80,3 +80,17 @@ html {
   height: 65px;
   color: rgba(255, 254, 255, 0.8);
 }
+
+.icon-field {
+  border: 2px solid #dddddd;
+  background-color: #dddddd;
+  padding: 0px 4px;
+  margin-right: 3px;
+  border-radius: 10px;
+  
+}
+
+.icon-field:hover {
+  background-color: #bdbdbd;
+
+}

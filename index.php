@@ -27,6 +27,55 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
     <!-- <link rel="stylesheet" href="fa_icons/css/all.css"> -->
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <script>
+        $(document).ready(function() {
+            $(window).scroll(function() {
+                if ($(document).scrollTop() > 70) {
+                    $('#navbar').addClass('color-change');
+                } else {
+                    $('#navbar').removeClass('color-change');
+                }
+            });
+
+            $("body").on("click", ".btn-like", function() {
+                const btn = $(this);
+                if ($(this).attr("status") == "0") {
+                    $.ajax({
+                        type: "POST",
+                        url: "ajax/likeDislike.php",
+                        data: {
+                            id: btn.attr("value"),
+                            status: btn.attr("status")
+                        },
+                        success: function(response) {
+                            // alert(response);
+                            btn.html("<i class='fa-solid fa-thumbs-up fa-lg'></i><span class='like'>" + response + "</span>");
+                            btn.attr("status", 1);
+                        }
+                    });
+
+
+
+                } else {
+                    $.ajax({
+                        type: "POST",
+                        url: "ajax/likeDislike.php",
+                        data: {
+                            id: btn.attr("value"),
+                            status: btn.attr("status")
+                        },
+                        success: function(response) {
+                            // alert(response);
+                            btn.html("<i class='fa-regular fa-thumbs-up fa-lg'></i><span class='like'>" + response + "</span>");
+                            btn.attr("status", 0);
+                        }
+                    });
+                }
+
+
+            });
+        });
+    </script>
 </head>
 
 <body style='background-color:#c6c9ca'>
@@ -156,10 +205,15 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                             <div class="card text-center">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
-                                    <div>
-                                        </span><i class="fa-solid fa-eye"></i><span id="like"><?= $row['views']; ?> 
+                                    <div class="icon-content d-flex flex-row justify-content-center">
+                                        <div class="icon-field">
+                                            <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
+                                        </div>
+                                        <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
+                                            <i class="fa-regular fa-thumbs-up fa-lg"></i><span class="like"><?= $row['likes']; ?></span>
+                                        </div>
                                     </div>
-                                    <!-- <p class="card-text"><?= $row["deskripsi"]; ?></p> -->
+
                                     <a href="detailResep.php?id=<?= $row["id_resep"]; ?>" class="btn btn-primary sticky-bottom">More</a>
                                 </div>
                             </div>
@@ -168,7 +222,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                 <?php endforeach; ?>
             </div>
         </div>
-        <script>
+        <!-- <script>
             $(window).scroll(function() {
                 if ($(document).scrollTop() > 70) {
                     $('#navbar').addClass('color-change');
@@ -176,7 +230,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                     $('#navbar').removeClass('color-change');
                 }
             });
-        </script>
+        </script> -->
 </body>
 
 </html>
