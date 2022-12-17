@@ -140,8 +140,11 @@
                             </div>
                         </td>
                         <td>
-                            <p class="fw-normal mb-1">Software engineer</p>
-                            <p class="text-muted mb-0">IT department</p>
+                            <?php foreach($kategori as $kat) : ?>
+                                <?php if($row['id_kategori'] === $kat['id_kategori']) :?>
+                                    <p class="fw-normal mb-1"><?= $kat['nama']; ?></p>
+                                <?php endif;?>
+                            <?php endforeach;?>
                         </td>
                         <td>
                             <?php if($row['is_approved'] === "1" and $row['is_private'] === "0"):?>

@@ -179,7 +179,7 @@ if (isset($_POST["submit"])) {
 
                                 <div class="col-md-12 d-flex justify-content-center">
                                     <!-- Simple link -->
-                                    <a href="#!">Forgot password?</a>
+                                    <!-- <a href="#!">Forgot password?</a> -->
                                 </div>
                             </div>
 

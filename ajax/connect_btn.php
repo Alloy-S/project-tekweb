@@ -10,7 +10,7 @@ if ($method === "publish") {
     $result = mysqli_query($conn, "UPDATE resep SET is_approved = false WHERE id_resep = '$id_resep'");
     echo "Resep berhasil di-takedown!";
 } elseif ($method === "delete") {
-    $result = mysqli_query($conn, "UPDATE resep SET is_approved = false WHERE id_resep = '$id_resep'");
+    $result = mysqli_query($conn, "DELETE FROM resep WHERE id_resep = '$id_resep'");
     echo "Resep berhasil di-delete!";
 }
 ?>
