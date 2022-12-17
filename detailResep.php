@@ -44,6 +44,7 @@ while ($r = mysqli_fetch_object($que)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <title><?= $data[0]["nama_resep"]; ?></title>
 </head>
 
@@ -187,124 +188,77 @@ while ($r = mysqli_fetch_object($que)) {
                         <div class="widget-title">
                             <h3>Comments</h3>
                         </div>
-                        <form action="detailResep.php?id=<?php echo $id; ?>" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $id; ?>" required>
+                        <div class="form-group mx-3">
+                        <form method="POST" id = "comment-form" >
+                                <input type="hidden" id = "id" name="id" value="<?php echo $id; ?>" required>
+                            
 
-                            <div class="mx-3 mb-3">
-                                <div class="col-auto mb-2">
-                                    <label>Your name</label>
-                                </div>
-                                <div class="col-8">
-                                    <input class="form-control" type="text" name="name" required>
-                                </div>    
-                            </div>
-
-                            <div class="mx-3 mb-3">
-                                <div class="col-auto mb-2">
-                                    <label>Comment</label>
-                                </div>
-                                <div class="row mx-0" class="col-auto">
-                                    <textarea class="form-control" name="comment" required></textarea>
-                                </div>
-                            </div>
-
-                            <div class="mx-3 mb-3">
-                                <input class="btn btn-secondary" type="submit" value="Add Comment" name="submit">
-                                <?php
-                                if (isset($_POST["submit"])) {
-                                    $author = mysqli_real_escape_string($conn, $_POST["name"]);
-                                    $comment = mysqli_real_escape_string($conn, $_POST["comment"]);
-                                    $resep_id = $id;
-                                    $reply = 0;
-
-                                    mysqli_query($conn, "INSERT INTO comments(author, resep_id, comment, date_created, reply) VALUES ('" . $author . "',   $resep_id , '" . $comment . "', NOW(), '" . $reply . "')");
-                                    echo "<script type='text/javascript'>alert('Comment posted');</script>";
-                                }
-                                ?>
-                            </div>
-
-                        </form>
-                        <?php
-                        foreach ($comments as $comment_key => $comment) {
-                            // initialize replies array for each comment
-                            $replies = array();
-
-                            // check if it is a comment to post, not a reply to comment
-                            if ($comment->reply == 0) {
-                                // loop through all comments again
-                                foreach ($comments as $reply_key => $rep) {
-                                    // check if comment is a reply
-                                    if ($rep->reply == $comment->comment_id) {
-                                        // add in replies array
-                                        array_push($replies, $rep);
-
-                                        // remove from comments array
-                                        unset($comments[$reply_key]);
-                                    }
-                                }
-                            }
-
-                            // assign replies to comments object
-                            $comment->replies = $replies;
-                        }
-
-                        ?>
-
+                                <label>Your name</label> <br/>
+                                <input type="text" id = "name" name="name" required> <br/>
+                            
+                            
+                                <label>Comment</label> <br/>
+                                <textarea name="comment" id = "comment" name = "comment" required></textarea> <br/>
+                            
+                        
+                                <input type = "submit" id = "submit" name = "submit" class = "btn btn-primary">
+                         
+                            </form>
+                        </div>
+                        <div class="com-sec"></div>
                         <script>
-                            function showFormReply(self) {
-                                var commentId = self.getAttribute("data-id");
-                                if (document.getElementById("form-" + commentId).style.display == "") {
-                                    document.getElementById("form-" + commentId).style.display = "none";
-                                } else {
-                                    document.getElementById("form-" + commentId).style.display = "";
+                            $(document).ready(function(){
+                                $("#submit").click(function(event){
+                                    event.preventDefault(); 
+                                    event.stopImmediatePropagation();
+                                    // $("#comment-form :input").prop("disabled", false);
+                                    // var vid  = $("#id").val();
+                                    // var vname  = $("#name").val();
+                                    // var vcomment  = $("#comment").val();
+                                    // var form = $(this);
+                                    // var formUrl = $(this).attr("action");
+                                    console.log($("#comment-form").serialize());
+
+                                    $.ajax({
+                                        url:"addComment.php",
+                                        type:"POST",
+                                        data:$("#comment-form").serialize(),
+                                        success:function(data){ 
+                                            console.log(data);                        
+                                        },
+                                        error:function(xhr, status, error){
+                                            console.log(error);
+                                        },
+                                    })
+                                    return false   
+                                })
+                                });
+
+                                // load_comment();
+
+                                function load_comment()
+                                {
+                                $.ajax({
+                                url:"showComment.php",
+                                method:"POST",
+                                datatype:"JSON",    
+                                success:function(data)
+                                {
+                                    $('#com-sec').html(data);
                                 }
-                            }
-                        </script>
-                        <ul class="comments">
-                            <?php foreach ($comments as $comment) : ?>
-                                <li>
-                                    <p>
-                                        <?php echo $comment->author; ?>
-                                    </p>
+                                })
+                                }
 
-                                    <p>
-                                        <?php echo $comment->comment; ?>
-                                    </p>
-
-                                    <p>
-                                        <?php echo date("F d, Y h:i a", strtotime($comment->date_created)); ?>
-                                    </p>
-
-                                    <div data-id="<?php echo $comment->comment_id; ?>" onclick="showFormReply(this);">
-                                        <button>Reply</button>
-                                    </div>
-
-                                    <form action="detailResep.php" method="post" id="form-<?php echo $comment->id; ?>" style="display: none;">
-
-                                        <input type="hidden" name="reply" value="<?php echo $comment->id; ?>" required>
-                                        <input type="hidden" name="resep_id" value="<?php echo $post_id; ?>" required>
-
-                                        <p>
-                                            <label>Your name</label>
-                                            <input type="text" name="name" required>
-                                        </p>
-
-                                        <p>
-                                            <label>Your email address</label>
-                                            <input type="email" name="email" required>
-                                        </p>
-
-                                        <p>
-                                            <label>Comment</label>
-                                            <textarea name="comment" required></textarea>
-                                        </p>
-
-                                        <p>
-                                            <input type="submit" value="Reply" name="do_reply">
-                                        </p>
-                                    </form>
-                                </li>
-                            <?php endforeach; ?>
+                                // );$(document).on('click', '.reply', function(){
+                                // var comment_id = $(this).attr("id");
+                                // $('#comment_id').val(comment_id);
+                                // $('#comment_name').focus();
+                                // }
+                                
+                                ;
+                                </script>
+                        </form>
+                       
                     </div>
                     <!-- End Author -->
                 </div>
