@@ -167,7 +167,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
     <!-- Navbar -->
 
     <div id="background">
-        <div class="jumbotron"style="margin-left:6%">
+        <div class="jumbotron" style="margin-left:6%">
             <!-- style="margin-left: 9vw; margin-top:1vw;" -->
             <h1 style="font-size:clamp(60px, 5vw, 220px);">GUDANG RESEP</h1>
             <button type="button" class="btn btn-primary" id="bounce" style="margin-left: 20%; margin-bottom:55%" onClick="document.getElementById('card-resep').scrollIntoView();">
@@ -196,39 +196,94 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card m-2">
 
-                            
+
+                            <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
+                                <div class="ratio ratio-16x9">
+                                    <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
+                                </div>
+                            </a>
+                            <div class="card text-center">
                                 <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
-                                    <div class="ratio ratio-16x9">
-                                        <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
                                     </div>
                                 </a>
-                                <div class="card text-center">
-                                    <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
-                                        </div>
-                                    </a>
-                                    <div class="icon-content d-flex flex-row justify-content-center">
-                                        <div class="icon-field">
-                                            <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
-                                        </div>
-                                        <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
-                                            <span style="color: red;">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </span>
-                                            <span class="like"><?= $row['likes']; ?></span>
-                                        </div>
+                                <div class="icon-content d-flex flex-row justify-content-center">
+                                    <div class="icon-field">
+                                        <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
+                                    </div>
+                                    <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
+                                        <span style="color: red;">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="like"><?= $row['likes']; ?></span>
                                     </div>
                                 </div>
-                            
-
-
-
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
         </div>
+        <footer class="text-center text-white" style="background-color: #caced1;">
+            <!-- Grid container -->
+            <div class="container p-4" style="width: 100%; margin-top:15%">
+                <!-- Section: Images -->
+                <section class="">
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 1.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 2.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 3.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 4.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 5.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section: Images -->
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2022 Copyright:
+                <a class="text-white" href="https://mdbootstrap.com/">Kelompok TEKWEB 5</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
 </body>
 
 </html>
