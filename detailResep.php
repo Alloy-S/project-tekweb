@@ -47,8 +47,8 @@ while ($r = mysqli_fetch_object($que)) {
     <title><?= $data[0]["nama_resep"]; ?></title>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style='background-color:transparent'>
+<body style='background-color:#c6c9ca'>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style='background-color:black'>
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
@@ -64,13 +64,14 @@ while ($r = mysqli_fetch_object($que)) {
                 </a>
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
                 <div class="input-group d-flex justify-content-center">
-                    <div class="form-outline w-25">
-                        <input type="search" id="form1" class="form-control text-light" />
-                        <label class="form-label text-light" for="form1">Search</label>
+                    <div class="coba form-outline w-25 rounded border border-light" style="--bs-border-opacity: .5;">
+                        <form class="d-flex flex-row" action="search.php" method="POST">
+                            <input id="search-input" type="search" name="search_index" class="form-control text-light" />
+                            <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
+                                <i class="fas fa-search text-light"></i>
+                            </button>
+                        </form>
                     </div>
-                    <button type="button" class="btn" style="background-color:transparent">
-                        <i class="fas fa-search text-light"></i>
-                    </button>
                 </div>
                 <!-- </div> -->
             </div>
@@ -129,13 +130,14 @@ while ($r = mysqli_fetch_object($que)) {
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    <div class="blog-single gray-bg">
+    
+    <div class="blog-single">
         <div class="container">
             <div class="row align-items-start">
                 <div class="col-lg-8 m-15px-tb">
                     <article class="article">
                         <div class="article-img">
-                            <img src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
+                            <img class="img-responsive" src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
                         </div>
                         <div class="article-title">
                             <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
@@ -188,17 +190,26 @@ while ($r = mysqli_fetch_object($que)) {
                         <form action="detailResep.php?id=<?php echo $id; ?>" method="POST">
                             <input type="hidden" name="id" value="<?php echo $id; ?>" required>
 
-                            <p>
-                                <label>Your name</label>
-                                <input type="text" name="name" required>
-                            </p>
-                            <p>
-                                <label>Comment</label>
-                                <textarea name="comment" required></textarea>
-                            </p>
+                            <div class="mx-3 mb-3">
+                                <div class="col-auto mb-2">
+                                    <label>Your name</label>
+                                </div>
+                                <div class="col-8">
+                                    <input class="form-control" type="text" name="name" required>
+                                </div>    
+                            </div>
 
-                            <p>
-                                <input type="submit" value="Add Comment" name="submit">
+                            <div class="mx-3 mb-3">
+                                <div class="col-auto mb-2">
+                                    <label>Comment</label>
+                                </div>
+                                <div class="row mx-0" class="col-auto">
+                                    <textarea class="form-control" name="comment" required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="mx-3 mb-3">
+                                <input class="btn btn-secondary" type="submit" value="Add Comment" name="submit">
                                 <?php
                                 if (isset($_POST["submit"])) {
                                     $author = mysqli_real_escape_string($conn, $_POST["name"]);
@@ -210,7 +221,8 @@ while ($r = mysqli_fetch_object($que)) {
                                     echo "<script type='text/javascript'>alert('Comment posted');</script>";
                                 }
                                 ?>
-                            </p>
+                            </div>
+
                         </form>
                         <?php
                         foreach ($comments as $comment_key => $comment) {
