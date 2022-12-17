@@ -62,10 +62,21 @@ html {
   transition: all 0.4s ease;
 }
 
+
+.card-body {
+  padding-bottom: 0px;
+}
+
 .color-change {
   background-color: #8a8d8d;
   height: 65px;
   color: rgba(255, 254, 255, 0.8);
+}
+
+.icon-content {
+  background-color: white;
+  padding-bottom: 10px;
+  border-radius: 10px;
 }
 
 .icon-field {
