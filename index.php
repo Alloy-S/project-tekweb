@@ -222,6 +222,65 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                 <?php endforeach; ?>
             </div>
         </div>
+        <footer class="text-center text-white" style="background-color: #caced1;">
+            <!-- Grid container -->
+            <div class="container p-4" style="width: 100%; margin-top:15%">
+                <!-- Section: Images -->
+                <section class="">
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 1.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 2.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 3.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 4.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-sm">
+                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                                <img src="img/foto 5.jpg" class="w-100" />
+                                <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Section: Images -->
+            </div>
+            <!-- Grid container -->
+
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2022 Copyright:
+                <a class="text-white" href="https://mdbootstrap.com/">Kelompok TEKWEB 5</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
 </body>
 
 </html>

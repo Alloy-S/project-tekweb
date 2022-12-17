@@ -29,6 +29,7 @@ if (isset($_POST["submit"])) {
 
 $data = query("SELECT * FROM kategori");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -311,7 +312,7 @@ $data = query("SELECT * FROM kategori");
                     </select>
                 </div>
                 <div class="field-input">
-                    <label for="row-bahan">bahan-bahan</label>
+                    <label for="row-bahan">Bahan-bahan</label>
                     <ol id="row-bahan">
                         <li>
                             <div class="row ">
