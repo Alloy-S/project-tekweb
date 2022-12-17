@@ -128,8 +128,8 @@ $data = query("SELECT * FROM kategori");
 
             $("#crop").click(function() {
                 canvas = cropper.getCroppedCanvas({
-                    width: 650,
-                    height: 650,
+                    width: 160,
+                    height: 160,
                 });
 
                 canvas.toBlob(function(blob) {
@@ -250,7 +250,7 @@ $data = query("SELECT * FROM kategori");
             <!-- Collapsible wrapper -->
 
             <!-- Right elements -->
-            <?php if (isset($_SESSION["login_user"])) : ?>
+            <?php if (isset($_SESSION["login"])) : ?>
                 <div class="d-flex align-items-center mt-md-4">
 
                     <!-- Notifications -->

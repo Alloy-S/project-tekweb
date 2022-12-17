@@ -14,24 +14,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 else {
                         $msg = "gagal";
                 }
-                // if($result){
-                // $err = "<label class="text-success">Comment Added</label>";
-                // } else (
-                //         $err = "<label class="text-danger">Comment Failed to be Added</label>";
-                // )
+         
+        $query = "SELECT * FROM comments WHERE id_resep = $resep_id ORDER BY comment_id ASC";
+        $result = mysqli_query($conn, $query);
+        $output = '';
+        
 
-                // $data = array (
-                //         'error' => $err
-                // )
-        //         $data = array (
-        //                 'name' => $author,
-        //                 'comment'=> $comment,
-        //                 'id' => $resep_id,
-        //         ); 
-
-        //         echo json_encode($data);
-        // }
-                echo $author;
+        foreach($result as $r) {
+            $output .= '
+            <div class="comment-header">By <b>' .$r["author"]. ' </b> on <i>' .$r["date_created"]. '</i> </div>
+            <div class="comment-content">' .$r["comment"]. '</div>
+            <div class="reply">
+            <button type="button" class="btn btn-default reply" id="'.$r["comment_id"].'">Reply</button>    
+            </div>
+            ';
+            echo $output;
         }
+       
+}
+         
 
 ?>

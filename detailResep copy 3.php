@@ -1,4 +1,4 @@
-<?php
+ <?php
 session_start();
 require("connect.php");
 
@@ -34,8 +34,9 @@ while ($r = mysqli_fetch_object($que)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $data[0]["nama_resep"]; ?></title>
     <!-- CSS only -->
-    <link rel="stylesheet" href="detail_style.css">
+    <link rel="stylesheet" href="detail.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
@@ -44,12 +45,12 @@ while ($r = mysqli_fetch_object($que)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <title><?= $data[0]["nama_resep"]; ?></title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+   
 </head>
 
-<body style='background-color:#c6c9ca'>
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style='background-color:black'>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style='background-color:transparent'>
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
@@ -65,14 +66,13 @@ while ($r = mysqli_fetch_object($que)) {
                 </a>
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
                 <div class="input-group d-flex justify-content-center">
-                    <div class="coba form-outline w-25 rounded border border-light" style="--bs-border-opacity: .5;">
-                        <form class="d-flex flex-row" action="search.php" method="POST">
-                            <input id="search-input" type="search" name="search_index" class="form-control text-light" />
-                            <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
-                                <i class="fas fa-search text-light"></i>
-                            </button>
-                        </form>
+                    <div class="form-outline w-25">
+                        <input type="search" id="form1" class="form-control text-light" />
+                        <label class="form-label text-light" for="form1">Search</label>
                     </div>
+                    <button type="button" class="btn" style="background-color:transparent">
+                        <i class="fas fa-search text-light"></i>
+                    </button>
                 </div>
                 <!-- </div> -->
             </div>
@@ -131,62 +131,47 @@ while ($r = mysqli_fetch_object($que)) {
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    
-    <div class="blog-single">
+    <div class="blog-single gray-bg">
         <div class="container">
             <div class="row align-items-start">
                 <div class="col-lg-8 m-15px-tb">
                     <article class="article">
-                        <div class="article-part">
-                            <div class="article-img">
-                                <img class="img-responsive" src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
-                            </div>
-                    
-                            <div class="article-title">
-                                <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
-                                <!-- <button class="btn-secondary like">
-                                                <i class="fa fa-heart" aria-hidden="true"></i> Like
-                                            </button>
-                                    
-                                        -->
-                                <div class="media">
-                                    <div class="media-body">
-                                        <label><?= $data[0]["author"]; ?></label>
-                                        <span><?= $data[0]["tanggal"]; ?></span>
-                                    </div>
+                        <div class="article-img">
+                            <img src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
+                        </div>
+                        <div class="article-title">
+                            <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
+                            <div class="media">
+                                <div class="media-body">
+                                    <label><?= $data[0]["author"]; ?></label>
+                                    <span><?= $data[0]["tanggal"]; ?></span>
                                 </div>
                             </div>
-                            <div class="article-content">
-                                <p><?= $data[0]["deskripsi"]; ?></p>
-
-                            </div>
                         </div>
+                        <div class="article-content">
+                            <p><?= $data[0]["deskripsi"]; ?></p>
 
-                        <div class="article-part">
-                            <div class="bahan-content">
-                                <p><strong> Bahan & Takaran </strong></p>
-                                <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
-                                    <ul class="list-group">
-                                        <li class="list-group-item mb-2"><b> <?php echo $r['takaran'] ?> </b>
-                                            <?php echo $r['jenis'] ?> </li>
-                                    </ul>
-
-                                <?php } ?>
-                            </div>
                         </div>
+                        <div class="bahan-content">
+                            <p><strong> Bahan & Takaran </strong></p>
+                            <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><b> <?php echo $r['takaran'] ?> </b>
+                                        <?php echo $r['jenis'] ?> </li>
+                                </ul>
 
-                        <div class="article-part">
-                            <div class="langkah-content">
-                                <br>
-                                <p><strong> Langkah Pembuatan</strong> </p>
-                                <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
-                                    <ul class="list-group">
-                                        <li class="list-group-item mb-2"><?php echo $r['urutan'] + 1 ?>. <?php echo $r['langkah'] ?>
-                                        </li>
-                                    </ul>
+                            <?php } ?>
+                        </div>
+                        <div class="langkah-content">
+                            <br>
+                            <p><strong> Langkah Pembuatan</strong> </p>
+                            <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
+                                <ul class="list-group">
+                                    <li class="list-group-item"><?php echo $r['urutan'] + 1 ?>. <?php echo $r['langkah'] ?>
+                                    </li>
+                                </ul>
 
-                                <?php } ?>
-                            </div>
+                            <?php } ?>
                         </div>
 
                     </article>
@@ -197,35 +182,25 @@ while ($r = mysqli_fetch_object($que)) {
                         <div class="widget-title">
                             <h3>Comments</h3>
                         </div>
+                        <!-- action="detailResep.php?id=<?php echo $id; ?>" -->
                         <div class="form-group mx-3">
-                        <form method="POST" id = "comment-form" >
+                        <form method="POST" id = "comment-form">
                                 <input type="hidden" id = "id" name="id" value="<?php echo $id; ?>" required>
                             
-                                <div class="hstack gap-2 mx-3 my-3">
-                                        <label>Your name</label> <br/>
-                                    <div class="col-auto">
-                                        <input class="form-control" type="text" id = "name" name="name" required>
-                                    </div>
-                                </div>
 
-                                <div class="mx-3 mb-4">
-                                    <div class="col-auto mb-2">
-                                        <label>Comment</label>
-                                    </div>
-                                    <div class="col-auto mx-0">
-                                        <textarea class="form-control" name="comment" id = "comment" name = "comment" required></textarea>
-                                    </div>
-                                </div>
-                                
-                                <div class="mx-3 mb-3">
-                                    <input type = "submit" id = "submit" name = "submit" class = "btn btn-secondary">
-                                </div>
+                                <label>Your name</label> <br/>
+                                <input type="text" id = "name" name="name" required> <br/>
+                            
+                            
+                                <label>Comment</label> <br/>
+                                <textarea name="comment" id = "comment" name = "comment" required></textarea> <br/>
+                            
+                        
+                                <input type = "submit" id = "submit" name = "submit" class = "btn btn-primary">
                          
                             </form>
                         </div>
-                        <div class="com-sec">
-                            <br>
-                        </div>
+                        <div class="com-sec"></div>
                         <script>
                             $(document).ready(function(){
                                 $("#submit").click(function(event){
@@ -235,10 +210,8 @@ while ($r = mysqli_fetch_object($que)) {
                                     // var vid  = $("#id").val();
                                     // var vname  = $("#name").val();
                                     // var vcomment  = $("#comment").val();
-                                    // var form = $(this);
-                                    // var formUrl = $(this).attr("action");
-
-                                    const outputDiv = $("#com-sec")
+                                    var form = $(this);
+                                    var formUrl = $(this).attr("action");
                                     console.log($("#comment-form").serialize());
 
                                     $.ajax({
@@ -246,42 +219,38 @@ while ($r = mysqli_fetch_object($que)) {
                                         type:"POST",
                                         data:$("#comment-form").serialize(),
                                         success:function(data){ 
-                                        //    window.location.reload()
-                                           console.log(data)  
-                                         $("#com-sec").append(data);
-                                        //    $('#comment_messages').html(data);                      
+                                            console.log(data);                        
                                         },
                                         error:function(xhr, status, error){
                                             console.log(error);
                                         },
                                     })
+                                    return false   
+                                })
                                 });
-                                
 
-                                load_comment();
+                                // load_comment();
 
                                 function load_comment()
                                 {
                                 $.ajax({
                                 url:"showComment.php",
                                 method:"POST",
-                                // datatype:"JSON",    
-                                success:function(data){
-                                    $("#com-sec").html(data);
+                                datatype:"JSON",    
+                                success:function(data)
+                                {
+                                    $('#com-sec').html(data);
                                 }
                                 })
-                            }
-                            });
-                       
+                                }
 
                                 // );$(document).on('click', '.reply', function(){
                                 // var comment_id = $(this).attr("id");
                                 // $('#comment_id').val(comment_id);
                                 // $('#comment_name').focus();
                                 // }
-                            
-                        
-                            // });
+                                
+                                ;
                                 </script>
                         </form>
                        
