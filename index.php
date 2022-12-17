@@ -55,7 +55,6 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                     });
 
 
-
                 } else {
                     $.ajax({
                         type: "POST",
@@ -142,7 +141,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
-                                <a class="dropdown-item" href="#">My profile</a>
+                                <a class="dropdown-item" href="myprofile.php">My profile</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">Settings</a>
@@ -167,7 +166,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
     <!-- Navbar -->
 
     <div id="background">
-        <div class="jumbotron"style="margin-left:6%">
+        <div class="jumbotron" style="margin-left:6%">
             <!-- style="margin-left: 9vw; margin-top:1vw;" -->
             <h1 style="font-size:clamp(60px, 5vw, 220px);">GUDANG RESEP</h1>
             <button type="button" class="btn btn-primary" id="bounce" style="margin-left: 20%; margin-bottom:55%" onClick="document.getElementById('card-resep').scrollIntoView();">
@@ -195,35 +194,29 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                 <?php foreach ($data as $row) : ?>
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card m-2">
-
-                            
+                            <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
+                                <div class="ratio ratio-16x9">
+                                    <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
+                                </div>
+                            </a>
+                            <div class="card text-center">
                                 <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
-                                    <div class="ratio ratio-16x9">
-                                        <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
                                     </div>
                                 </a>
-                                <div class="card text-center">
-                                    <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
-                                        </div>
-                                    </a>
-                                    <div class="icon-content d-flex flex-row justify-content-center">
-                                        <div class="icon-field">
-                                            <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
-                                        </div>
-                                        <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
-                                            <span style="color: red;">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </span>
-                                            <span class="like"><?= $row['likes']; ?></span>
-                                        </div>
+                                <div class="icon-content d-flex flex-row justify-content-center">
+                                    <div class="icon-field">
+                                        <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
+                                    </div>
+                                    <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
+                                        <span style="color: red;">
+                                            <i class="fa-regular fa-heart"></i>
+                                        </span>
+                                        <span class="like"><?= $row['likes']; ?></span>
                                     </div>
                                 </div>
-                            
-
-
-
+                            </div>
                         </div>
                     </div>
                 <?php endforeach; ?>
