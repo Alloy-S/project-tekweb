@@ -134,7 +134,7 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
             <table class="table table-bordered">
                 <thead class="table-dark">
                     <th style="width: 5%;">ID</th>
-                    <th style="width: 80%;">Katrgoti</th>
+                    <th style="width: 80%;">Kategori</th>
                     <th style="width: 15%;">Action</th>
                 </thead>
                 <tbody>

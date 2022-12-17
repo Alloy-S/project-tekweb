@@ -6,6 +6,7 @@
     }
 
     $data = query("SELECT * FROM resep");
+    $kategori = query("SELECT * FROM kategori");
 ?>
 
 <!DOCTYPE html>
@@ -116,8 +117,8 @@
                 <tr>
                 <th><strong>Menu Name</strong></th>
                 <th><strong>Category</strong></th>
-                <th><strong>Status</strong></th>
                 <th><strong>Author</strong></th>
+                <th><strong>Status</strong></th>
                 <th><strong>Actions</strong></th>
                 </tr>
             </thead>
@@ -142,9 +143,12 @@
                         <td>
                             <?php foreach($kategori as $kat) : ?>
                                 <?php if($row['id_kategori'] === $kat['id_kategori']) :?>
-                                    <p class="fw-normal mb-1"><?= $kat['nama']; ?></p>
+                                    <h5 class="fw-normal mb-1 text-dark"><?= $kat['nama']; ?></h5>
                                 <?php endif;?>
                             <?php endforeach;?>
+                        </td>
+                        <td>
+                            <div class="h6"> <em> <?= $row['author']; ?></em></div>
                         </td>
                         <td>
                             <?php if($row['is_approved'] === "1" and $row['is_private'] === "0"):?>
@@ -155,7 +159,6 @@
                                 <span class="badge badge-primary rounded-pill d-inline">Private</span>
                             <?php endif;?>
                         </td>
-                        <td>Senior</td>
                         <td>
                         <a href="detailResep_admin.php?id=<?= $row["id_resep"]; ?>"> <button type="button" class="btn btn-primary btn-rounded btn-sm" data-mdb-ripple-color="#f4ecb8"> ACTION </button></a>
                         </td>
