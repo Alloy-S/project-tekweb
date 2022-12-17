@@ -239,7 +239,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                         </div>
                         <div class="col-sm">
                             <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto 2.jpg" class="w-100" />
+                                <img src="img/foto2.png" class="w-100" />
                                 <a href="#!">
                                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
                                 </a>
