@@ -49,7 +49,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                         },
                         success: function(response) {
                             // alert(response);
-                            btn.html("<i class='fa-solid fa-thumbs-up fa-lg'></i><span class='like'>" + response + "</span>");
+                            btn.html("<span style='color: red;'><i class='fa-solid fa-heart'></i></span><span class='like'>" + response + "</span>");
                             btn.attr("status", 1);
                         }
                     });
@@ -66,7 +66,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                         },
                         success: function(response) {
                             // alert(response);
-                            btn.html("<i class='fa-regular fa-thumbs-up fa-lg'></i><span class='like'>" + response + "</span>");
+                            btn.html("<span style='color: red;'><i class='fa-regular fa-heart'></i></span><span class='like'>" + response + "</span>");
                             btn.attr("status", 0);
                         }
                     });
@@ -210,7 +210,10 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                                             <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
                                         </div>
                                         <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
-                                            <i class="fa-regular fa-thumbs-up fa-lg"></i><span class="like"><?= $row['likes']; ?></span>
+                                            <span style="color: red;">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </span>
+                                            <span class="like"><?= $row['likes']; ?></span>
                                         </div>
                                     </div>
 
