@@ -8,7 +8,6 @@ html {
   background-size: cover;
   opacity: 1;
   padding-top: 111px;
-  height: 50%;
   background-repeat: no-repeat;
   background-position: center top;
 }
@@ -27,27 +26,15 @@ html {
   margin-bottom: -12px;
 }
 
-#background .jumbotron p {
-  font-family: raleway;
-  color: white;
-  margin-bottom: -12px;
-}
-
 @media screen and (min-width: 601px) {
   div.jumbotron h1 {
     font-size: 60px;
-  }
-  div.jumbotron p {
-    font-size: 30px;
   }
 }
 
 @media screen and (max-width: 600px) {
   div.jumbotron h1 {
     font-size: 30px;
-  }
-  div.jumbotron p {
-    font-size: 15px;
   }
 }
 

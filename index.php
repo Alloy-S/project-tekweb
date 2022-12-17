@@ -30,7 +30,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
     <script>
         $(document).ready(function() {
             $(window).scroll(function() {
-                if ($(document).scrollTop() > 70) {
+                if ($(document).scrollTop() > 10) {
                     $('#navbar').addClass('color-change');
                 } else {
                     $('#navbar').removeClass('color-change');
@@ -167,14 +167,10 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
     <!-- Navbar -->
 
     <div id="background">
-        <div class="jumbotron">
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio libero
-                corrupti, consequuntur, blanditiis, sint quod maxime molestiae
-                voluptatibus ratione neque
-            </p>
-            <h1>GUDANG RESEP</h1>
-            <button type="button" class="btn btn-primary" id="bounce" onClick="document.getElementById('card-resep').scrollIntoView();" style="margin-bottom: 5vw; margin-top:4vw;">
+        <div class="jumbotron"style="margin-left:6%">
+            <!-- style="margin-left: 9vw; margin-top:1vw;" -->
+            <h1 style="font-size:clamp(60px, 5vw, 220px);">GUDANG RESEP</h1>
+            <button type="button" class="btn btn-primary" id="bounce" style="margin-left: 20%; margin-bottom:55%" onClick="document.getElementById('card-resep').scrollIntoView();">
                 <i class="fa-regular fa-solid fa-arrow-down fa-xl"></i>
             </button>
         </div>
@@ -225,15 +221,6 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                 <?php endforeach; ?>
             </div>
         </div>
-        <!-- <script>
-            $(window).scroll(function() {
-                if ($(document).scrollTop() > 70) {
-                    $('#navbar').addClass('color-change');
-                } else {
-                    $('#navbar').removeClass('color-change');
-                }
-            });
-        </script> -->
 </body>
 
 </html>
