@@ -177,7 +177,6 @@ while ($r = mysqli_fetch_object($que)) {
 
                         <div class="article-part">
                             <div class="langkah-content">
-                                <br>
                                 <p><strong> Langkah Pembuatan</strong> </p>
                                 <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
                                     <ul class="list-group">
