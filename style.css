@@ -8,7 +8,6 @@ html {
   background-size: cover;
   opacity: 1;
   padding-top: 111px;
-  height: 50%;
   background-repeat: no-repeat;
   background-position: center top;
 }
@@ -27,27 +26,15 @@ html {
   margin-bottom: -12px;
 }
 
-#background .jumbotron p {
-  font-family: raleway;
-  color: white;
-  margin-bottom: -12px;
-}
-
 @media screen and (min-width: 601px) {
   div.jumbotron h1 {
     font-size: 60px;
-  }
-  div.jumbotron p {
-    font-size: 30px;
   }
 }
 
 @media screen and (max-width: 600px) {
   div.jumbotron h1 {
     font-size: 30px;
-  }
-  div.jumbotron p {
-    font-size: 15px;
   }
 }
 
@@ -63,9 +50,9 @@ html {
 }
 
 #navbar {
-  -webkit-border-radius: 6px 6px 6px 6px;
-  -moz-border-radius: 6px 6px 6px 6px;
-  border-radius: 6px 6px 6px 6px;
+  -webkit-border-radius: 0px 0px 6px 6px;
+  -moz-border-radius: 0px 0px 6px 6px;
+  border-radius: 0px 0px 6px 6px;
 
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
@@ -75,10 +62,21 @@ html {
   transition: all 0.4s ease;
 }
 
+
+.card-body {
+  padding-bottom: 0px;
+}
+
 .color-change {
   background-color: #8a8d8d;
   height: 65px;
   color: rgba(255, 254, 255, 0.8);
+}
+
+.icon-content {
+  background-color: white;
+  padding-bottom: 10px;
+  border-radius: 10px;
 }
 
 .icon-field {
