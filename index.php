@@ -188,7 +188,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                 </div>
             <?php endif; ?>
         </div>
-        <br>
+        
         <div>
             <div class="row g-2">
                 <?php foreach ($data as $row) : ?>
@@ -222,9 +222,10 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                 <?php endforeach; ?>
             </div>
         </div>
+    </div>
         <footer class="text-center text-white" style="background-color: #caced1;">
             <!-- Grid container -->
-            <div class="container p-4" style="width: 100%; margin-top:15%">
+            <div class="container-fluid p-4" style="width: 100%; margin-top:15%">
                 <!-- Section: Images -->
                 <section class="">
                     <div class="row">
