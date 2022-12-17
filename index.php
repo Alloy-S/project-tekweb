@@ -30,7 +30,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
     <script>
         $(document).ready(function() {
             $(window).scroll(function() {
-                if ($(document).scrollTop() > 70) {
+                if ($(document).scrollTop() > 10) {
                     $('#navbar').addClass('color-change');
                 } else {
                     $('#navbar').removeClass('color-change');
@@ -167,14 +167,10 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
     <!-- Navbar -->
 
     <div id="background">
-        <div class="jumbotron">
-            <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio libero
-                corrupti, consequuntur, blanditiis, sint quod maxime molestiae
-                voluptatibus ratione neque
-            </p>
-            <h1>GUDANG RESEP</h1>
-            <button type="button" class="btn btn-primary" id="bounce" onClick="document.getElementById('card-resep').scrollIntoView();" style="margin-bottom: 5vw; margin-top:4vw;">
+        <div class="jumbotron"style="margin-left:6%">
+            <!-- style="margin-left: 9vw; margin-top:1vw;" -->
+            <h1 style="font-size:clamp(60px, 5vw, 220px);">GUDANG RESEP</h1>
+            <button type="button" class="btn btn-primary" id="bounce" style="margin-left: 20%; margin-bottom:55%" onClick="document.getElementById('card-resep').scrollIntoView();">
                 <i class="fa-regular fa-solid fa-arrow-down fa-xl"></i>
             </button>
         </div>
@@ -199,12 +195,19 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                 <?php foreach ($data as $row) : ?>
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card m-2">
-                            <div class="ratio ratio-16x9">
-                                <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
-                            </div>
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+
+                            
+                                <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
+                                    <div class="ratio ratio-16x9">
+                                        <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
+                                    </div>
+                                </a>
+                                <div class="card text-center">
+                                    <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+                                        </div>
+                                    </a>
                                     <div class="icon-content d-flex flex-row justify-content-center">
                                         <div class="icon-field">
                                             <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
@@ -216,24 +219,16 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                                             <span class="like"><?= $row['likes']; ?></span>
                                         </div>
                                     </div>
-
-                                    <a href="detailResep.php?id=<?= $row["id_resep"]; ?>" class="btn btn-primary sticky-bottom">More</a>
                                 </div>
-                            </div>
+                            
+
+
+
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
         </div>
-        <!-- <script>
-            $(window).scroll(function() {
-                if ($(document).scrollTop() > 70) {
-                    $('#navbar').addClass('color-change');
-                } else {
-                    $('#navbar').removeClass('color-change');
-                }
-            });
-        </script> -->
 </body>
 
 </html>
