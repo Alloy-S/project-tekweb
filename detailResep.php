@@ -35,7 +35,7 @@ while ($r = mysqli_fetch_object($que)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-    <link rel="stylesheet" href="detail.css">
+    <link rel="stylesheet" href="detail_style.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
@@ -137,47 +137,56 @@ while ($r = mysqli_fetch_object($que)) {
             <div class="row align-items-start">
                 <div class="col-lg-8 m-15px-tb">
                     <article class="article">
-                        <div class="article-img">
-                            <img class="img-responsive" src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
-                        </div>
-                        <div class="article-title">
-                            <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
-                            <!-- <button class="btn-secondary like">
-                                            <i class="fa fa-heart" aria-hidden="true"></i> Like
-                                        </button>
-                                  
-                                     -->
-                            <div class="media">
-                                <div class="media-body">
-                                    <label><?= $data[0]["author"]; ?></label>
-                                    <span><?= $data[0]["tanggal"]; ?></span>
+                        <div class="article-part">
+                            <div class="article-img">
+                                <img class="img-responsive" src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
+                            </div>
+                    
+                            <div class="article-title">
+                                <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
+                                <!-- <button class="btn-secondary like">
+                                                <i class="fa fa-heart" aria-hidden="true"></i> Like
+                                            </button>
+                                    
+                                        -->
+                                <div class="media">
+                                    <div class="media-body">
+                                        <label><?= $data[0]["author"]; ?></label>
+                                        <span><?= $data[0]["tanggal"]; ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="article-content">
-                            <p><?= $data[0]["deskripsi"]; ?></p>
+                            <div class="article-content">
+                                <p><?= $data[0]["deskripsi"]; ?></p>
 
+                            </div>
                         </div>
-                        <div class="bahan-content">
-                            <p><strong> Bahan & Takaran </strong></p>
-                            <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
-                                <ul class="list-group">
-                                    <li class="list-group-item"><b> <?php echo $r['takaran'] ?> </b>
-                                        <?php echo $r['jenis'] ?> </li>
-                                </ul>
 
-                            <?php } ?>
+                        <div class="article-part">
+                            <div class="bahan-content">
+                                <p><strong> Bahan & Takaran </strong></p>
+                                <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
+                                    <ul class="list-group">
+                                        <li class="list-group-item mb-2"><b> <?php echo $r['takaran'] ?> </b>
+                                            <?php echo $r['jenis'] ?> </li>
+                                    </ul>
+
+                                <?php } ?>
+                            </div>
                         </div>
-                        <div class="langkah-content">
-                            <br>
-                            <p><strong> Langkah Pembuatan</strong> </p>
-                            <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
-                                <ul class="list-group">
-                                    <li class="list-group-item"><?php echo $r['urutan'] + 1 ?>. <?php echo $r['langkah'] ?>
-                                    </li>
-                                </ul>
 
-                            <?php } ?>
+                        <div class="article-part">
+                            <div class="langkah-content">
+                                <br>
+                                <p><strong> Langkah Pembuatan</strong> </p>
+                                <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
+                                    <ul class="list-group">
+                                        <li class="list-group-item mb-2"><?php echo $r['urutan'] + 1 ?>. <?php echo $r['langkah'] ?>
+                                        </li>
+                                    </ul>
+
+                                <?php } ?>
+                            </div>
                         </div>
 
                     </article>
@@ -192,16 +201,25 @@ while ($r = mysqli_fetch_object($que)) {
                         <form method="POST" id = "comment-form" >
                                 <input type="hidden" id = "id" name="id" value="<?php echo $id; ?>" required>
                             
+                                <div class="hstack gap-2 mx-3 my-3">
+                                        <label>Your name</label> <br/>
+                                    <div class="col-auto">
+                                        <input class="form-control" type="text" id = "name" name="name" required>
+                                    </div>
+                                </div>
 
-                                <label>Your name</label> <br/>
-                                <input type="text" id = "name" name="name" required> <br/>
-                            
-                            
-                                <label>Comment</label> <br/>
-                                <textarea name="comment" id = "comment" name = "comment" required></textarea> <br/>
-                            
-                        
-                                <input type = "submit" id = "submit" name = "submit" class = "btn btn-primary">
+                                <div class="mx-3 mb-4">
+                                    <div class="col-auto mb-2">
+                                        <label>Comment</label>
+                                    </div>
+                                    <div class="col-auto mx-0">
+                                        <textarea class="form-control" name="comment" id = "comment" name = "comment" required></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="mx-3 mb-3">
+                                    <input type = "submit" id = "submit" name = "submit" class = "btn btn-secondary">
+                                </div>
                          
                             </form>
                         </div>
