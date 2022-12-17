@@ -35,7 +35,7 @@ while ($r = mysqli_fetch_object($que)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-    <link rel="stylesheet" href="detail-dum.css">
+    <link rel="stylesheet" href="detail.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
