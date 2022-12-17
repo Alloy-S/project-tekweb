@@ -139,6 +139,7 @@ if (isset($_POST["submit"])) {
     <?php endif; ?>
     <div class="d-flex justify-content-center align-items-center">
         <div class="login card p-4 rounded-lg shadow-sm col-10 mt-5">
+            <img src="black.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%; margin-bottom: 4.5vh;">
             <h4 class="text-center mb-4"><strong>Welcome Admin</strong></h4>
             <!-- Pills navs -->
             <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
