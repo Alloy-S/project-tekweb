@@ -128,8 +128,8 @@ $data = query("SELECT * FROM kategori");
 
             $("#crop").click(function() {
                 canvas = cropper.getCroppedCanvas({
-                    width: 160,
-                    height: 160,
+                    width: 650,
+                    height: 650,
                 });
 
                 canvas.toBlob(function(blob) {

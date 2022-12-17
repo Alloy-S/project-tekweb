@@ -35,7 +35,7 @@ while ($r = mysqli_fetch_object($que)) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS only -->
-    <link rel="stylesheet" href="detail.css">
+    <link rel="stylesheet" href="detail_style.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
@@ -44,11 +44,12 @@ while ($r = mysqli_fetch_object($que)) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <title><?= $data[0]["nama_resep"]; ?></title>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style='background-color:transparent'>
+<body style='background-color:#c6c9ca'>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style='background-color:black'>
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
@@ -64,13 +65,14 @@ while ($r = mysqli_fetch_object($que)) {
                 </a>
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
                 <div class="input-group d-flex justify-content-center">
-                    <div class="form-outline w-25">
-                        <input type="search" id="form1" class="form-control text-light" />
-                        <label class="form-label text-light" for="form1">Search</label>
+                    <div class="coba form-outline w-25 rounded border border-light" style="--bs-border-opacity: .5;">
+                        <form class="d-flex flex-row" action="search.php" method="POST">
+                            <input id="search-input" type="search" name="search_index" class="form-control text-light" />
+                            <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
+                                <i class="fas fa-search text-light"></i>
+                            </button>
+                        </form>
                     </div>
-                    <button type="button" class="btn" style="background-color:transparent">
-                        <i class="fas fa-search text-light"></i>
-                    </button>
                 </div>
                 <!-- </div> -->
             </div>
@@ -129,52 +131,61 @@ while ($r = mysqli_fetch_object($que)) {
         <!-- Container wrapper -->
     </nav>
     <!-- Navbar -->
-    <div class="blog-single gray-bg">
+    
+    <div class="blog-single">
         <div class="container">
             <div class="row align-items-start">
                 <div class="col-lg-8 m-15px-tb">
                     <article class="article">
-                        <div class="article-img">
-                            <img src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
-                        </div>
-                        <div class="article-title">
-                            <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
-                            <!-- <button class="btn-secondary like">
-                                            <i class="fa fa-heart" aria-hidden="true"></i> Like
-                                        </button>
-                                  
-                                     -->
-                            <div class="media">
-                                <div class="media-body">
-                                    <label><?= $data[0]["author"]; ?></label>
-                                    <span><?= $data[0]["tanggal"]; ?></span>
+                        <div class="article-part">
+                            <div class="article-img">
+                                <img class="img-responsive" src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
+                            </div>
+                    
+                            <div class="article-title">
+                                <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
+                                <!-- <button class="btn-secondary like">
+                                                <i class="fa fa-heart" aria-hidden="true"></i> Like
+                                            </button>
+                                    
+                                        -->
+                                <div class="media">
+                                    <div class="media-body">
+                                        <label><?= $data[0]["author"]; ?></label>
+                                        <span><?= $data[0]["tanggal"]; ?></span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="article-content">
-                            <p><?= $data[0]["deskripsi"]; ?></p>
+                            <div class="article-content">
+                                <p><?= $data[0]["deskripsi"]; ?></p>
 
+                            </div>
                         </div>
-                        <div class="bahan-content">
-                            <p><strong> Bahan & Takaran </strong></p>
-                            <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
-                                <ul class="list-group">
-                                    <li class="list-group-item"><b> <?php echo $r['takaran'] ?> </b>
-                                        <?php echo $r['jenis'] ?> </li>
-                                </ul>
 
-                            <?php } ?>
+                        <div class="article-part">
+                            <div class="bahan-content">
+                                <p><strong> Bahan & Takaran </strong></p>
+                                <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
+                                    <ul class="list-group">
+                                        <li class="list-group-item mb-2"><b> <?php echo $r['takaran'] ?> </b>
+                                            <?php echo $r['jenis'] ?> </li>
+                                    </ul>
+
+                                <?php } ?>
+                            </div>
                         </div>
-                        <div class="langkah-content">
-                            <br>
-                            <p><strong> Langkah Pembuatan</strong> </p>
-                            <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
-                                <ul class="list-group">
-                                    <li class="list-group-item"><?php echo $r['urutan'] + 1 ?>. <?php echo $r['langkah'] ?>
-                                    </li>
-                                </ul>
 
-                            <?php } ?>
+                        <div class="article-part">
+                            <div class="langkah-content">
+                                <p><strong> Langkah Pembuatan</strong> </p>
+                                <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
+                                    <ul class="list-group">
+                                        <li class="list-group-item mb-2"><?php echo $r['urutan'] + 1 ?>. <?php echo $r['langkah'] ?>
+                                        </li>
+                                    </ul>
+
+                                <?php } ?>
+                            </div>
                         </div>
 
                     </article>
@@ -185,114 +196,86 @@ while ($r = mysqli_fetch_object($que)) {
                         <div class="widget-title">
                             <h3>Comments</h3>
                         </div>
-                        <form action="detailResep.php?id=<?php echo $id; ?>" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $id; ?>" required>
-
-                            <p>
-                                <label>Your name</label>
-                                <input type="text" name="name" required>
-                            </p>
-                            <p>
-                                <label>Comment</label>
-                                <textarea name="comment" required></textarea>
-                            </p>
-
-                            <p>
-                                <input type="submit" value="Add Comment" name="submit">
-                                <?php
-                                if (isset($_POST["submit"])) {
-                                    $author = mysqli_real_escape_string($conn, $_POST["name"]);
-                                    $comment = mysqli_real_escape_string($conn, $_POST["comment"]);
-                                    $resep_id = $id;
-                                    $reply = 0;
-
-                                    mysqli_query($conn, "INSERT INTO comments(author, resep_id, comment, date_created, reply) VALUES ('" . $author . "',   $resep_id , '" . $comment . "', NOW(), '" . $reply . "')");
-                                    echo "<script type='text/javascript'>alert('Comment posted');</script>";
-                                }
-                                ?>
-                            </p>
-                        </form>
-                        <?php
-                        foreach ($comments as $comment_key => $comment) {
-                            // initialize replies array for each comment
-                            $replies = array();
-
-                            // check if it is a comment to post, not a reply to comment
-                            if ($comment->reply == 0) {
-                                // loop through all comments again
-                                foreach ($comments as $reply_key => $rep) {
-                                    // check if comment is a reply
-                                    if ($rep->reply == $comment->comment_id) {
-                                        // add in replies array
-                                        array_push($replies, $rep);
-
-                                        // remove from comments array
-                                        unset($comments[$reply_key]);
-                                    }
-                                }
-                            }
-
-                            // assign replies to comments object
-                            $comment->replies = $replies;
-                        }
-
-                        ?>
-
-                        <script>
-                            function showFormReply(self) {
-                                var commentId = self.getAttribute("data-id");
-                                if (document.getElementById("form-" + commentId).style.display == "") {
-                                    document.getElementById("form-" + commentId).style.display = "none";
-                                } else {
-                                    document.getElementById("form-" + commentId).style.display = "";
-                                }
-                            }
-                        </script>
-                        <ul class="comments">
-                            <?php foreach ($comments as $comment) : ?>
-                                <li>
-                                    <p>
-                                        <?php echo $comment->author; ?>
-                                    </p>
-
-                                    <p>
-                                        <?php echo $comment->comment; ?>
-                                    </p>
-
-                                    <p>
-                                        <?php echo date("F d, Y h:i a", strtotime($comment->date_created)); ?>
-                                    </p>
-
-                                    <div data-id="<?php echo $comment->comment_id; ?>" onclick="showFormReply(this);">
-                                        <button>Reply</button>
+                        <div class="form-group mx-3">
+                        <form method="POST" id = "comment-form" >
+                                <input type="hidden" id = "id" name="id" value="<?php echo $id; ?>" required>
+                            
+                                <div class="hstack gap-2 mx-3 my-3">
+                                        <label>Your name</label> <br/>
+                                    <div class="col-auto">
+                                        <input class="form-control" type="text" id = "name" name="name" required>
                                     </div>
+                                </div>
 
-                                    <form action="detailResep.php" method="post" id="form-<?php echo $comment->id; ?>" style="display: none;">
+                                <div class="mx-3 mb-4">
+                                    <div class="col-auto mb-2">
+                                        <label>Comment</label>
+                                    </div>
+                                    <div class="col-auto mx-0">
+                                        <textarea class="form-control" name="comment" id = "comment" name = "comment" required></textarea>
+                                    </div>
+                                </div>
+                                
+                                <div class="mx-3 mb-3">
+                                    <input type = "submit" id = "submit" name = "submit" class = "btn btn-secondary">
+                                </div>
+                         
+                            </form>
+                        </div>
+                        <div class="com-sec"></div>
+                        <script>
+                            $(document).ready(function(){
+                                $("#submit").click(function(event){
+                                    event.preventDefault(); 
+                                    event.stopImmediatePropagation();
+                                    // $("#comment-form :input").prop("disabled", false);
+                                    // var vid  = $("#id").val();
+                                    // var vname  = $("#name").val();
+                                    // var vcomment  = $("#comment").val();
+                                    // var form = $(this);
+                                    // var formUrl = $(this).attr("action");
+                                    console.log($("#comment-form").serialize());
 
-                                        <input type="hidden" name="reply" value="<?php echo $comment->id; ?>" required>
-                                        <input type="hidden" name="resep_id" value="<?php echo $post_id; ?>" required>
+                                    $.ajax({
+                                        url:"addComment.php",
+                                        type:"POST",
+                                        data:$("#comment-form").serialize(),
+                                        success:function(data){ 
+                                            console.log(data);                        
+                                        },
+                                        error:function(xhr, status, error){
+                                            console.log(error);
+                                        },
+                                    })
+                                    return false   
+                                })
+                                });
 
-                                        <p>
-                                            <label>Your name</label>
-                                            <input type="text" name="name" required>
-                                        </p>
+                                // load_comment();
 
-                                        <p>
-                                            <label>Your email address</label>
-                                            <input type="email" name="email" required>
-                                        </p>
+                                function load_comment()
+                                {
+                                $.ajax({
+                                url:"showComment.php",
+                                method:"POST",
+                                datatype:"JSON",    
+                                success:function(data)
+                                {
+                                    $('#com-sec').html(data);
+                                }
+                                })
+                                }
 
-                                        <p>
-                                            <label>Comment</label>
-                                            <textarea name="comment" required></textarea>
-                                        </p>
-
-                                        <p>
-                                            <input type="submit" value="Reply" name="do_reply">
-                                        </p>
-                                    </form>
-                                </li>
-                            <?php endforeach; ?>
+                                // );$(document).on('click', '.reply', function(){
+                                // var comment_id = $(this).attr("id");
+                                // $('#comment_id').val(comment_id);
+                                // $('#comment_name').focus();
+                                // }
+                                
+                                ;
+                                </script>
+                        </form>
+                       
                     </div>
                     <!-- End Author -->
                 </div>
