@@ -192,7 +192,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                     <div id="my-resep" class="row">
 
                         <?php foreach ($resep as $row) : ?>
-                            <div class="col-12 col-md-6 col-lg-3">
+                            <div class="col-6 col-lg-3">
                                 <div class="card m-2">
                                     <a href="editResep.php?id=<?= $row["id_resep"]; ?>">
                                         <div class="ratio ratio-16x9">
