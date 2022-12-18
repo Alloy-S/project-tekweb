@@ -5,13 +5,9 @@ require("connect.php");
 //     header("Location: login.php");
 // }
 
-if (!isset ($_GET['page']) ) {  
-    $page_number = 1;  
-} else {  
-    $page_number = $_GET['page'];  
-}  
+if (isset($_GET["page"])) { $page_number  = $_GET["page"]; } else { $page_number=1; };  
 
-$limit = 8; //harusnya 8
+$limit = 8;
 $initial_page = ($page_number-1) * $limit;
 $previous = $page_number - 1;
 $next = $page_number + 1; 
@@ -89,7 +85,31 @@ $total_pages = ceil($total_rows / $limit);
 
 
             });
+
+            $("#target-content").load("pagination.php?page=1");
+            $(".page-link").click(function(){
+                var id = $(this).attr("data-id");
+                var select_id = $(this).parent().attr("id");
+
+                $.ajax({
+                    url: "pagination.php",
+                    type: "GET",
+                    data: {
+                        page : id
+                    },
+
+                    cache: false,
+
+                    success: function(dataResult){
+                        $("#target-content").html(dataResult);
+                        $(".pageitem").removeClass("active");
+                        $("#"+select_id).addClass("active");                  
+                    }
+                });
+            });
+
         });
+    
     </script>
 </head>
 
@@ -205,13 +225,12 @@ $total_pages = ceil($total_rows / $limit);
             <?php endif; ?>
         </div>
         
-        <div>
+        <!-- <div style="margin-top: 3%;">
             <div class="row g-2">
-            
                 <?php
-                    $data = query("SELECT *FROM resep WHERE is_approved = 1 LIMIT " . $initial_page . ',' . $limit);
+                    $data = query("SELECT *FROM resep WHERE is_approved = 1 LIMIT $initial_page, $limit");
                     foreach ($data as $row) : ?>
-                    <div class="col-12 col-md-6 col-lg-3">
+                    <div class="col-6 col-lg-3">
                         <div class="card m-2">
                             <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
                                 <div class="ratio ratio-16x9">
@@ -240,25 +259,34 @@ $total_pages = ceil($total_rows / $limit);
                     </div>
                 <?php endforeach; ?>
             </div>
-        </div>
+        </div> -->
+
     </div>
     
-    <nav style="margin-bottom: -12%; margin-top: 5%;">
-        <ul class="pagination pagination-md justify-content-center">
-            <li class="page-item">
-                <a class="page-link" <?php if($page_number > 1){ echo "href='?page=$previous'"; } ?>>Previous</a>
-            </li>
-            <?php
-            for($page=1;$page<=$total_pages;$page++){
-            ?>
-                <li class="page-item <?php echo ($page == $page_number ? "active" : "") ?>"><a class="page-link" href="?page=<?php echo $page ?>"><?php echo $page; ?></a></li>             
-            <?php }
-            ?>              
-            <li class="page-item">
-                <a class="page-link" <?php if($page_number < $total_pages){ echo "href='?page=$next'"; } ?>>Next</a>
-            </li>
-        </ul>
-    </nav> 
+    <!-- Pagination Content -->
+    <div id="target-content">loading...</div>           
+
+    <div class="clearfix">   
+        <nav style="margin-bottom: -12%; margin-top: 5%;">
+            <ul class="pagination pagination-md justify-content-center">
+                <?php
+                if(!empty($total_pages)){
+                for($page=1;$page<=$total_pages;$page++){
+                    if($page == 1){
+                ?>
+                    <li class="pageitem active" id="<?php echo $page;?>"><a href="JavaScript:Void(0);" data-id="<?php echo $page;?>" class="page-link" ><?php echo $page;?></a></li>                                                           
+
+                <?php }
+                    else{
+                ?>
+                    <li class="pageitem" id="<?php echo $page;?>"><a href="JavaScript:Void(0);" class="page-link" data-id="<?php echo $page;?>"><?php echo $page;?></a></li>             
+                <?php }
+                    }
+                }
+                ?>              
+            </ul>
+        </nav> 
+    </div>
 
     <footer class="text-center text-white" style="background-color: #caced1;">
         <!-- Grid container -->
@@ -322,4 +350,3 @@ $total_pages = ceil($total_rows / $limit);
 </body>
 
 </html>
-
