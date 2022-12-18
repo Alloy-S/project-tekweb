@@ -5,10 +5,26 @@ require("connect.php");
 //     header("Location: login.php");
 // }
 
+if (!isset ($_GET['page']) ) {  
+    $page_number = 1;  
+} else {  
+    $page_number = $_GET['page'];  
+}  
+
+$limit = 8; //harusnya 8
+$initial_page = ($page_number-1) * $limit;
+$previous = $page_number - 1;
+$next = $page_number + 1; 
+
 $data = query("SELECT * FROM resep WHERE is_approved = 1");
 // var_dump($data);
 // print_r($_SESSION);
+
+$total_rows = count($data);
+$total_pages = ceil($total_rows / $limit);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -191,7 +207,10 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
         
         <div>
             <div class="row g-2">
-                <?php foreach ($data as $row) : ?>
+            
+                <?php
+                    $data = query("SELECT *FROM resep WHERE is_approved = 1 LIMIT" . $initial_page . ',' . $limit);
+                    foreach ($data as $row) : ?>
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card m-2">
                             <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
@@ -223,65 +242,84 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
             </div>
         </div>
     </div>
-        <footer class="text-center text-white" style="background-color: #caced1;">
-            <!-- Grid container -->
-            <div class="container-fluid p-4" style="width: 100%; margin-top:15%">
-                <!-- Section: Images -->
-                <section class="">
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto 1.jpg" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto2.png" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto 3.jpg" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto 4.jpg" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto 5.jpg" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
+    
+    <nav style="margin-bottom: -12%; margin-top: 5%;">
+        <ul class="pagination pagination-md justify-content-center">
+            <li class="page-item">
+                <a class="page-link" <?php if($page_number > 1){ echo "href='?page=$previous'"; } ?>>Previous</a>
+            </li>
+            <?php
+            for($page=1;$page<=$total_pages;$page++){
+            ?>
+                <li class="page-item <?php echo ($page == $page_number ? "active" : "") ?>"><a class="page-link" href="?page=<?php echo $page ?>"><?php echo $page; ?></a></li>             
+            <?php }
+            ?>              
+            <li class="page-item">
+                <a class="page-link" <?php if($page_number < $total_pages){ echo "href='?page=$next'"; } ?>>Next</a>
+            </li>
+        </ul>
+    </nav> 
+
+    <footer class="text-center text-white" style="background-color: #caced1;">
+        <!-- Grid container -->
+        <div class="container-fluid p-4" style="width: 100%; margin-top:15%">
+            <!-- Section: Images -->
+            <section class="">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto 1.jpg" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
                         </div>
                     </div>
-                </section>
-                <!-- Section: Images -->
-            </div>
-            <!-- Grid container -->
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto2.png" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto 3.jpg" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto 4.jpg" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto 5.jpg" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section: Images -->
+        </div>
+        <!-- Grid container -->
 
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2022 Copyright:
-                <a class="text-white" href="https://mdbootstrap.com/">Kelompok TEKWEB 5</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">Kelompok TEKWEB 5</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 </body>
 
 </html>
+
