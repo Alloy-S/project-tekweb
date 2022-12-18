@@ -209,7 +209,7 @@ $total_pages = ceil($total_rows / $limit);
             <div class="row g-2">
             
                 <?php
-                    $data = query("SELECT *FROM resep WHERE is_approved = 1 LIMIT" . $initial_page . ',' . $limit);
+                    $data = query("SELECT *FROM resep WHERE is_approved = 1 LIMIT " . $initial_page . ',' . $limit);
                     foreach ($data as $row) : ?>
                     <div class="col-12 col-md-6 col-lg-3">
                         <div class="card m-2">
