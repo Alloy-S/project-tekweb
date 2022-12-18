@@ -79,7 +79,7 @@ while ($r = mysqli_fetch_object($que)) {
             <!-- Collapsible wrapper -->
 
             <!-- Right elements -->
-            <?php if (isset($_SESSION["login"])) : ?>
+            <?php if (isset($_SESSION["login_user"])) : ?>
                 <div class="d-flex align-items-center">
 
                     <!-- Notifications -->
