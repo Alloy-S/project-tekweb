@@ -97,3 +97,8 @@ html {
 #footer-element p{
   margin-bottom: 0px;
 }
+
+#footer-element .col-sm{
+  /* margin-bottom: 0px; */
+  margin-top: 1%;
+}
