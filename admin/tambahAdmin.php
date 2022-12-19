@@ -145,32 +145,34 @@ if (isset($_POST["submit"])) {
     <div class="wave"></div>
     <div class="wave"></div>
     <div class="container-fluid d-flex align-items-center justify-content-center">
-        <div class="card content">
-            <h1 class="text-center m-3"><strong>Add New Admin</strong></h1>
+        <div class="card content mt-3">
+            <div class="m-3">
+                <h1 class="text-center m-3"><strong>Add New Admin</strong></h1>
 
-            <form action="" method="post" enctype="multipart/form-data">
-                <div class="field-input mt-3">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="field-input mt-3">
 
-                    <label class="form-label" for="name">Name : </label>
-                    <input class="form-control" type="text" name="name" id="name" maxlength="30" required>
+                        <label class="form-label" for="name">Name : </label>
+                        <input class="form-control" type="text" name="name" id="name" maxlength="30" required>
 
-                    <label class="form-label" for="username">Username : </label>
-                    <input class="form-control" type="text" name="username" id="username" maxlength="30" required>
+                        <label class="form-label" for="username">Username : </label>
+                        <input class="form-control" type="text" name="username" id="username" maxlength="30" required>
 
-                    <label class="form-label" for="password">Password : </label>
-                    <input class="form-control" type="text" name="password" id="password" maxlength="30" required>
+                        <label class="form-label" for="password">Password : </label>
+                        <input class="form-control" type="text" name="password" id="password" maxlength="30" required>
 
-                    <label class="form-label" for="passwordVerify">Password Verify : </label>
-                    <input class="form-control" type="text" name="passwordVerify" id="passwordVerify" maxlength="30" required>
+                        <label class="form-label" for="passwordVerify">Password Verify : </label>
+                        <input class="form-control" type="text" name="passwordVerify" id="passwordVerify" maxlength="30" required>
 
-                </div>
+                    </div>
 
 
-                <div class="field-input mt-3">
-                    <button class="btn btn-primary btn-block" type="submit" name="submit"><i class="fa-solid fa-plus"></i> Create</button>
-                </div>
+                    <div class="field-input mt-3">
+                        <button class="btn btn-primary btn-block" type="submit" name="submit"><i class="fa-solid fa-plus"></i> Create</button>
+                    </div>
 
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </body>
