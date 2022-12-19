@@ -127,6 +127,18 @@ if (isset($_POST["submit"])) {
                 transform: translateX(1);
             }
         }
+
+        @media screen and (max-width: 1114px) and (min-width: 470px) {
+            .login {
+                width: 60%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .login {
+                width: 70%;
+            }
+        }
     </style>
 </head>
 
@@ -135,7 +147,7 @@ if (isset($_POST["submit"])) {
     <div class="wave"></div>
     <div class="wave"></div>
     <?php if (isset($_POST["eror"])): ?>
-    <p>eror</p>
+        <p>eror</p>
     <?php endif; ?>
     <div class="d-flex justify-content-center align-items-center">
         <div class="login card p-4 rounded-lg shadow-sm col-10 mt-5">
