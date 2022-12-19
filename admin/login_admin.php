@@ -6,15 +6,34 @@ if (isset($_SESSION["login_admin"])) {
     header("Location: index.php");
 }
 
+// $username = $_POST['username'];
+// $password = $_POST['password'];
+
+// $check_admin = "SELECT id, password FROM `admin_acc` WHERE username = ?";
+// $check_admin = $connect->prepare($check_admin);
+// $check_admin->execute([ $username ]);
+// $fetch_admin = $check_admin->fetch();
+
+// if (isset($_SESSION['login_admin'])) {
+//     if (!password_verify($password, $fetch_admin['password']))
+//         $msg = 'Password yang Anda ketik salah!';
+//     else {
+//         header('location: index_admin.php');
+//     }
+// }
+
 if (isset($_POST["submit"])) {
     $username = $_POST["loginName"];
     $password = $_POST["loginPassword"];
 
     $result = mysqli_query($conn, "SELECT * FROM admin_acc WHERE username = '$username';");
 
+    if ($result->num_rows == 0)
+        $msg = 'Username Admin tidak terdaftar!';
+
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
-        var_dump($row);
+        // var_dump($row);
         if (password_verify($password, $row["password"])) {
             $_SESSION["login_admin"] = $row['privilage'];
             $_SESSION["username_admin"] = $username;
@@ -28,7 +47,7 @@ if (isset($_POST["submit"])) {
             header("Location: index.php");
             exit;
         } else {
-            echo '<script>alert("password salah!")</script>';
+            $msg = 'Password yang Anda ketik salah!';
         }
     }
 }
@@ -164,6 +183,7 @@ if (isset($_POST["submit"])) {
 
             <!-- Pills content -->
             <div class="tab-content">
+                <?=isset($msg) ? '<div class="alert alert-danger">'.$msg.'</div>' : ''?>
                 <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
                     <form method="POST">
                         <div class="text-center mb-3">

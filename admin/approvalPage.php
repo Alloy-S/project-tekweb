@@ -93,11 +93,15 @@ $kategori = query("SELECT * FROM kategori");
             }
         }
 
-        .input {
+        .input-bar {
             width: 25%;
         }
 
-        @media screen and (max-width: 780px) {
+        .dropdown-status {
+            width: 20%;
+        }
+
+        @media screen and (max-width: 1100px) {
             .salam {
                 font-weight: 300;
             }
@@ -107,32 +111,28 @@ $kategori = query("SELECT * FROM kategori");
                 flex-direction: column;
             }
 
-            .input {
+            .input-bar {
+                padding-top: 5px;
+                width: 60%;
+            }
+        }
+
+        @media screen and (max-width: 750px) and (min-width: 480px) {
+            .input-bar {
+                padding-top: 5px;
                 width: 50%;
             }
 
         }
 
-        @media screen and (max-width: 780px) and (min-width: 480px) {
-            .search_bar {
-                max-width: 70%;
-            }
-
-            .input {
-                width: 100%;
-            }
-
-        }
-
         @media screen and (max-width: 480px) {
-            .search_bar {
-                max-width: 80% !important;
+            .input-bar {
+                padding-top: 5px;
+                width: 70%;
             }
-
-            .input {
-                width: 100%;
+            .dropdown-status {
+            width: 30%;
             }
-
         }
     </style>
 </head>
@@ -200,12 +200,19 @@ $kategori = query("SELECT * FROM kategori");
     <!-- Navbar -->
 
     <!-- Content -->
-    <div class="container-fluid bg-secondary text-white">
+    <div class="container-fluid bg-white text-white">
         <!-- Search Bar -->
         <div class="d-flex justify-content-between py-3 ps-3 text-dark sambutan_atas">
-            <h3 class="mt-3 salam">Hello <?= $_SESSION['name_admin']; ?>, welcome to Admin Dashboard</h3>
+            <h3 class="mt-3 salam fst-italic">Hello <?= $_SESSION['name_admin']; ?>, welcome to Approval Page</h3>
 
-            <div class="input-group input d-flex justify-content-between mt-2">
+            <select class="select dropdown-status rounded p-0">
+                <option value="0">Show All</option>
+                <option value="1">Private</option>
+                <option value="2">Live</option>
+                <option value="3">Pending</option>
+            </select>
+
+            <div class="input-group input-bar d-flex justify-content-between mt-2">
                 <div class="form-outline">
                     <input id="search-focus" type="search" id="form1" class="form-control border border-dark rounded h-100" />
                     <!-- <label class="form-label" for="form1">Search</label> -->
@@ -218,7 +225,7 @@ $kategori = query("SELECT * FROM kategori");
     </div>
 
     <div class="table-responsive">
-        <table class="table align-middle mb-0 bg-secondary text-white">
+        <table class="table table-dark table-striped align-middle mb-0 bg-secondary text-white">
             <thead class="bg-secondary text-white h5 fw-bold">
                 <tr>
                     <th><strong>Menu Name</strong></th>
@@ -244,7 +251,7 @@ $kategori = query("SELECT * FROM kategori");
                         <td>
                             <?php foreach ($kategori as $kat) : ?>
                                 <?php if ($row['id_kategori'] === $kat['id_kategori']) : ?>
-                                    <h5 class="fw-normal mb-1 text-dark"><?= $kat['nama']; ?></h5>
+                                    <h5 class="fw-normal mb-1 text-white"><?= $kat['nama']; ?></h5>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </td>
