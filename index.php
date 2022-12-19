@@ -114,6 +114,19 @@ $total_pages = ceil($total_rows / $limit);
 
         });
     </script>
+    <style>
+        @media (min-width: 993px) {
+            #search-unit {
+                width: 25%;
+            }
+        }
+
+        @media (max-width: 992px) {
+            #search-unit {
+                width: 65%;
+            }
+        }
+    </style>
 </head>
 
 <body style='background-color:#c6c9ca'>
@@ -134,7 +147,7 @@ $total_pages = ceil($total_rows / $limit);
                 </a>
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
                 <div class="input-group d-flex justify-content-center ">
-                    <div class="coba form-outline rounded border border-light" style="--bs-border-opacity: .5; width:25%">
+                    <div class="coba form-outline rounded border border-light" id="search-unit" style="--bs-border-opacity: .5;">
                         <form class="d-flex flex-row" action="search.php" method="GET">
                             <input id="search-input" type="search" name="search_index" class="form-control text-light" />
                             <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
