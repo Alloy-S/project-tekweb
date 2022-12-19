@@ -158,7 +158,9 @@ $kategori = query("SELECT * FROM kategori");
     <!-- Navbar -->
 
     <!-- Content -->
-    
+    <div>
+        
+    </div>
 </body>
 
 </html>
