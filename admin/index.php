@@ -20,6 +20,7 @@ $kategori = query("SELECT * FROM kategori");
     <link rel="stylesheet" href="../MDB5/css/mdb.min.css" />
     <script type="text/javascript" src="../MDB5/js/mdb.min.js"></script>
     <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
+    <link rel="stylesheet" href="fa_icons/css/all.css">
     <style>
         body {
             margin: auto;
@@ -100,22 +101,23 @@ $kategori = query("SELECT * FROM kategori");
     <div class="wave"></div>
     <div class="wave"></div>
     <!-- Navbar-->
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <!-- Container wrapper -->
         <div class="container-fluid">
+            <a class="navbar-brand mt-2 mt-lg-0 ms-1" href="#">
+                <img src="white.png" height="45" alt="Gudang Resep Logo" loading="lazy" />
+                <!-- <small>Admin Workspace</small>
+                <img src="Gudang Resep.png" height="45" alt="Gudang Resep Logo" loading="lazy"/> -->
+            </a>
+
             <!-- Toggle button -->
-            <!-- <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button> -->
+            <button class="navbar-toggler" data-mdb-toggle="collapse" data-mdb-target="#navbar">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
             <!-- Collapsible wrapper -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="navbar-collapse collapse" id="navbar">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0 ms-1" href="#">
-                    <img src="white.png" height="45" alt="Gudang Resep Logo" loading="lazy" />
-                    <!-- <small>Admin Workspace</small>
-                    <img src="Gudang Resep.png" height="45" alt="Gudang Resep Logo" loading="lazy"/> -->
-                </a>
 
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-0 ms-3 mb-lg-0">
@@ -123,10 +125,10 @@ $kategori = query("SELECT * FROM kategori");
                         <a class="nav-link" href="../index.php">Live Website</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="approvalPage.php">approval Page</a>
+                        <a class="nav-link" href="approvalPage.php">Approval Page</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="tambahKategori.php">Tambah Kategori</a>
+                        <a class="nav-link" href="tambahKategori.php">Add New Category</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -158,7 +160,7 @@ $kategori = query("SELECT * FROM kategori");
     <!-- Navbar -->
 
     <!-- Content -->
-    
+    <h3 class="mt-3 fw-bolder text-center fs-1 p-3" style="display: flex; justify-content: center; align-items: center; height: 60vh;">Hello <?= $_SESSION['name_admin']; ?>, welcome to Admin Dashboard!</h3>
 </body>
 
 </html>

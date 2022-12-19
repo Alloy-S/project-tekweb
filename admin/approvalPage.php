@@ -123,10 +123,10 @@ $kategori = query("SELECT * FROM kategori");
                         <a class="nav-link" href="../index.php">Live Website</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link active" href="#">approval Page</a>
+                        <a class="nav-link active font-weight-bold" href="#">Approval Page</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="tambahKategori.php">Tambah Kategori</a>
+                        <a class="nav-link" href="tambahKategori.php">Add New Category</a>
                     </li>
                 </ul>
                 <!-- Left links -->
