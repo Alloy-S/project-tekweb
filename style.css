@@ -91,3 +91,7 @@ html {
   background-color: #bdbdbd;
 
 }
+
+#footer-element p{
+  margin-bottom: 0px;
+}

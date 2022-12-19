@@ -188,7 +188,7 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                 </div>
             <?php endif; ?>
         </div>
-        
+
         <div>
             <div class="row g-2">
                 <?php foreach ($data as $row) : ?>
@@ -223,65 +223,60 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
             </div>
         </div>
     </div>
-        <footer class="text-center text-white" style="background-color: #caced1;">
-            <!-- Grid container -->
-            <div class="container-fluid p-4" style="width: 100%; margin-top:15%">
-                <!-- Section: Images -->
-                <section class="">
-                    <div class="row">
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto 1.jpg" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto2.png" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto 3.jpg" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto 4.jpg" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-sm">
-                            <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
-                                <img src="img/foto 5.jpg" class="w-100" />
-                                <a href="#!">
-                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
-                                </a>
-                            </div>
+    <footer class="text-center text-white" style="background-color: #caced1;">
+        <!-- Grid container -->
+        <div class="container-fluid" id= "footer-element"style="height:fit-content;margin-top:15%">
+            <!-- Section: Images -->
+            <section class="">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto 1.jpg" class="w-75" />
+                            <p>C14210265</p>
+                            <p>Alloysius Steven</p>
                         </div>
                     </div>
-                </section>
-                <!-- Section: Images -->
-            </div>
-            <!-- Grid container -->
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto2.png" class="w-75" />
+                            <p>C14210248</p>
+                            <p>Alloysius Steven</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto 3.jpg" class="w-75" />
+                            <p>C14210248</p>
+                            <p>Alloysius Steven</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto 4.jpg" class="w-75" />
+                            <p>C14210248</p>
+                            <p>Alloysius Steven</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto 5.jpg" class="w-75" />
+                            <p>C14210248</p>
+                            <p >Alloysius Steven</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section: Images -->
+        </div>
+        <!-- Grid container -->
 
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2022 Copyright:
-                <a class="text-white" href="https://mdbootstrap.com/">Kelompok TEKWEB 5</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">Kelompok TEKWEB 5</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 </body>
 
 </html>
