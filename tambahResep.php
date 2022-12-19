@@ -165,7 +165,7 @@ $data = query("SELECT * FROM kategori");
                         },
                         success: function(data) {
                             console.log(data);
-                            alert("success upload image" + data);
+                            // alert("success upload image" + data);
                             // $("#image-data").val(data);
                         }
                     });
