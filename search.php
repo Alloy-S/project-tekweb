@@ -47,8 +47,8 @@ if (isset($_GET["submit_btn"])) {
                     <div class="input-group d-flex justify-content-center">
                         <div class="coba form-outline w-25 rounded border border-dark" style="--bs-border-opacity: .5;">
                             <form class="d-flex flex-row" action="search.php" method="GET">
-                                <input id="search-input bordered" type="search" name="search_index" class="form-control text-light" />
-                                <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3;   border-color:red">
+                                <input id="search-input" type="search" name="search_index" class="form-control text-light" />
+                                <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
                                     <i class="fas fa-search text-dark"></i>
                                 </button>
                             </form>

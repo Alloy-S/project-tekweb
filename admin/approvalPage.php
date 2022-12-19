@@ -164,9 +164,9 @@ $kategori = query("SELECT * FROM kategori");
             <h3 class="mt-3">Hello <?= $_SESSION['name_admin']; ?>, welcome to Admin Dashboard</h3>
 
             <div class="input-group w-25 d-flex justify-content-between mt-2">
-                <div class="form-outline">
-                    <input id="search-focus" type="search" id="form1" class="form-control" />
-                    <label class="form-label" for="form1">Search</label>
+                <div class="form-outline ">
+                    <input id="search-focus" type="search" id="form1" class="form-control rounded border border-dark h-100" />
+                    <!-- <label class="form-label" for="form1">Search</label> -->
                 </div>
                 <button type="button" class="btn btn-primary">
                     <i class="fas fa-search"></i>
