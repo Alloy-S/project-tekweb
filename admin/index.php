@@ -161,7 +161,7 @@ $kategori = query("SELECT * FROM kategori");
     <!-- Navbar -->
 
     <!-- Content -->
-    <h3 class="mt-3 fw-bolder text-center fs-1 p-3" style="display: flex; justify-content: center; align-items: center; height: 60vh;">Hello <?= $_SESSION['name_admin']; ?>, welcome to Admin Dashboard!</h3>
+    <h3 class="mt-3 fw-bolder text-center fs-1 p-4" style="display: flex; justify-content: center; align-items: center; height: 60vh;">Hello <?= $_SESSION['name_admin']; ?>, welcome to Admin Dashboard!</h3>
 </body>
 
 </html>
