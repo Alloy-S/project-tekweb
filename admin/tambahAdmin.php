@@ -76,10 +76,10 @@ if (isset($_POST["submit"])) {
 <body>
     <div class="container-fluid d-flex align-items-center justify-content-center">
         <div class="content">
-            <h1 class="text-center m-3">Add New Admin</h1>
+            <h1 class="text-center m-3"><strong>Add New Admin</strong></h1>
 
             <form action="" method="post" enctype="multipart/form-data">
-                <div class="field-input">
+                <div class="field-input mt-3">
 
                     <label class="form-label" for="name">Name : </label>
                     <input class="form-control" type="text" name="name" id="name" maxlength="30" required>

@@ -89,7 +89,7 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
             }
 
             .img-fluid {
-                max-width: 300px;
+                max-width: 100%;
             }
 
             .menu-pilihan {
@@ -120,7 +120,8 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
             <div class="row align-items-start">
                 <div class="col-lg-8 m-15px-tb">
                     <article class="article">
-                        <div class="article-img mt-5">
+                        <a href="approvalPage.php" class="btn btn-secondary btn-sm mt-4">&laquo; Kembali</a>
+                        <div class="article-img mt-2">
                             <img src="../img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="" class="img-fluid">
                         </div>
                         <div class="article-title mt-4">
