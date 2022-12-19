@@ -75,7 +75,7 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0 ms-1" href="#">
+                <a class="navbar-brand mt-2 mt-lg-0 ms-1" href="index.php">
                     <img src="white.png" height="45" alt="Gudang Resep Logo" loading="lazy" />
                 </a>
 
@@ -85,10 +85,10 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
                         <a class="nav-link" href="../index.php">Live Website</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="index.php">Admin Dashboard</a>
+                        <a class="nav-link" href="approvalPage.php">approval Page</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link active" href="#">Tambah Kategori</a>
+                        <a class="nav-link" href="tambahKategori.php">Tambah Kategori</a>
                     </li>
                 </ul>
                 <!-- Left links -->

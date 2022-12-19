@@ -59,7 +59,7 @@ function tambah_resep($data)
 {
 
     global $conn;
-    var_dump($data);
+    // var_dump($data);
     $judul = htmlspecialchars($data["nama_resep"]);
     $deskripsi = htmlspecialchars($data["deskripsi"]);
     $username = $_SESSION["username_user"];
