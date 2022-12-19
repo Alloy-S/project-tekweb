@@ -45,11 +45,11 @@ if (isset($_GET["submit_btn"])) {
                     </a>
                     <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
                     <div class="input-group d-flex justify-content-center">
-                        <div class="coba form-outline w-25 rounded border border-light" style="--bs-border-opacity: .5;">
+                        <div class="coba form-outline w-25 rounded border border-dark" style="--bs-border-opacity: .5;">
                             <form class="d-flex flex-row" action="search.php" method="GET">
-                                <input id="search-input bordered" type="search" name="search_index" class="form-control text-light" />
+                                <input id="search-input" type="search" name="search_index" class="form-control text-light" />
                                 <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
-                                    <i class="fas fa-search text-light"></i>
+                                    <i class="fas fa-search text-dark"></i>
                                 </button>
                             </form>
                         </div>
