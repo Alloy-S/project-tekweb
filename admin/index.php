@@ -100,8 +100,9 @@ $kategori = query("SELECT * FROM kategori");
     <div class="wave"></div>
     <div class="wave"></div>
     <div class="wave"></div>
+    
     <!-- Navbar-->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <a class="navbar-brand mt-2 mt-lg-0 ms-1" href="#">
