@@ -136,7 +136,7 @@ if (isset($_POST["submit"])) {
 
         @media screen and (max-width: 480px) {
             .login {
-                width: 70%;
+                width: 95%;
             }
         }
     </style>

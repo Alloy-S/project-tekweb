@@ -93,6 +93,10 @@ $kategori = query("SELECT * FROM kategori");
             }
         }
 
+        .input {
+            width: 25%;
+        }
+
         @media screen and (max-width: 780px) {
             .salam {
                 font-weight: 300;
@@ -102,18 +106,33 @@ $kategori = query("SELECT * FROM kategori");
                 display: flex;
                 flex-direction: column;
             }
+
+            .input {
+                width: 50%;
+            }
+
         }
 
         @media screen and (max-width: 780px) and (min-width: 480px) {
             .search_bar {
                 max-width: 70%;
             }
+
+            .input {
+                width: 100%;
+            }
+
         }
 
         @media screen and (max-width: 480px) {
             .search_bar {
                 max-width: 80% !important;
             }
+
+            .input {
+                width: 100%;
+            }
+
         }
     </style>
 </head>
@@ -186,9 +205,9 @@ $kategori = query("SELECT * FROM kategori");
         <div class="d-flex justify-content-between py-3 ps-3 text-dark sambutan_atas">
             <h3 class="mt-3 salam">Hello <?= $_SESSION['name_admin']; ?>, welcome to Admin Dashboard</h3>
 
-            <div class="input-group w-25 d-flex justify-content-between mt-2">
+            <div class="input-group input d-flex justify-content-between mt-2">
                 <div class="form-outline">
-                    <input id="search-focus" type="search" id="form1" class="form-control border border-dark rounded h-100"/>
+                    <input id="search-focus" type="search" id="form1" class="form-control border border-dark rounded h-100" />
                     <!-- <label class="form-label" for="form1">Search</label> -->
                 </div>
                 <button type="button" class="btn btn-primary">

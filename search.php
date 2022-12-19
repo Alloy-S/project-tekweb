@@ -24,7 +24,7 @@ if (isset($_GET["submit_btn"])) {
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <!-- <link rel="stylesheet" href="fa_icons/css/all.css"> -->
         <link rel="stylesheet" href="assets/fontawesome/css/all.css">
-        <link href="style.css" rel="stylesheet" type="text/css" />
+        <!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
     </head>
 
     <body style='background-color:#c6c9ca'>
