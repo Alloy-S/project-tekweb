@@ -135,7 +135,7 @@ $total_pages = ceil($total_rows / $limit);
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
                 <div class="input-group d-flex justify-content-center">
                     <div class="coba form-outline w-25 rounded border border-light" style="--bs-border-opacity: .5;">
-                        <form class="d-flex flex-row" action="search.php" method="POST">
+                        <form class="d-flex flex-row" action="search.php" method="GET">
                             <input id="search-input" type="search" name="search_index" class="form-control text-light" />
                             <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
                                 <i class="fas fa-search text-light"></i>
@@ -156,41 +156,15 @@ $total_pages = ceil($total_rows / $limit);
                 </div>
 
                 <div class="d-flex align-items-center">
-                    <!-- Icon -->
-                    <a class="text-reset me-3" href="#">
-                        <i class="fas fa-shopping-cart"></i>
-                    </a>
-
-                    <!-- Notifications -->
-                    <div class="dropdown">
-                        <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-bell"></i>
-                            <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="#">Some news</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Another news</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </li>
-                        </ul>
-                    </div>
+                    
                     <!-- Avatar -->
                     <div class="dropdown">
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i>
-                            <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
+                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
                                 <a class="dropdown-item" href="myprofile.php">My profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Settings</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="logout.php">Logout</a>
