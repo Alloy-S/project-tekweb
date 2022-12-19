@@ -5,10 +5,22 @@ require("connect.php");
 //     header("Location: login.php");
 // }
 
+if (isset($_GET["page"])) { $page_number  = $_GET["page"]; } else { $page_number=1; };  
+
+$limit = 8;
+$initial_page = ($page_number-1) * $limit;
+$previous = $page_number - 1;
+$next = $page_number + 1; 
+
 $data = query("SELECT * FROM resep WHERE is_approved = 1");
 // var_dump($data);
 // print_r($_SESSION);
+
+$total_rows = count($data);
+$total_pages = ceil($total_rows / $limit);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,7 +85,31 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
 
 
             });
+
+            $("#target-content").load("pagination.php?page=1");
+            $(".page-link").click(function(){
+                var id = $(this).attr("data-id");
+                var select_id = $(this).parent().attr("id");
+
+                $.ajax({
+                    url: "pagination.php",
+                    type: "GET",
+                    data: {
+                        page : id
+                    },
+
+                    cache: false,
+
+                    success: function(dataResult){
+                        $("#target-content").html(dataResult);
+                        $(".pageitem").removeClass("active");
+                        $("#"+select_id).addClass("active");                  
+                    }
+                });
+            });
+
         });
+    
     </script>
 </head>
 
@@ -191,8 +227,10 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
 
         <div>
             <div class="row g-2">
-                <?php foreach ($data as $row) : ?>
-                    <div class="col-12 col-md-6 col-lg-3">
+                <?php
+                    $data = query("SELECT *FROM resep WHERE is_approved = 1 LIMIT $initial_page, $limit");
+                    foreach ($data as $row) : ?>
+                    <div class="col-6 col-lg-3">
                         <div class="card m-2">
                             <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
                                 <div class="ratio ratio-16x9">
@@ -221,47 +259,79 @@ $data = query("SELECT * FROM resep WHERE is_approved = 1");
                     </div>
                 <?php endforeach; ?>
             </div>
-        </div>
+        </div> -->
+
     </div>
+    
+    <!-- Pagination Content -->
+    <div id="target-content">loading...</div>           
+
+    <div class="clearfix">   
+        <nav style="margin-bottom: -12%; margin-top: 5%;">
+            <ul class="pagination pagination-md justify-content-center">
+                <?php
+                if(!empty($total_pages)){
+                for($page=1;$page<=$total_pages;$page++){
+                    if($page == 1){
+                ?>
+                    <li class="pageitem active" id="<?php echo $page;?>"><a href="JavaScript:Void(0);" data-id="<?php echo $page;?>" class="page-link" ><?php echo $page;?></a></li>                                                           
+
+                <?php }
+                    else{
+                ?>
+                    <li class="pageitem" id="<?php echo $page;?>"><a href="JavaScript:Void(0);" class="page-link" data-id="<?php echo $page;?>"><?php echo $page;?></a></li>             
+                <?php }
+                    }
+                }
+                ?>              
+            </ul>
+        </nav> 
+    </div>
+
     <footer class="text-center text-white" style="background-color: #caced1;">
         <!-- Grid container -->
-        <div class="container-fluid" id= "footer-element"style="height:fit-content;margin-top:15%">
+        <div class="container-fluid p-4" style="width: 100%; margin-top:15%">
             <!-- Section: Images -->
             <section class="">
                 <div class="row">
                     <div class="col-sm">
-                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 1.jpg" class="w-75" />
-                            <p>C14210265</p>
-                            <p>Alloysius Steven</p>
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto 1.jpg" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-sm">
-                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto2.png" class="w-75" />
-                            <p>C14210248</p>
-                            <p>Alloysius Steven</p>
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto2.png" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-sm">
-                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 3.jpg" class="w-75" />
-                            <p>C14210248</p>
-                            <p>Alloysius Steven</p>
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto 3.jpg" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-sm">
-                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 4.jpg" class="w-75" />
-                            <p>C14210248</p>
-                            <p>Alloysius Steven</p>
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto 4.jpg" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
                         </div>
                     </div>
                     <div class="col-sm">
-                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 5.jpg" class="w-75" />
-                            <p>C14210248</p>
-                            <p >Alloysius Steven</p>
+                        <div class="bg-image hover-overlay ripple shadow-1-strong rounded" data-ripple-color="light">
+                            <img src="img/foto 5.jpg" class="w-100" />
+                            <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2);"></div>
+                            </a>
                         </div>
                     </div>
                 </div>

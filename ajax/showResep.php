@@ -16,13 +16,13 @@ if ($status == "all") {
 <?php foreach ($resep as $row) : ?>
     <div class="col-12 col-md-6 col-lg-3">
         <div class="card m-2">
-            <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
+            <a href="editResep.php?id=<?= $row["id_resep"]; ?>">
                 <div class="ratio ratio-16x9">
                     <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
                 </div>
             </a>
             <div class="card text-center">
-                <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
+                <a href="editResep.php?id=<?= $row["id_resep"]; ?>">
                     <div class="card-body">
                         <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
                     </div>
