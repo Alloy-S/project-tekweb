@@ -40,7 +40,7 @@ if (isset($_GET["submit_btn"])) {
                 <!-- Collapsible wrapper -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Navbar brand -->
-                    <a href="index.php" class="navbar-brand mt-2 mt-lg-0" style='background-color:transparent'>
+                    <a href="index.php" class="navbar-brand mt-2 mt-lg-0">
                         <img src="img\black.png" height="45" alt="GR Logo" loading="lazy" />
                     </a>
                     <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
