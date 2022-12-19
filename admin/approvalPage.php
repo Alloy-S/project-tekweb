@@ -111,7 +111,7 @@ $kategori = query("SELECT * FROM kategori");
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0 ms-1" href="#">
+                <a class="navbar-brand mt-2 mt-lg-0 ms-1" href="index.php">
                     <img src="white.png" height="45" alt="Gudang Resep Logo" loading="lazy" />
                     <!-- <small>Admin Workspace</small>
                     <img src="Gudang Resep.png" height="45" alt="Gudang Resep Logo" loading="lazy"/> -->
@@ -119,11 +119,11 @@ $kategori = query("SELECT * FROM kategori");
 
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-0 ms-3 mb-lg-0">
-                    <li class="nav-item ms-3">
+                <li class="nav-item ms-3">
                         <a class="nav-link" href="../index.php">Live Website</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="approvalPage.php">approval Page</a>
+                        <a class="nav-link active" href="#">approval Page</a>
                     </li>
                     <li class="nav-item ms-4">
                         <a class="nav-link" href="tambahKategori.php">Tambah Kategori</a>
@@ -158,7 +158,75 @@ $kategori = query("SELECT * FROM kategori");
     <!-- Navbar -->
 
     <!-- Content -->
-    
+    <div class="container-fluid bg-secondary text-white">
+        <!-- Search Bar -->
+        <div class="d-flex justify-content-between py-3 ps-3 text-dark">
+            <h3 class="mt-3">Hello <?= $_SESSION['name_admin']; ?>, welcome to Admin Dashboard</h3>
+
+            <div class="input-group w-25 d-flex justify-content-between mt-2">
+                <div class="form-outline">
+                    <input id="search-focus" type="search" id="form1" class="form-control" />
+                    <label class="form-label" for="form1">Search</label>
+                </div>
+                <button type="button" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <table class="table align-middle mb-0 bg-secondary text-white">
+            <thead class="bg-secondary text-white h5 fw-bold">
+                <tr>
+                    <th><strong>Menu Name</strong></th>
+                    <th><strong>Category</strong></th>
+                    <th><strong>Author</strong></th>
+                    <th><strong>Status</strong></th>
+                    <th><strong>Actions</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($data as $row) : ?>
+
+                    <tr>
+                        <td style="padding-right: 50px" ;>
+                            <div class="d-flex align-items-center">
+                                <img src="../img/resep_img/<?= $row['gambar']; ?>" alt="" style="width: 135px; height: 95px" class="rounded" />
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1 h3"><?= $row['nama_resep']; ?></p>
+                                    <!-- <p class="text-muted mb-0">john.doe@gmail.com</p> -->
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <?php foreach ($kategori as $kat) : ?>
+                                <?php if ($row['id_kategori'] === $kat['id_kategori']) : ?>
+                                    <h5 class="fw-normal mb-1 text-dark"><?= $kat['nama']; ?></h5>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </td>
+                        <td>
+                            <div class="h6"> <em> <?= $row['author']; ?></em></div>
+                        </td>
+                        <td>
+                            <?php if ($row['is_approved'] === "1" and $row['is_private'] === "0") : ?>
+                                <span class="badge badge-success rounded-pill d-inline">Live</span>
+                            <?php elseif ($row['is_approved'] === "0" and $row['is_private'] === "0") : ?>
+                                <span class="badge badge-warning rounded-pill d-inline">Pending</span>
+                            <?php elseif ($row['is_approved'] === "0" and $row['is_private'] === "1") : ?>
+                                <span class="badge badge-primary rounded-pill d-inline">Private</span>
+                            <?php endif; ?>
+                        </td>
+                        <td>
+                            <a href="detailResep_admin.php?id=<?= $row["id_resep"]; ?>"> <button type="button" class="btn btn-primary btn-rounded btn-sm" data-mdb-ripple-color="#f4ecb8"> ACTION </button></a>
+                        </td>
+                    </tr>
+
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+    </div>
 </body>
 
 </html>

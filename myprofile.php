@@ -53,7 +53,12 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
 
         .empty {
             background-color: white;
-            height: 200px;
+            height: 300px;
+        }
+
+        .card-body {
+            padding-top: 10px;
+            padding-bottom: 0px;
         }
 
         @media screen and (max-width: 992px) {
