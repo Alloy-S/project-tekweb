@@ -148,6 +148,13 @@ $total_pages = ceil($total_rows / $limit);
             <!-- Collapsible wrapper -->
             <!-- Right elements -->
             <?php if (isset($_SESSION["login_user"])) : ?>
+                <!-- Tambah Resep -->
+                <div class="d-flex align-items-center">
+                    <a class="text-reset me-3" href="tambahResep.php">
+                        <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Tambah Resep</button>
+                    </a>
+                </div>
+
                 <div class="d-flex align-items-center">
                     <!-- Icon -->
                     <a class="text-reset me-3" href="#">
@@ -214,7 +221,7 @@ $total_pages = ceil($total_rows / $limit);
         </div>
     </div>
 
-    <div class="container" id='card-resep'>
+    <!-- <div class="container" id='card-resep'>
         <div class="d-flex">
             <?php if (isset($_SESSION["login_user"])) : ?>
                 <div class="button-group">
@@ -262,9 +269,9 @@ $total_pages = ceil($total_rows / $limit);
                     </div>
                 <?php endforeach; ?>
             </div>
-        </div> -->
+        </div>
 
-    </div>
+    </div> -->
 
     <!-- Pagination Content -->
     <div id="target-content">loading...</div>

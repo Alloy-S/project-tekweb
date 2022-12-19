@@ -178,10 +178,10 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
                         <a class="nav-link" href="../index.php">Live Website</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="approvalPage.php">approval Page</a>
+                        <a class="nav-link" href="approvalPage.php">Approval Page</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link active" href="tambahKategori.php">Tambah Kategori</a>
+                        <a class="nav-link active" href="tambahKategori.php">Add New Category</a>
                     </li>
                 </ul>
                 <!-- Left links -->
