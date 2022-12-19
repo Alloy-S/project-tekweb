@@ -186,7 +186,7 @@ $kategori = query("SELECT * FROM kategori");
         <div class="d-flex justify-content-between py-3 ps-3 text-dark sambutan_atas">
             <h3 class="mt-3 salam">Hello <?= $_SESSION['name_admin']; ?>, welcome to Admin Dashboard</h3>
 
-            <div class="input-group w-25 d-flex justify-content-between mt-2 search_bar">
+            <div class="input-group w-25 d-flex justify-content-between mt-2">
                 <div class="form-outline">
                     <input id="search-focus" type="search" id="form1" class="form-control" />
                     <label class="form-label" for="form1">Search</label>

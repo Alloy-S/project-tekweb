@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Des 2022 pada 17.27
+-- Waktu pembuatan: 19 Des 2022 pada 11.34
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.5
 
@@ -57,14 +57,6 @@ CREATE TABLE `bahan` (
   `jenis` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `bahan`
---
-
-INSERT INTO `bahan` (`id_resep`, `takaran`, `jenis`) VALUES
-(9, 'asda', 'asdas'),
-(9, 'asdasd', 'dasda');
-
 -- --------------------------------------------------------
 
 --
@@ -79,6 +71,13 @@ CREATE TABLE `comments` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `reply` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `comments`
+--
+
+INSERT INTO `comments` (`comment_id`, `author`, `id_resep`, `comment`, `date_created`, `reply`) VALUES
+(0, '', 35, '', '2022-12-17 21:41:50', 0);
 
 -- --------------------------------------------------------
 
@@ -111,15 +110,6 @@ CREATE TABLE `langkah` (
   `langkah` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `langkah`
---
-
-INSERT INTO `langkah` (`id_resep`, `urutan`, `langkah`) VALUES
-(9, 0, 'dasdaa'),
-(9, 1, 'daasd'),
-(9, 2, 'asdad');
-
 -- --------------------------------------------------------
 
 --
@@ -140,13 +130,6 @@ CREATE TABLE `resep` (
   `is_private` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `resep`
---
-
-INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `id_kategori`, `tanggal`, `gambar`, `author`, `likes`, `views`, `is_approved`, `is_private`) VALUES
-(9, 'asda', 'sdasdasd', 1, '2022-12-06', '638ec85c62da6.jpg', 'admin', 0, 0, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -154,7 +137,6 @@ INSERT INTO `resep` (`id_resep`, `nama_resep`, `deskripsi`, `id_kategori`, `tang
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
   `password` varchar(255) NOT NULL,
   `nama` varchar(30) NOT NULL,
@@ -165,8 +147,9 @@ CREATE TABLE `user` (
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `nama`, `email`) VALUES
-(0, 'admin', '$2y$10$XnTpXHQuFABWxuuE1EaWX.H5kPBqEC/OEO7AZZAm71lA2nMhAT4j6', 'admin', 'admin@wkwk.com');
+INSERT INTO `user` (`username`, `password`, `nama`, `email`) VALUES
+('admin', '$2y$10$XnTpXHQuFABWxuuE1EaWX.H5kPBqEC/OEO7AZZAm71lA2nMhAT4j6', 'admin', 'admin@wkwk.com'),
+('tipen123', '$2y$10$QfthRAu/cP17azvhmyjAvuCoToh/nVcnbvexnR1DnikK5B4gcrz2W', 'Alloysius Steven H', 'tipeen995@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -208,13 +191,14 @@ ALTER TABLE `langkah`
 --
 ALTER TABLE `resep`
   ADD PRIMARY KEY (`id_resep`),
-  ADD KEY `id_kategori` (`id_kategori`);
+  ADD KEY `id_kategori` (`id_kategori`),
+  ADD KEY `author` (`author`);
 
 --
 -- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`username`);
 
 --
 -- AUTO_INCREMENT untuk tabel yang dibuang
@@ -224,19 +208,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `admin_acc`
 --
 ALTER TABLE `admin_acc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `resep`
 --
 ALTER TABLE `resep`
-  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -264,6 +248,7 @@ ALTER TABLE `langkah`
 -- Ketidakleluasaan untuk tabel `resep`
 --
 ALTER TABLE `resep`
+  ADD CONSTRAINT `author` FOREIGN KEY (`author`) REFERENCES `user` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `resep_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori` (`id_kategori`);
 COMMIT;
 
