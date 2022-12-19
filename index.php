@@ -124,6 +124,7 @@ $total_pages = ceil($total_rows / $limit);
         @media (max-width: 992px) {
             #search-unit {
                 width: 65%;
+                margin-top: 3%;
             }
         }
     </style>
@@ -186,9 +187,9 @@ $total_pages = ceil($total_rows / $limit);
                         </div>
                     </div>
                 <?php else : ?>
-                    <div class="d-flex align-items-center" id="login-nav">
+                    <div class="d-flex align-items-center d-flex justify-content-center" id="login-nav">
                         <a class="text-reset me-3" href="login2.php">
-                            <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Login</button>
+                            <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark" style="margin-top: 15%; margin-bottom: 15%">Login</button>
                         </a>
                     </div>
                 <?php endif; ?>
