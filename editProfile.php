@@ -37,6 +37,15 @@ if(isset($_POST['submit'])) {
         .content {
             background-color: white;
         }
+
+        .edit {
+            width: 25%;
+        }
+        @media screen and (max-width: 992px) {
+            .edit {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -62,14 +71,13 @@ if(isset($_POST['submit'])) {
 
             <!-- Right elements -->
             <?php if (isset($_SESSION["login_user"])) : ?>
-                <div class="d-flex align-items-center mt-md-4">
+                <div class="d-flex align-items-center ">
 
                     <!-- Avatar -->
                     <div class="dropdown ">
 
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user fa-xl"></i>
-                            <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
+                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
@@ -99,7 +107,7 @@ if(isset($_POST['submit'])) {
     <!-- Navbar -->
 
     <div class="container-fluid d-flex align-items-center justify-content-center">
-        <div class="card w-25 m-3">
+        <div class="card edit m-3">
             <div class="p-3">
                 <h1 class="text-center m-3">Edit Profile</h1>
                 <form action="" method="POST">
