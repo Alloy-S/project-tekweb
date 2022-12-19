@@ -118,9 +118,9 @@ $total_pages = ceil($total_rows / $limit);
 
 <body style='background-color:#c6c9ca'>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light sticky-top" id='navbar'='background-color:transparent'>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" id='navbar'>
         <!-- Container wrapper -->
-        <div class="container-fluid">
+        <div class="container-fluid" id='contain-dropdown' style="margin-top: 0px;background-color:transparent ">
             <!-- Toggle button -->
             <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
@@ -133,8 +133,8 @@ $total_pages = ceil($total_rows / $limit);
                     <img src="img\white.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
-                <div class="input-group d-flex justify-content-center">
-                    <div class="coba form-outline w-25 rounded border border-light" style="--bs-border-opacity: .5;">
+                <div class="input-group d-flex justify-content-center ">
+                    <div class="coba form-outline rounded border border-light" style="--bs-border-opacity: .5; width:25%">
                         <form class="d-flex flex-row" action="search.php" method="GET">
                             <input id="search-input" type="search" name="search_index" class="form-control text-light" />
                             <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
@@ -144,42 +144,43 @@ $total_pages = ceil($total_rows / $limit);
                     </div>
                 </div>
                 <!-- </div> -->
-            </div>
-            <!-- Collapsible wrapper -->
-            <!-- Right elements -->
-            <?php if (isset($_SESSION["login_user"])) : ?>
-                <!-- Tambah Resep -->
-                <div class="d-flex align-items-center">
-                    <a class="text-reset me-3" href="tambahResep.php">
-                        <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Tambah Resep</button>
-                    </a>
-                </div>
 
-                <div class="d-flex align-items-center">
-                    
-                    <!-- Avatar -->
-                    <div class="dropdown">
-                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
+                <!-- Collapsible wrapper -->
+                <!-- Right elements -->
+                <?php if (isset($_SESSION["login_user"])) : ?>
+                    <!-- Tambah Resep -->
+                    <div class="d-flex align-items-center">
+                        <a class="text-reset me-3" href="tambahResep.php">
+                            <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Tambah Resep</button>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                            <li>
-                                <a class="dropdown-item" href="myprofile.php">My profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="logout.php">Logout</a>
-                            </li>
-                        </ul>
                     </div>
-                </div>
-            <?php else : ?>
-                <div class="d-flex align-items-center">
-                    <a class="text-reset me-3" href="login2.php">
-                        <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Login</button>
-                    </a>
-                </div>
-            <?php endif; ?>
-            <!-- Right elements -->
+
+                    <div class="d-flex align-items-center">
+
+                        <!-- Avatar -->
+                        <div class="dropdown">
+                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                <li>
+                                    <a class="dropdown-item" href="myprofile.php">My profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="logout.php">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                <?php else : ?>
+                    <div class="d-flex align-items-center" id="login-nav">
+                        <a class="text-reset me-3" href="login2.php">
+                            <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Login</button>
+                        </a>
+                    </div>
+                <?php endif; ?>
+                <!-- Right elements -->
+            </div>
         </div>
         <!-- Container wrapper -->
     </nav>

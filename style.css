@@ -62,10 +62,8 @@ html {
   transition: all 0.4s ease;
 }
 
-
 .card-body {
   padding-bottom: 0px;
-  
 }
 
 .color-change {
@@ -86,19 +84,37 @@ html {
   background-color: #dddddd;
   margin-right: 3px;
   border-radius: 10px;
-  
 }
 
 .icon-field:hover {
   background-color: #bdbdbd;
-
 }
 
-#footer-element p{
+#footer-element p {
   margin-bottom: 0px;
 }
 
-#footer-element .col-sm{
+#footer-element .col-sm {
   /* margin-bottom: 0px; */
   margin-top: 1%;
+}
+
+@media (max-width: 991px) {
+  nav .container-fluid {
+    padding: 0px;
+  }
+  .navbar-collapse.show {
+    background-color: #aaadab;
+  }
+  /* .navbar-toggler {
+    margin-left: 12px;
+  } */
+  /* #contain-dropdown{
+    padding: 0px;
+    background-color: red;
+  } */
+  /* #login-nav{
+    width: 100%;
+    background-color: #aaadab;
+  } */
 }

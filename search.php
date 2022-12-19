@@ -40,16 +40,16 @@ if (isset($_GET["submit_btn"])) {
                 <!-- Collapsible wrapper -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Navbar brand -->
-                    <a href="index.php" class="navbar-brand mt-2 mt-lg-0" style='background-color:transparent'>
+                    <a href="index.php" class="navbar-brand mt-2 mt-lg-0">
                         <img src="img\black.png" height="45" alt="GR Logo" loading="lazy" />
                     </a>
                     <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
                     <div class="input-group d-flex justify-content-center">
-                        <div class="coba form-outline w-25 rounded border border-light" style="--bs-border-opacity: .5;">
+                        <div class="coba form-outline w-25 rounded border border-dark" style="--bs-border-opacity: .5;">
                             <form class="d-flex flex-row" action="search.php" method="GET">
                                 <input id="search-input bordered" type="search" name="search_index" class="form-control text-light" />
-                                <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
-                                    <i class="fas fa-search text-light"></i>
+                                <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3;   border-color:red">
+                                    <i class="fas fa-search text-dark"></i>
                                 </button>
                             </form>
                         </div>
@@ -114,7 +114,7 @@ if (isset($_GET["submit_btn"])) {
                         endwhile;
                     } else {
                         ?>
-                        <img src="img/404 Error.gif" style="height: auto; max-width: 60%; margin-left: auto; margin-right: auto; margin-top:7vh">
+                        <img src="img/404 Error.gif" style="height: auto; max-width: 30%; margin-left: auto; margin-right: auto; margin-top:30vh">
                 </div>
         <?php }
                 }
