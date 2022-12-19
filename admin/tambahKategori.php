@@ -140,6 +140,16 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
         td {
             background-color: white;
         }
+
+        .card {
+            width: 25%;
+        }
+
+        @media screen and (max-width: 992px) {
+            .card {
+                width: 87%;
+            }
+        }
     </style>
 </head>
 
@@ -148,11 +158,13 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
     <div class="wave"></div>
     <div class="wave"></div>
     <!-- Navbar-->
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
-
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
@@ -169,7 +181,7 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
                         <a class="nav-link" href="approvalPage.php">approval Page</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="tambahKategori.php">Tambah Kategori</a>
+                        <a class="nav-link active" href="tambahKategori.php">Tambah Kategori</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -200,8 +212,8 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
     </nav>
     <!-- Navbar -->
 
-    <div class="container-fluid d-flex flex-row">
-        <div class="card w-25 m-3">
+    <div class="container-fluid d-lg-flex flex-row">
+        <div class="card  m-3">
             <div class="p-3">
                 <h2>Tambah kategori</h2>
                 <form action="" method="POST" id="data-kategori">
