@@ -174,7 +174,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                 </div>
                 <div class="m-2">
                     <a href="editProfile.php" style="color: black;">
-                        <i class="fa-solid fa-pen fa-lg"></i>
+                        <i class="fa-solid fa-pencil fa-lg"></i>
                     </a>
                 </div>
 

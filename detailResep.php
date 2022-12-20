@@ -114,7 +114,7 @@ while ($r = mysqli_fetch_object($que)) {
             <?php else : ?>
                 <div class="d-flex align-items-center">
                     <a class="text-reset me-3" href="login2.php">
-                        <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Login</button>
+                        <button type="button" class="btn btn-light btn-rounded border border-dark" data-mdb-ripple-color="dark">Login</button>
                     </a>
                 </div>
             <?php endif; ?>

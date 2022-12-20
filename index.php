@@ -114,20 +114,6 @@ $total_pages = ceil($total_rows / $limit);
 
         });
     </script>
-    <style>
-        @media (min-width: 993px) {
-            #search-unit {
-                width: 25%;
-            }
-        }
-
-        @media (max-width: 992px) {
-            #search-unit {
-                width: 65%;
-                margin-top: 3%;
-            }
-        }
-    </style>
 </head>
 
 <body style='background-color:#c6c9ca'>
@@ -147,7 +133,7 @@ $total_pages = ceil($total_rows / $limit);
                     <img src="img\white.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
-                <div class="input-group d-flex justify-content-center ">
+                <div class="input-group d-flex justify-content-center">
                     <div class="coba form-outline rounded border border-light" id="search-unit" style="--bs-border-opacity: .5;">
                         <form class="d-flex flex-row" action="search.php" method="GET">
                             <input id="search-input" type="search" name="search_index" class="form-control text-light" />
@@ -163,16 +149,19 @@ $total_pages = ceil($total_rows / $limit);
                 <!-- Right elements -->
                 <?php if (isset($_SESSION["login_user"])) : ?>
                     <!-- Tambah Resep -->
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center d-flex justify-content-center">
                         <a class="text-reset me-3" href="tambahResep.php">
-                            <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Tambah Resep</button>
+                            <button type="button" class="btn btn-light btn-rounded" id="btn-tambah" data-mdb-ripple-color="dark" style="width:150px;">
+                                <i class="fa-solid fa-pencil"></i>
+                                Tulis Resep
+                            </button>
                         </a>
                     </div>
 
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-end">
 
                         <!-- Avatar -->
-                        <div class="dropdown">
+                        <div class="dropdown d-flex justify-content-end">
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                                 <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
                             </a>
