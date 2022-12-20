@@ -212,9 +212,7 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
 
                             </form>
                         </div>
-                        <div class="com-sec mx-4">
-                            
-                        </div>
+                        <div class="com-sec mx-4"></div>
                         <script>
                             $(document).ready(function() {
     
@@ -254,17 +252,16 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                     $(".com-sec").html(data) 
                                 }
                                 })
-                            }
+                            };
                            
+                            // function
 
-                            $(document).on('click', '.reply', function(){
-                                // function showReply(){
-                                //     document.getElementById('reply-sec').style.display = "block";
-                                // }
-                                var comment_id = $(this).attr("id");
-                                $('#comment_id').val(comment_id);
-                                $('#comment_name').focus();
-                            });
+                            // $(document).on('click', '.reply', function(){
+                                
+                            //     var comment_id = $(this).attr("id");
+                            //     $('#comment_id').val(comment_id);
+                            //     $('#comment_name').focus();
+                            // });
 
                         });
                         

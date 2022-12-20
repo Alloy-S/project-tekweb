@@ -20,10 +20,20 @@ foreach($result as $r) {
     $output .= '
     <div class="comment-header"><b>' .$r["author"]. ' </b> on <i>' .$r["date_created"]. '</i> </div>
     <div class="comment-content">' .$r["comment"]. '</div>
-    <div class="reply">
-    <button type="button" class="btn btn-default reply mb-2" id="'.$r["comment_id"].'" onclick="showReply()">Reply</button>    
+    <div id="reply">
+    <button type="button" class="btn btn-secondary reply mb-2" id="'.$r["comment_id"].'" onclick="showReply()" style="display:block;">Reply</button>    
+    </div> 
+    <div id = "reply-form" style="display:none;">
+    <div class="col-auto mx-4 mb-2 mt-2">
+        <textarea class="form-control" name="rep" id="rep" name="rep" placeholder = "Berikan balasan!" required></textarea>
     </div>
-    ';
+
+
+<div class="mx-4 mb-3">
+    <input type="submit" id="submit-rep" name="submit-rep" class="btn btn-secondary" value = "post">
+</div>
+</div>
+';
     // $output .= get_reply_comment($conn, $r["comment_id"]);
 };
 
@@ -62,6 +72,17 @@ function get_reply_comment($conn, $parent_id = 0, $marginleft = 0){
 
 // // json_encode($output);
 // // <? var_dump($result); ?>
+<script>
+    function showReply(){
+    document.getElementById('reply-form').style.display = "block";
+    document.getElementById('reply').style.display = "none";
+    }
+
+    // $("#submit-rep").click(function(event) {
+    //     event.preventDefault();
+
+    // })
+</script>
 
 
 
