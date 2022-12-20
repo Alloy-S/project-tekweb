@@ -190,27 +190,14 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                         <div class="form-group mx-3">
                             <form method="POST" id="comment-form">
                                 <input type="hidden" id="id" name="id_resep" value="<?php echo $id; ?>" required>
-                                <!-- <input type="hidden" name="comment_id" id="comment_id" value="0" /> -->
-                                <!-- <div class="hstack gap-2 mx-3 my-3">
-                                    <label>Your name</label> <br />
-                                    <div class="col-auto">
-                                        <input class="form-control" type="text" id="name" name="name" required>
-                                    </div>
-                                </div> -->
-
-                                <div class="mx-3 mb-4 my-2">
-                                    <!-- <div class="col-auto mb-2">
-                                        <label>Comment</label>
-                                    </div> -->
+                                <div class="mx-3 my-2">
                                     <div class="col-auto mx-0">
                                         <textarea class="form-control" name="comment" id="comment" name="comment" placeholder="Berikan komentar!" required></textarea>
                                     </div>
                                 </div>
-
-                                <div class="mx-3 mb-3">
+                                <div class="mx-3">
                                     <input type="submit" id="submit" name="submit" class="btn btn-secondary" value="post">
                                 </div>
-
                             </form>
                         </div>
                         <div class="com-sec mx-4">
