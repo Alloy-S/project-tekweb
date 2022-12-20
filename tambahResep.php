@@ -54,7 +54,6 @@ $data = query("SELECT * FROM kategori");
     <link href="cropperjs/cropper.min.css" rel="stylesheet" type="text/css" />
     <script src="cropperjs/cropper.min.js" type="text/javascript"></script>
     <!-- CROPPER JS -->
-    <script src="function/fungtion.js" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
             $("#add-row-langkah").click(function() {
@@ -74,13 +73,14 @@ $data = query("SELECT * FROM kategori");
                 $(this).parent().parent().parent().remove()
             });
 
-
+            function unique() {
+                return Date.now().toString(36) + Math.floor(Math.pow(10, 12) + Math.random() * 9 * Math.pow(10, 12)).toString(36);
+            }
 
             // cropper
             var bs_modal = $('#modal');
             var image = document.getElementById('image-cropper');
             var cropper, reader, file, base64data;
-
 
             $("body").on("change", ".image", function(e) {
                 // console.log("wkwkwkw");
@@ -129,8 +129,8 @@ $data = query("SELECT * FROM kategori");
 
             $("#crop").click(function() {
                 canvas = cropper.getCroppedCanvas({
-                    width: 160,
-                    height: 160,
+                    width: 650,
+                    height: 650,
                 });
 
                 canvas.toBlob(function(blob) {
@@ -158,7 +158,7 @@ $data = query("SELECT * FROM kategori");
                     $.ajax({
                         type: "POST",
                         dataType: "json",
-                        url: "function/saveFile.php",
+                        url: "ajax/saveFile.php",
                         data: {
                             image: base64data,
                             uid: uid
@@ -286,7 +286,7 @@ $data = query("SELECT * FROM kategori");
         <div class="content">
             <h1 class="text-center m-3">Tulis Resep Baru</h1>
 
-            <form action="function/tambahResepDb.php" method="post" id="form-addResep" enctype="multipart/form-data">
+            <form action="ajax/tambahResepDb.php" method="post" id="form-addResep" enctype="multipart/form-data">
                 <div class="field-input">
 
                     <label class="form-label" for="nama_resep">Judul Resep : </label>
@@ -379,8 +379,9 @@ $data = query("SELECT * FROM kategori");
                     </select>
                 </div>
 
-                <button class="btn btn-primary mb-4" type="submit" id="submit" name="submit">Submit</button>
-
+                <div class="field-input">
+                    <button class="btn btn-primary" type="submit" id="submit" name="submit">Submit</button>
+                </div>
 
             </form>
         </div>
@@ -417,6 +418,5 @@ $data = query("SELECT * FROM kategori");
         </div>
     </div>
     <!-- MODAL CROPPER -->
-
 
 </html>
