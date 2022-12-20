@@ -45,7 +45,7 @@ if ($status == "all") {
             </div>
         <?php endforeach; ?>
         <?php else: ?>
-            <div class="d-flex justify-content-center aligns-item-center text-center my-5" style="padding-top: 30px">
+            <div class="d-flex justify-content-center aligns-item-center text-center my-5" style="padding-top: 50px">
                 <h4>Belum ada resep <?= $status?></h4>
             </div>
     <?php endif; ?>

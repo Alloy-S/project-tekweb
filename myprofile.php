@@ -52,7 +52,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
         }
 
         .menu {
-            min-height: 200px;
+            min-height: 265px;
         }
 
         .empty {
