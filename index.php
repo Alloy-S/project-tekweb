@@ -76,21 +76,21 @@ require("connect.php");
 
             });
 
-            function fetch_resep(page){
-            $.ajax({
-                url: "ajax/pagination.php",
-                method: "POST",
-                data: {
-                    page: page
-                },
-                success: function(data){
-                    $("#content-resep").html(data);
-                }
-            });
+            function fetch_resep(page) {
+                $.ajax({
+                    url: "ajax/pagination.php",
+                    method: "POST",
+                    data: {
+                        page: page
+                    },
+                    success: function(data) {
+                        $("#content-resep").html(data);
+                    }
+                });
             }
             fetch_resep();
 
-            $(document).on("click", ".page-item", function(){
+            $(document).on("click", ".page-item", function() {
                 var page = $(this).attr("id");
                 fetch_resep(page)
             });
@@ -157,7 +157,7 @@ require("connect.php");
                                 </li>
                             </ul>
                         </div>
-                    </div>
+                    </div>>
                 <?php else : ?>
                     <div class="d-flex align-items-center d-flex justify-content-center" id="login-nav">
                         <a class="text-reset me-3" href="login2.php">
@@ -181,9 +181,10 @@ require("connect.php");
             </button>
         </div>
     </div>
-    
+
     <!-- Pagination Content -->
     <div id="content-resep">loading...</div>
+
 
 
     <footer class="text-center text-white" style="background-color: #8a8d8d;">
@@ -194,35 +195,35 @@ require("connect.php");
                 <div class="row">
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 1.jpg" class="w-100" />
+                            <!-- <img src="img/foto 1.jpg" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto2.png" class="w-100" />
+                            <!-- <img src="img/foto2.png" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 3.jpg" class="w-100" />
+                            <!-- <img src="img/foto 3.jpg" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 4.jpg" class="w-100" />
+                            <!-- <img src="img/foto 4.jpg" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 5.jpg" class="w-100" />
+                            <!-- <img src="img/foto 5.jpg" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
