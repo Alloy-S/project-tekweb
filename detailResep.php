@@ -195,7 +195,7 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                         <textarea class="form-control" name="comment" id="comment" name="comment" placeholder="Berikan komentar!" required></textarea>
                                     </div>
                                 </div>
-                                <div class="mx-3">
+                                <div class="mx-3 mb-2">
                                     <input type="submit" id="submit" name="submit" class="btn btn-secondary" value="post">
                                 </div>
                             </form>
