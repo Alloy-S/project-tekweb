@@ -73,28 +73,47 @@ require("connect.php");
                     });
                 }
 
+                function fetch_resep(page) {
+                    $.ajax({
+                        url: "ajax/pagination.php",
+                        method: "POST",
+                        data: {
+                            page: page
+                        },
+                        success: function(data) {
+                            $("#content-resep").html(data);
+                        }
+                    });
+                }
+                fetch_resep();
 
-            });
-
-            function fetch_resep(page) {
-                $.ajax({
-                    url: "ajax/pagination.php",
-                    method: "POST",
-                    data: {
-                        page: page
-                    },
-                    success: function(data) {
-                        $("#content-resep").html(data);
-                    }
+                $(document).on("click", ".page-item", function() {
+                    var page = $(this).attr("id");
+                    fetch_resep(page)
                 });
-            }
-            fetch_resep();
-
-            $(document).on("click", ".page-item", function() {
-                var page = $(this).attr("id");
-                fetch_resep(page)
             });
 
+            $("#navbarDropdownMenuAvatar").click(function() {
+                var WIDTH_LIMIT = 992;
+
+                var windowWidth = window.innerWidth;
+
+                if (windowWidth <= WIDTH_LIMIT) {
+                    $("#profile-down").removeClass("dropdown-menu-end");
+                    $("#profile-down").addClass("dropdown-menu-start");
+                } else {
+                    $("#profile-down").removeClass("dropdown-menu-start");
+                    $("#profile-down").addClass("dropdown-menu-end");
+                }
+            });
+
+            $("#bar-collapse").click(function() {
+                if ($("#contain-dropdown").css('background-color') == "transparent") {
+                    $("#contain-dropdown").css('background-color', '#c6c9ca');
+                } else {
+                    $("#contain-dropdown").css('background-color', '#8a8d8d');
+                }
+            });
         });
     </script>
 </head>
@@ -106,7 +125,7 @@ require("connect.php");
         <div class="container-fluid" id='contain-dropdown' style="margin-top: 0px;background-color:transparent ">
             <!-- Toggle button -->
             <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
+                <i class="fas fa-bars text-light"></i>
             </button>
 
             <!-- Collapsible wrapper -->
@@ -140,9 +159,7 @@ require("connect.php");
                             </button>
                         </a>
                     </div>
-
                     <div class="d-flex justify-content-end" id="logo-dropdown">
-
                         <!-- Avatar -->
                         <div class="dropdown d-flex justify-content-end">
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">

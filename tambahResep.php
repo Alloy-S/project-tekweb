@@ -181,11 +181,11 @@ $data = query("SELECT * FROM kategori");
                             console.log("data berhasil ditambahkan");
                             console.log(response);
                             window.location.href = "index.php";
-                        }, 
+                        },
                         error: function() {
                             alert('eror');
                         }
-                        
+
                     });
                 } else {
                     alert("pilih gambar terlebih dahulu");
@@ -248,38 +248,36 @@ $data = query("SELECT * FROM kategori");
                     <img src="img\Gudang Resep.png" height="40" alt="GR Logo" loading="lazy" />
                 </a>
 
-            </div>
-            <!-- Collapsible wrapper -->
 
-            <!-- Right elements -->
-            <?php if (isset($_SESSION["login_user"])) : ?>
-                <div class="d-flex align-items-center ">
+                <!-- Collapsible wrapper -->
 
-                    <!-- Avatar -->
-                    <div class="dropdown ">
-
-                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                            <li>
-                                <a class="dropdown-item" href="myprofile.php">My profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="logout.php">Logout</a>
-                            </li>
-                        </ul>
+                <!-- Right elements -->
+                <?php if (isset($_SESSION["login_user"])) : ?>
+                    <div class="d-flex justify-content-end" id="logo-dropdown">
+                        <!-- Avatar -->
+                        <div class="dropdown d-flex justify-content-end">
+                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                <li>
+                                    <a class="dropdown-item" href="myprofile.php">My profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="logout.php">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            <?php else : ?>
-                <div class="d-flex align-items-center">
-                    <a class="text-reset me-3" href="login2.php">
-                        <button type="button" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">Login</button>
-                    </a>
-                </div>
-            <?php endif; ?>
-            <!-- Right elements -->
+                <?php else : ?>
+                    <div class="d-flex align-items-center">
+                        <a class="text-reset me-3" href="login2.php">
+                            <button type="button" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">Login</button>
+                        </a>
+                    </div>
+                <?php endif; ?>
+                <!-- Right elements -->
+            </div>
         </div>
         <!-- Container wrapper -->
     </nav>
