@@ -7,8 +7,9 @@ if (!isset($_SESSION["login_user"])) {
 require('connect.php');
 $id = $_GET['id'];
 
-$resep = mysqli_query($conn, "SELECT * FROM resep WHERE id_resep = '$id'");
-if ($resep) {
+$resep = mysqli_query($conn, "SELECT * FROM resep WHERE id_resep = $id");
+if (mysqli_num_rows($resep) == 0) {
+    // var_dump($resep);
     header("Location: myprofile.php");
 }
 $resep = mysqli_fetch_assoc($resep);
