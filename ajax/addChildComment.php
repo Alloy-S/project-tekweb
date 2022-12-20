@@ -1,5 +1,6 @@
 <?php
 require("../connect.php");
+session_start();
 if (isset($_SESSION["login_user"])) {
     $author = $_SESSION["username_user"];
 } else {

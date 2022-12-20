@@ -264,7 +264,7 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                 });
 
                                 $(document).on("click", ".submit-rep", function() {
-                                    // event.preventDefault();
+                                    event.preventDefault();
                                     var form = $(this).parent().parent().parent();
                                     var reply = $(this).parent().parent().parent().parent();
                                     console.log($(this).parent().parent().parent().parent());

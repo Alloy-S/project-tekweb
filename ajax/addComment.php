@@ -36,30 +36,22 @@ $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 
 <?php foreach ($result as $r) : ?>
-        <?php if ($r['reply'] == 0) : ?>
-                <div class="comment-header"><b><?= $r['author']; ?></b> on <i><?= $r["date_created"]; ?></i> </div>
-                <div class="comment-content"><?= $r["comment"] ?></div>
-                <div id="reply">
-                        <button type="button" class="btn btn-secondary reply mb-2" id="<?= $r["comment_id"]; ?>" style="display:block;">Reply</button>
-                        <div class="rep-container"></div>
-                </div>
-                
-                <!-- <div id="reply-form" style="display:none;">
-                <form action="addComment.php" method="POST">
-                        <div class="col-auto mx-4 mb-2 mt-2">
-                                <input type="hidden" value="$r[' . $r["comment_id"].'" name="reply-id">
-                                <textarea class="form-control" name="rep" id="rep" name="rep" placeholder="Berikan balasan!" required></textarea>
 
-                        </div>
-
-
-                        <div class="mx-4 mb-3">
-                                <input type="submit" id="submit-rep" name="submit-rep" class="btn btn-secondary" value="post">
-                        </div>
-                </form>
-        </div> -->
-        <?php else : ?>
-                <div class="comment-header mx-3"><b><?= $r['author']; ?></b> on <i><?= $r["date_created"]; ?></i> </div>
-                <div class="comment-content mx-3"><?= $r["comment"] ?></div>
-        <?php endif; ?>
+<div class="comment-header"><b><?= $r['author']; ?></b> on <i><?= $r["date_created"]; ?></i> </div>
+<div class="comment-content"><?= $r["comment"] ?></div>
+<div class="reply-form">
+    <button type="button" class="btn btn-secondary reply mb-2" value="<?= $r["comment_id"]; ?>" style="display:block;" idresep="<?= $r['id_resep']; ?>">Reply</button>
+    <?php
+    $reply = $r['comment_id'];
+    $query = "SELECT * FROM comments WHERE reply = '$reply' ORDER BY comment_id ASC";
+    $child = mysqli_query($conn, $query);
+    if (mysqli_num_rows($child) > 0) :
+        $row = mysqli_fetch_all($child, MYSQLI_ASSOC);
+    ?>
+        <?php foreach ($row as $ro) : ?>
+            <div class="comment-header mx-4"><b><?= $ro['author']; ?></b> on <i><?= $ro["date_created"]; ?></i> </div>
+            <div class="comment-content mx-4"><?= $ro["comment"] ?></div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
 <?php endforeach; ?>
