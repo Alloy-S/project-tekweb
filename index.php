@@ -146,7 +146,7 @@ require("connect.php");
                         <!-- Avatar -->
                         <div class="dropdown d-flex justify-content-end">
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                                <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
+                                <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy"/>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                                 <li>
@@ -157,7 +157,7 @@ require("connect.php");
                                 </li>
                             </ul>
                         </div>
-                    </div>>
+                    </div>
                 <?php else : ?>
                     <div class="d-flex align-items-center d-flex justify-content-center" id="login-nav">
                         <a class="text-reset me-3" href="login2.php">

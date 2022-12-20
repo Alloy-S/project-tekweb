@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // echo $msg;
 }
 
-$query = "SELECT * FROM comments WHERE id_resep = '$resep_id' ORDER BY comment_id ASC";
+$query = "SELECT * FROM comments WHERE id_resep = '$resep_id' and reply is null ORDER BY comment_id ASC";
 $result = mysqli_query($conn, $query);
 
 $result = mysqli_fetch_all($result, MYSQLI_ASSOC);

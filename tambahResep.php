@@ -37,7 +37,7 @@ $data = query("SELECT * FROM kategori");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah resep baru</title>
+    <title>Tulis resep baru</title>
     <!-- bootstrap -->
     <link rel="stylesheet" href="MDB5/css/mdb.min.css" />
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
@@ -201,6 +201,7 @@ $data = query("SELECT * FROM kategori");
 
         .field-input {
             background-color: white;
+            border-radius: 8px;
             padding: 10px;
             margin-bottom: 15px;
         }
@@ -291,12 +292,12 @@ $data = query("SELECT * FROM kategori");
                 <div class="field-input">
 
                     <label class="form-label" for="nama_resep">Judul Resep : </label>
-                    <input class="form-control" type="text" name="nama_resep" id="nama_resep" maxlength="30" required>
+                    <input class="form-control mb-2" type="text" name="nama_resep" id="nama_resep" maxlength="30" required>
 
 
                     <!-- <label for="nama">deskripsi : </label>
                 <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea> -->
-                    <label for="deskripsi" class="form-label">Deskripsi resep</label>
+                    <label for="deskripsi" class="form-label">Deskripsi resep : </label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
 
                     <select class="form-select mt-3" aria-label="Default select example" name="kategori" required>
@@ -308,7 +309,7 @@ $data = query("SELECT * FROM kategori");
                     </select>
                 </div>
                 <div class="field-input">
-                    <label for="row-bahan">Bahan-bahan</label>
+                    <label class="mb-2" for="row-bahan">Bahan-bahan : </label>
                     <ol id="row-bahan">
                         <li>
                             <div class="row ">
@@ -334,7 +335,7 @@ $data = query("SELECT * FROM kategori");
                     <button type="button" id="add-row-bahan" class="btn btn-outline-primary">add</button>
                 </div>
                 <div class="field-input">
-                    <label for="row-langkah">Langkah-Langkah</label>
+                    <label for="row-langkah">Langkah-Langkah : </label>
                     <ol id="row-langkah">
                         <li>
                             <div class="row my-2">
@@ -380,9 +381,8 @@ $data = query("SELECT * FROM kategori");
                     </select>
                 </div>
 
-                <div class="field-input">
-                    <button class="btn btn-primary" type="submit" id="submit" name="submit">Submit</button>
-                </div>
+                <button class="btn btn-primary mb-4" type="submit" id="submit" name="submit">Submit</button>
+
 
             </form>
         </div>
