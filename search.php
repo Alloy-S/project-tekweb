@@ -25,6 +25,8 @@ if (isset($_GET["submit_btn"])) {
         <!-- <link rel="stylesheet" href="fa_icons/css/all.css"> -->
         <link rel="stylesheet" href="assets/fontawesome/css/all.css">
         <!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
+        <link rel="stylesheet" href="style.css">
+
     </head>
 
     <body style='background-color:#c6c9ca'>
@@ -97,15 +99,30 @@ if (isset($_GET["submit_btn"])) {
                     if ($row_cnt > 0) {
                         while ($row = mysqli_fetch_assoc($result)) :
                     ?>
-                            <div class="col-12 col-md-6 col-lg-3">
+                            <div class="col-6 col-lg-3">
                                 <div class="card m-2">
-                                    <div class="ratio ratio-16x9">
-                                        <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
-                                    </div>
+                                    <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
+                                        <div class="ratio ratio-16x9">
+                                            <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
+                                        </div>
+                                    </a>
                                     <div class="card text-center">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
-                                            <a href="detailResep.php?id=<?= $row["id_resep"] ?>" class="btn btn-primary sticky-bottom">More</a>
+                                        <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+                                            </div>
+                                        </a>
+                                        <div class="icon-content d-flex flex-row justify-content-center">
+                                            <div class="icon-field">
+                                                <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
+                                            </div>
+                                            &nbsp;
+                                            <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
+                                                <span style="color: red;">
+                                                    <i class="fa-regular fa-heart"></i>
+                                                </span>
+                                                <span class="like"><?= $row['likes']; ?></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

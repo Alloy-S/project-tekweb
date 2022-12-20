@@ -20,11 +20,9 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
 
 $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
 
-// save all records from database in an array
-$comments = array();
-while ($r = mysqli_fetch_object($que)) {
-    array_push($comments, $r);
-}
+// if (isset($_SESSION["login_user"])){
+//      $username =
+// }
 ?>
 
 <!DOCTYPE html>
@@ -186,83 +184,89 @@ while ($r = mysqli_fetch_object($que)) {
                     <!-- Author -->
                     <div class="widget widget-author">
                         <div class="widget-title">
-                            <h3>Comments</h3>
+                            <h3>Komentar</h3>
                         </div>
                         <div class="form-group mx-3">
                             <form method="POST" id="comment-form">
                                 <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" required>
-
-                                <div class="hstack gap-2 mx-3 my-3">
+                                <!-- <input type="hidden" name="comment_id" id="comment_id" value="0" /> -->
+                                <!-- <div class="hstack gap-2 mx-3 my-3">
                                     <label>Your name</label> <br />
                                     <div class="col-auto">
                                         <input class="form-control" type="text" id="name" name="name" required>
                                     </div>
-                                </div>
+                                </div> -->
 
-                                <div class="mx-3 mb-4">
-                                    <div class="col-auto mb-2">
+                                <div class="mx-3 mb-4 my-2">
+                                    <!-- <div class="col-auto mb-2">
                                         <label>Comment</label>
-                                    </div>
+                                    </div> -->
                                     <div class="col-auto mx-0">
-                                        <textarea class="form-control" name="comment" id="comment" name="comment" required></textarea>
+                                        <textarea class="form-control" name="comment" id="comment" name="comment" placeholder = "Berikan komentar!" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="mx-3 mb-3">
-                                    <input type="submit" id="submit" name="submit" class="btn btn-secondary">
+                                    <input type="submit" id="submit" name="submit" class="btn btn-secondary" value = "post">
                                 </div>
 
                             </form>
                         </div>
-                        <div class="com-sec"></div>
+                        <div class="com-sec mx-4"></div>
                         <script>
                             $(document).ready(function() {
+    
                                 $("#submit").click(function(event) {
                                     event.preventDefault();
-                                    event.stopImmediatePropagation();
-                                    // $("#comment-form :input").prop("disabled", false);
-                                    // var vid  = $("#id").val();
-                                    // var vname  = $("#name").val();
-                                    // var vcomment  = $("#comment").val();
-                                    // var form = $(this);
-                                    // var formUrl = $(this).attr("action");
-                                    console.log($("#comment-form").serialize());
 
+                                    console.log($("#comment-form").serialize());
                                     $.ajax({
-                                        url: "addComment.php",
-                                        type: "POST",
-                                        data: $("#comment-form").serialize(),
-                                        success: function(data) {
-                                            console.log(data);
+                                        url:"addComment.php",
+                                        type:"POST",
+                                        data:$("#comment-form").serialize(),
+                                        success:function(data){ 
+                                           alert(data)       
+                                           window.location.reload()
+                                            
                                         },
+                                 
                                         error: function(xhr, status, error) {
                                             console.log(error);
-                                        },
+                                        }
                                     })
-                                    return false
-                                })
-                            });
-
-                            // load_comment();
-
+                                });
+                
+                            
+                            load_comment()
+                        
                             function load_comment() {
+                                var id = $("#id").val();
+                                console.log(id)
                                 $.ajax({
-                                    url: "showComment.php",
-                                    method: "POST",
-                                    datatype: "JSON",
-                                    success: function(data) {
-                                        $('#com-sec').html(data);
-                                    }
+                                url:"showComment.php",
+                                method:"POST",
+                                data : {
+                                    resep_id : id
+                                },   
+                                success:function(data){
+                                    $(".com-sec").html(data) 
+                                }
                                 })
-                            }
+                            };
+                           
+                            // function
 
-                            // );$(document).on('click', '.reply', function(){
-                            // var comment_id = $(this).attr("id");
-                            // $('#comment_id').val(comment_id);
-                            // $('#comment_name').focus();
-                            // }
+                            // $(document).on('click', '.reply', function(){
+                                
+                            //     var comment_id = $(this).attr("id");
+                            //     $('#comment_id').val(comment_id);
+                            //     $('#comment_name').focus();
+                            // });
 
-                            ;
+                        });
+                        
+                        
+                            // });
                         </script>
                         </form>
 

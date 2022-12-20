@@ -5,23 +5,9 @@ require("connect.php");
 //     header("Location: login.php");
 // }
 
-if (isset($_GET["page"])) {
-    $page_number  = $_GET["page"];
-} else {
-    $page_number = 1;
-};
-
-$limit = 8;
-$initial_page = ($page_number - 1) * $limit;
-$previous = $page_number - 1;
-$next = $page_number + 1;
-
-$data = query("SELECT * FROM resep WHERE is_approved = 1");
+// $data = query("SELECT * FROM resep WHERE is_approved = 1");
 // var_dump($data);
 // print_r($_SESSION);
-
-$total_rows = count($data);
-$total_pages = ceil($total_rows / $limit);
 
 ?>
 
