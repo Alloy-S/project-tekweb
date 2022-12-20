@@ -46,6 +46,10 @@ if (isset($_POST['submit'])) {
             .edit {
                 width: 100%;
             }
+
+            #btn-tambah {
+                margin-top: 9%;
+            }
         }
     </style>
 </head>
@@ -66,11 +70,16 @@ if (isset($_POST['submit'])) {
                 <a class="navbar-brand mt-2 mt-lg-0" href="index.php">
                     <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
+                <div class="input-group d-flex justify-content-center">
+                    <div class="coba form-outline w-25 rounded" style="--bs-border-opacity: .5;">
+                    </div>
+                </div>
 
                 <!-- Collapsible wrapper -->
 
                 <!-- Right elements -->
                 <?php if (isset($_SESSION["login_user"])) : ?>
+
                     <div class="d-flex justify-content-end" id="logo-dropdown">
                         <!-- Avatar -->
                         <div class="dropdown d-flex justify-content-end">
@@ -87,6 +96,7 @@ if (isset($_POST['submit'])) {
                             </ul>
                         </div>
                     </div>
+                    <!-- </div> -->
                 <?php else : ?>
                     <div class="d-flex align-items-center">
                         <a class="text-reset me-3" href="login2.php">
@@ -116,8 +126,13 @@ if (isset($_POST['submit'])) {
                     <input type="text" name="email" class="form-control" value="<?= $row['email']; ?>">
 
                     <div class="d-grid gap-2 mt-3">
-                        <button type="submit" class="btn btn-dark" name="submit" id="submit">Save</button>
+                        <button type="submit" class="btn btn-success" name="submit" id="submit">Save</button>
                     </div>
+                    <a href="myprofile.php">
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="back" class="btn btn-primary" name="back" id="back">Back</button>
+                        </div>
+                    </a>
                 </form>
             </div>
         </div>

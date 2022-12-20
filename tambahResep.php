@@ -227,6 +227,17 @@ $data = query("SELECT * FROM kategori");
             .content {
                 width: 100%;
             }
+
+            #search-unit {
+                width: 65%;
+                margin-top: 3%;
+            }
+        }
+
+        @media (min-width: 993px) {
+            #search-unit {
+                width: 25%;
+            }
         }
     </style>
 </head>
@@ -237,25 +248,36 @@ $data = query("SELECT * FROM kategori");
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" name="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
 
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0" href="index.php">
-                    <img src="img\Gudang Resep.png" height="40" alt="GR Logo" loading="lazy" />
+                <a href="index.php" class="navbar-brand mt-2 mt-lg-0">
+                    <img src="img\black.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
-
-
+                <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
+                <div class="input-group d-flex justify-content-center">
+                    <div class="coba form-outline rounded border border-dark" id="search-unit" style="--bs-border-opacity: .5;">
+                        <form class="d-flex flex-row" action="search.php" method="GET">
+                            <input id="search-input" type="search" name="search_index" class="form-control text-dark" />
+                            <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
+                                <i class="fas fa-search text-dark"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <!-- </div> -->
                 <!-- Collapsible wrapper -->
-
                 <!-- Right elements -->
                 <?php if (isset($_SESSION["login_user"])) : ?>
+                    <div class="d-flex align-items-center d-flex justify-content-center" style="margin-left: 9%;">
+                    </div>
                     <div class="d-flex justify-content-end" id="logo-dropdown">
                         <!-- Avatar -->
-                        <div class="dropdown d-flex justify-content-end">
+                        <div class="dropdown d-flex justify-content-end" style="margin-left: -30%;">
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                                 <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
                             </a>

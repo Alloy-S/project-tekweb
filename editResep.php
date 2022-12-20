@@ -137,6 +137,10 @@ if (isset($_POST['save'])) {
                 <a class="navbar-brand mt-2 mt-lg-0" href="index.php">
                     <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
+                <div class="input-group d-flex justify-content-center">
+                    <div class="coba form-outline w-25 rounded" style="--bs-border-opacity: .5;">
+                    </div>
+                </div>
 
                 <!-- Collapsible wrapper -->
 
@@ -248,7 +252,7 @@ if (isset($_POST['save'])) {
                 </div>
 
                 <div class="field-input">
-                    <button class="btn btn-primary" type="submit" id="save" name="save">Save</button>
+                    <button class="btn btn-success" type="submit" id="save" name="save">Save</button>
                     <button class="btn btn-danger" type="submit" id="delete" name="delete">Delete</button>
                 </div>
 

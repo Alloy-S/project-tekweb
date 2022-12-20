@@ -71,6 +71,21 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
             .profile {
                 width: 100%;
             }
+
+            #btn-tambah {
+                margin-top: 9%;
+            }
+
+            #search-unit {
+                width: 65%;
+                margin-top: 3%;
+            }
+        }
+
+        @media (min-width: 993px) {
+            #search-unit {
+                width: 25%;
+            }
         }
     </style>
     <script>
@@ -143,7 +158,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                     <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
                 <div class="input-group d-flex justify-content-center">
-                    <div class="coba form-outline w-25 rounded border border-dark" style="--bs-border-opacity: .5;">
+                    <div class="coba form-outline rounded border border-dark" id="search-unit" style="--bs-border-opacity: .5;">
                         <form class="d-flex flex-row" action="search.php" method="GET">
                             <input id="search-input" type="search" name="search_index" class="form-control text-dark" />
                             <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
@@ -159,7 +174,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                 <?php if (isset($_SESSION["login_user"])) : ?>
                     <div class="d-flex align-items-center d-flex justify-content-center">
                         <a class="text-reset me-3" href="tambahResep.php">
-                            <button type="button" class="btn btn-light btn-rounded border border-dark" id="btn-tambah" data-mdb-ripple-color="dark" style="width:150px; margin-top:9%">
+                            <button type="button" class="btn btn-light btn-rounded border border-dark" id="btn-tambah" data-mdb-ripple-color="dark" style="width:150px;">
                                 <i class="fa-solid fa-pencil"></i>
                                 Tulis Resep
                             </button>

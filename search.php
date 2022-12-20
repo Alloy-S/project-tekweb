@@ -56,6 +56,10 @@ if (isset($_GET["submit_btn"])) {
                 nav .container-fluid {
                     padding: 0px;
                 }
+
+                #error-img {
+                    min-width: 70%;
+                }
             }
         </style>
 
@@ -79,7 +83,7 @@ if (isset($_GET["submit_btn"])) {
                     </a>
                     <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
                     <div class="input-group d-flex justify-content-center">
-                        <div class="coba form-outline w-25 rounded border border-dark" style="--bs-border-opacity: .5;">
+                        <div class="coba form-outline rounded border border-dark" id="search-unit" style="--bs-border-opacity: .5;">
                             <form class="d-flex flex-row" action="search.php" method="GET">
                                 <input id="search-input" type="search" name="search_index" class="form-control text-dark" />
                                 <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
@@ -170,7 +174,7 @@ if (isset($_GET["submit_btn"])) {
                         endwhile;
                     } else {
                         ?>
-                        <img src="img/404 Error.gif" style="height: auto; max-width: 30%; margin-left: auto; margin-right: auto; margin-top:30vh">
+                        <img src="img/404 Error.gif" id='error-img' style="height: auto; max-width: 30%; margin-left: auto; margin-right: auto; margin-top:30vh">
                 </div>
         <?php }
                 }
