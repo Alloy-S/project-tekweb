@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 19 Des 2022 pada 11.34
+-- Waktu pembuatan: 20 Des 2022 pada 18.52
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 8.1.5
 
@@ -69,15 +69,8 @@ CREATE TABLE `comments` (
   `id_resep` int(11) NOT NULL,
   `comment` varchar(255) NOT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
-  `reply` int(11) NOT NULL
+  `reply` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `comments`
---
-
-INSERT INTO `comments` (`comment_id`, `author`, `id_resep`, `comment`, `date_created`, `reply`) VALUES
-(0, '', 35, '', '2022-12-17 21:41:50', 0);
 
 -- --------------------------------------------------------
 
@@ -149,6 +142,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`username`, `password`, `nama`, `email`) VALUES
 ('admin', '$2y$10$XnTpXHQuFABWxuuE1EaWX.H5kPBqEC/OEO7AZZAm71lA2nMhAT4j6', 'admin', 'admin@wkwk.com'),
+('gil123', '$2y$10$5duuUsoJSkvIKPYO4ywX4uEhLFgwQ2AGF2.fYHFAjZWmRmK7sJpa6', 'gilbert', 'gil123@gmail.com'),
 ('tipen123', '$2y$10$QfthRAu/cP17azvhmyjAvuCoToh/nVcnbvexnR1DnikK5B4gcrz2W', 'Alloysius Steven H', 'tipeen995@gmail.com');
 
 --
@@ -172,7 +166,8 @@ ALTER TABLE `bahan`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `id_resep` (`id_resep`);
+  ADD KEY `reply` (`reply`),
+  ADD KEY `comments_ibfk_1` (`id_resep`);
 
 --
 -- Indeks untuk tabel `kategori`
@@ -211,6 +206,12 @@ ALTER TABLE `admin_acc`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT untuk tabel `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT untuk tabel `kategori`
 --
 ALTER TABLE `kategori`
@@ -220,7 +221,7 @@ ALTER TABLE `kategori`
 -- AUTO_INCREMENT untuk tabel `resep`
 --
 ALTER TABLE `resep`
-  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_resep` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -236,7 +237,8 @@ ALTER TABLE `bahan`
 -- Ketidakleluasaan untuk tabel `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`id_resep`) REFERENCES `resep` (`id_resep`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`id_resep`) REFERENCES `resep` (`id_resep`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `reply` FOREIGN KEY (`reply`) REFERENCES `comments` (`comment_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ketidakleluasaan untuk tabel `langkah`
