@@ -51,6 +51,10 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
             color: black;
         }
 
+        .menu {
+            min-height: 200px;
+        }
+
         .empty {
             background-color: white;
             height: 300px;
@@ -195,7 +199,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                     <div id="my-resep" class="row">
 
                         <?php foreach ($resep as $row) : ?>
-                            <div class="col-6 col-lg-3">
+                            <div class="col-6 col-lg-4">
                                 <div class="card m-2">
                                     <a href="editResep.php?id=<?= $row["id_resep"]; ?>">
                                         <div class="ratio ratio-16x9">
@@ -228,8 +232,15 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                     <?php else : ?>
                         <div class="empty card d-flex justify-content-center aligns-item-center text-center">
                             <h2>Kamu Belum Memiliki resep</h2>
-                            <a href="tambahresep.php"><button class="btn btn-primary">Tulis Resep</button></a>
+                            <a class="text-reset me-3" href="tambahResep.php">
+                                <button type="button" class="btn btn-dark btn-rounded mt-3" id="btn-tambah" data-mdb-ripple-color="dark" style="width:150px;">
+                                    <i class="fa-solid fa-pencil"></i>
+                                    Tulis Resep
+                                </button>
+                            </a>
                         </div>
+                    </div>
+
                     <?php endif; ?>
             </div>
         </div>
