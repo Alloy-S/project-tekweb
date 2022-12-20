@@ -17,7 +17,7 @@ $result = mysqli_query($conn, $query);
 
 $result = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
-<button type="button" class="btn btn-secondary reply mb-2" value="<?= $reply; ?>" style="display:block;" idresep="<?= $r['id_resep']; ?>">Reply</button>
+<button type="button" class="btn btn-secondary reply mb-2" value="<?= $reply; ?>" style="display:block;" idresep="<?= $resep_id; ?>">Reply</button>
 <?php foreach ($result as $r) : ?>
     <div class="comment-header mx-4"><b><?= $r['author']; ?></b> on <i><?= $r["date_created"]; ?></i> </div>
     <div class="comment-content mx-4"><?= $r["comment"] ?></div>
