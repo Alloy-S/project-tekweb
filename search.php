@@ -59,7 +59,7 @@ if (isset($_GET["submit_btn"])) {
                 <!-- Collapsible wrapper -->
                 <!-- Right elements -->
                 <?php if (isset($_SESSION["login_user"])) : ?>
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center" id="icon-dropdown">
                         <!-- Avatar -->
                         <div class="dropdown">
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">

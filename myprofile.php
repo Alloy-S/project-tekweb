@@ -54,6 +54,8 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
         .empty {
             background-color: white;
             height: 300px;
+            padding: 0px;
+            width: 100%;
         }
 
         .card-body {
@@ -174,7 +176,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                 </div>
                 <div class="m-2">
                     <a href="editProfile.php" style="color: black;">
-                        <i class="fa-solid fa-pen fa-lg"></i>
+                        <i class="fa-solid fa-pencil fa-lg"></i>
                     </a>
                 </div>
 
@@ -223,17 +225,69 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                         <?php endforeach; ?>
 
                     </div>
-                <?php else : ?>
-                    <div class="empty card d-flex justify-content-center aligns-item-center text-center">
-                        <h2>Kamu Belum Memiliki resep</h2>
-                        <a href="tambahresep.php"><button class="btn btn-primary">Tulis Resep</button></a>
-                    </div>
-                <?php endif; ?>
+                    <?php else : ?>
+                        <div class="empty card d-flex justify-content-center aligns-item-center text-center">
+                            <h2>Kamu Belum Memiliki resep</h2>
+                            <a href="tambahresep.php"><button class="btn btn-primary">Tulis Resep</button></a>
+                        </div>
+                    <?php endif; ?>
             </div>
         </div>
-
-
     </div>
+    <footer class="text-center text-white" style="background-color: #8a8d8d;">
+        <!-- Grid container -->
+        <div class="container-fluid" id="footer-element" style="height:fit-content;">
+            <!-- Section: Images -->
+            <section class="">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto 1.jpg" class="w-100" />
+                            <p>C14210265</p>
+                            <p>Alloysius Steven</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto2.png" class="w-100" />
+                            <p>C14210265</p>
+                            <p>Alloysius Steven</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto 3.jpg" class="w-100" />
+                            <p>C14210265</p>
+                            <p>Alloysius Steven</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto 4.jpg" class="w-100" />
+                            <p>C14210265</p>
+                            <p>Alloysius Steven</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <img src="img/foto 5.jpg" class="w-100" />
+                            <p>C14210265</p>
+                            <p>Alloysius Steven</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section: Images -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">Kelompok TEKWEB 5</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 </body>
 
 </html>
