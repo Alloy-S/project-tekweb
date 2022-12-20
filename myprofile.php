@@ -283,29 +283,29 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
                             <!-- <img src="img/foto 1.jpg" class="w-100" /> -->
-                            <p>C14210265</p>
-                            <p>Alloysius Steven</p>
+                            <p>C14210134 </p>
+                            <p>Clarissa</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
                             <!-- <img src="img/foto2.png" class="w-100" /> -->
-                            <p>C14210265</p>
-                            <p>Alloysius Steven</p>
+                            <p>C14210192</p>
+                            <p>Gilbert Lorentz</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
                             <!-- <img src="img/foto 3.jpg" class="w-100" /> -->
-                            <p>C14210265</p>
-                            <p>Alloysius Steven</p>
+                            <p>C14210210</p>
+                            <p>Novemelia Wijaya</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
                             <!-- <img src="img/foto 4.jpg" class="w-100" /> -->
-                            <p>C14210265</p>
-                            <p>Alloysius Steven</p>
+                            <p>C14210248</p>
+                            <p>Karen Eloise Sunaryo</p>
                         </div>
                     </div>
                     <div class="col-sm">

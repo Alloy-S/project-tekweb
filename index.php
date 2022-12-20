@@ -72,25 +72,25 @@ require("connect.php");
                         }
                     });
                 }
+            });
 
-                function fetch_resep(page) {
-                    $.ajax({
-                        url: "ajax/pagination.php",
-                        method: "POST",
-                        data: {
-                            page: page
-                        },
-                        success: function(data) {
-                            $("#content-resep").html(data);
-                        }
-                    });
-                }
-                fetch_resep();
-
-                $(document).on("click", ".page-item", function() {
-                    var page = $(this).attr("id");
-                    fetch_resep(page)
+            function fetch_resep(page) {
+                $.ajax({
+                    url: "ajax/pagination.php",
+                    method: "POST",
+                    data: {
+                        page: page
+                    },
+                    success: function(data) {
+                        $("#content-resep").html(data);
+                    }
                 });
+            }
+            fetch_resep();
+
+            $(document).on("click", ".page-item", function() {
+                var page = $(this).attr("id");
+                fetch_resep(page)
             });
 
             $("#navbarDropdownMenuAvatar").click(function() {
@@ -213,29 +213,29 @@ require("connect.php");
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
                             <!-- <img src="img/foto 1.jpg" class="w-100" /> -->
-                            <p>C14210265</p>
-                            <p>Alloysius Steven</p>
+                            <p>C14210134 </p>
+                            <p>Clarissa</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
                             <!-- <img src="img/foto2.png" class="w-100" /> -->
-                            <p>C14210265</p>
-                            <p>Alloysius Steven</p>
+                            <p>C14210192</p>
+                            <p>Gilbert Lorentz</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
                             <!-- <img src="img/foto 3.jpg" class="w-100" /> -->
-                            <p>C14210265</p>
-                            <p>Alloysius Steven</p>
+                            <p>C14210210</p>
+                            <p>Novemelia Wijaya</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
                             <!-- <img src="img/foto 4.jpg" class="w-100" /> -->
-                            <p>C14210265</p>
-                            <p>Alloysius Steven</p>
+                            <p>C14210248</p>
+                            <p>Karen Eloise Sunaryo</p>
                         </div>
                     </div>
                     <div class="col-sm">

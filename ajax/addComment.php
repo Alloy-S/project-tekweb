@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         $comment = $_POST["comment"];
         $resep_id = $_POST["id_resep"];
+   
 
         if (isset($_POST['id-reply'])) {
                 $reply = $_POST['id-reply'];
