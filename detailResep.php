@@ -218,7 +218,6 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
 
                             $result = mysqli_fetch_all($result, MYSQLI_ASSOC); ?>
                             <?php foreach ($result as $r) : ?>
-
                                 <div class="comment-header"><b><?= $r['author']; ?></b> on <i><?= $r["date_created"]; ?></i> </div>
                                 <div class="comment-content"><?= $r["comment"] ?></div>
                                 <div class="reply-form">
@@ -243,7 +242,11 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
 
                                 $("#submit").click(function(event) {
                                     event.preventDefault();
-
+                                    var comment = $("#comment").val();
+                                    if(comment == ""){
+                                        alert("Kolom komentar belum terisi")
+                                        return
+                                    }
                                     console.log($("#comment-form").serialize());
                                     $.ajax({
                                         url: "ajax/addComment.php",
@@ -253,8 +256,6 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                             //    alert(data)
                                             $("#comment-form")[0].reset();
                                             $(".com-sec").html(data);
-                                            //    window.location.reload()
-
                                         },
 
                                         error: function(xhr, status, error) {
@@ -277,8 +278,7 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                             // $("#reply-form")[0].reset();
                                             console.log($(this).parent().parent().parent().parent());
                                             reply.html(data);
-                                            //    window.location.reload()
-
+                                    
                                         },
 
                                         error: function(xhr, status, error) {
@@ -330,6 +330,62 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
             </div>
         </div>
     </div>
+    
+    <!-- Footer -->
+    <footer class="text-center text-white" style="background-color: #8a8d8d;">
+        <!-- Grid container -->
+        <div class="container-fluid" id="footer-element" style="height:fit-content;margin-top:15%">
+            <!-- Section: Images -->
+            <section class="">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <!-- <img src="img/foto 1.jpg" class="w-100" /> -->
+                            <p>C14210134 </p>
+                            <p>Clarissa</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <!-- <img src="img/foto2.png" class="w-100" /> -->
+                            <p>C14210192</p>
+                            <p>Gilbert Lorentz</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <!-- <img src="img/foto 3.jpg" class="w-100" /> -->
+                            <p>C14210210</p>
+                            <p>Novemelia Wijaya</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <!-- <img src="img/foto 4.jpg" class="w-100" /> -->
+                            <p>C14210248</p>
+                            <p>Karen Eloise Sunaryo</p>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
+                            <!-- <img src="img/foto 5.jpg" class="w-100" /> -->
+                            <p>C14210265</p>
+                            <p>Alloysius Steven</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Section: Images -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">Kelompok TEKWEB 5</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
 
 </body>
 
