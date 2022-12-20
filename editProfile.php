@@ -1,13 +1,28 @@
-<?php 
+<?php
+session_start();
+if (!isset($_SESSION["login_user"])) {
+    header("Location: login2.php");
+}
+require('connect.php');
+
 $user = $_SESSION['username_user'];
+$result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$user'");
+$row = mysqli_fetch_assoc($result);
 
-$result = 
+if(isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
 
-
+    $update = mysqli_query($conn, "UPDATE user SET username = '$username', nama = '$nama', email = '$email' WHERE username = '$user'");
+    $_SESSION['username_user'] = $username;
+    header("Location: myprofile.php");
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +33,25 @@ $result =
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="fa_icons/css/all.css"> -->
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
+    <style>
+        .content {
+            background-color: white;
+        }
+
+        .edit {
+            width: 25%;
+        }
+        @media screen and (max-width: 992px) {
+            .edit {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body style="background-color: #D0d2d2;">
-     <!-- Navbar -->
-     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
@@ -41,14 +71,13 @@ $result =
 
             <!-- Right elements -->
             <?php if (isset($_SESSION["login_user"])) : ?>
-                <div class="d-flex align-items-center mt-md-4">
+                <div class="d-flex align-items-center ">
 
                     <!-- Avatar -->
                     <div class="dropdown ">
 
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user fa-xl"></i>
-                            <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
+                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
@@ -78,10 +107,26 @@ $result =
     <!-- Navbar -->
 
     <div class="container-fluid d-flex align-items-center justify-content-center">
-        <div class="content">
-            <h1 class="text-center m-3">Tulis Resep Baru</h1>
+        <div class="card edit m-3">
+            <div class="p-3">
+                <h1 class="text-center m-3">Edit Profile</h1>
+                <form action="" method="POST">
+                    <label for="username" class="form-label">Username: </label>
+                    <input type="text" name="username" class="form-control" value="<?= $row['username']; ?>">
 
+                    <label for="nama" class="form-label">Nama: </label>
+                    <input type="text" name="nama" class="form-control" value="<?= $row['nama']; ?>">
+
+                    <label for="email" class="form-label">Email: </label>
+                    <input type="text" name="email" class="form-control" value="<?= $row['email']; ?>">
+
+                    <div class="d-grid gap-2 mt-3">
+                        <button type="submit" class="btn btn-dark" name="submit" id="submit">Save</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </body>
+
 </html>

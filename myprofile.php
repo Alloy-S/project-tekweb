@@ -38,14 +38,9 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
             height: 100%;
         }
 
-        /* .profile {
-            background-color: white;
-
-        } */
-
-        /* .profile-card {
-            margin-top: 25px;
-        } */
+        .profile {
+            width: 50%;
+        }
 
         .foto-profile {
             margin: 0px 25px 25px 25px;
@@ -54,6 +49,22 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
         .resep {
             text-decoration: none;
             color: black;
+        }
+
+        .empty {
+            background-color: white;
+            height: 300px;
+        }
+
+        .card-body {
+            padding-top: 10px;
+            padding-bottom: 0px;
+        }
+
+        @media screen and (max-width: 992px) {
+            .profile {
+                width: 100%;
+            }
         }
     </style>
     <script>
@@ -118,22 +129,18 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
 
             <!-- Right elements -->
             <?php if (isset($_SESSION["login_user"])) : ?>
-                <div class="d-flex align-items-center mt-md-4">
+                <div class="d-flex align-items-center">
 
                     <!-- Avatar -->
                     <div class="dropdown ">
 
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user fa-xl"></i>
-                            <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
+                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
                                 <a class="dropdown-item" href="#">My profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Settings</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="logout.php">Logout</a>
@@ -155,7 +162,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
     <!-- Navbar -->
 
     <div class="container-fluid profile-container d-flex justify-content-center">
-        <div class="card profile w-50 my-4">
+        <div class="card profile my-4">
             <div class="card-body profile-card d-flex flex-row">
                 <div class="foto-profile">
                     <img src="img/anonymous.jpg" class="rounded-circle" height="100" alt="Profile" loading="lazy" />
@@ -182,38 +189,46 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                         <a class="nav-link" id="private" href="#">Resep Private</a>
                     </li>
                 </ul>
+                <?php if ($resep) : ?>
+                    <div id="my-resep" class="row">
 
-                <div id="my-resep" class="row">
-                    <?php foreach ($resep as $row) : ?>
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card m-2">
-                                <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
-                                    <div class="ratio ratio-16x9">
-                                        <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
-                                    </div>
-                                </a>
-                                <div class="card text-center">
-                                    <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+                        <?php foreach ($resep as $row) : ?>
+                            <div class="col-6 col-lg-3">
+                                <div class="card m-2">
+                                    <a href="editResep.php?id=<?= $row["id_resep"]; ?>">
+                                        <div class="ratio ratio-16x9">
+                                            <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
                                         </div>
                                     </a>
-                                    <div class="icon-content d-flex flex-row justify-content-center">
-                                        <div class="icon-field me-1">
-                                            <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
-                                        </div>
-                                        <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
-                                            <span style="color: red;">
-                                                <i class="fa-regular fa-heart"></i>
-                                            </span>
-                                            <span class="like"><?= $row['likes']; ?></span>
+                                    <div class="card text-center">
+                                        <a href="editResep.php?id=<?= $row["id_resep"]; ?>">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
+                                            </div>
+                                        </a>
+                                        <div class="icon-content d-flex flex-row justify-content-center">
+                                            <div class="icon-field me-1">
+                                                <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
+                                            </div>
+                                            <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
+                                                <span style="color: red;">
+                                                    <i class="fa-regular fa-heart"></i>
+                                                </span>
+                                                <span class="like"><?= $row['likes']; ?></span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                        <?php endforeach; ?>
+
+                    </div>
+                <?php else : ?>
+                    <div class="empty card d-flex justify-content-center aligns-item-center text-center">
+                        <h2>Kamu Belum Memiliki resep</h2>
+                        <a href="tambahresep.php"><button class="btn btn-primary">Tulis Resep</button></a>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
 

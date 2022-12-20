@@ -165,7 +165,7 @@ $data = query("SELECT * FROM kategori");
                         },
                         success: function(data) {
                             console.log(data);
-                            alert("success upload image" + data);
+                            // alert("success upload image" + data);
                             // $("#image-data").val(data);
                         }
                     });
@@ -244,30 +244,26 @@ $data = query("SELECT * FROM kategori");
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0" href="index.php">
-                    <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
+                    <img src="img\Gudang Resep.png" height="40" alt="GR Logo" loading="lazy" />
                 </a>
 
             </div>
             <!-- Collapsible wrapper -->
 
             <!-- Right elements -->
-            <?php if (isset($_SESSION["login"])) : ?>
-                <div class="d-flex align-items-center mt-md-4">
+            <?php if (isset($_SESSION["login_user"])) : ?>
+                <div class="d-flex align-items-center ">
 
                     <!-- Avatar -->
                     <div class="dropdown ">
 
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user fa-xl"></i>
-                            <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
+                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
-                                <a class="dropdown-item" href="#">My profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Settings</a>
+                                <a class="dropdown-item" href="myprofile.php">My profile</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="logout.php">Logout</a>

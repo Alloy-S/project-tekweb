@@ -63,19 +63,112 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
             });
         });
     </script>
+    <style>
+        body {
+            margin: auto;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: auto;
+            background: linear-gradient(315deg, rgba(231, 152, 255, 1) 3%, rgba(60, 132, 206, 1) 38%, rgba(48, 238, 226, 1) 68%, rgba(255, 170, 25, 1) 98%);
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+            background-attachment: fixed;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        .wave {
+            background: rgb(255 255 255 / 20%);
+            border-radius: 1000% 1000% 0 0;
+            position: fixed;
+            width: 200%;
+            height: 12em;
+            animation: wave 10s -3s linear infinite;
+            transform: translate3d(0, 0, 0);
+            opacity: 0.8;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .wave:nth-of-type(2) {
+            bottom: -1.25em;
+            animation: wave 18s linear reverse infinite;
+            opacity: 0.8;
+        }
+
+        .wave:nth-of-type(3) {
+            bottom: -2.5em;
+            animation: wave 20s -1s reverse infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes wave {
+            2% {
+                transform: translateX(1);
+            }
+
+            25% {
+                transform: translateX(-25%);
+            }
+
+            50% {
+                transform: translateX(-50%);
+            }
+
+            75% {
+                transform: translateX(-25%);
+            }
+
+            100% {
+                transform: translateX(1);
+            }
+        }
+
+        tr,
+        td {
+            background-color: white;
+        }
+
+        .card {
+            width: 25%;
+        }
+
+        @media screen and (max-width: 992px) {
+            .card {
+                width: 87%;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
     <!-- Navbar-->
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
-
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
             <!-- Collapsible wrapper -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Navbar brand -->
-                <a class="navbar-brand mt-2 mt-lg-0 ms-1" href="#">
+                <a class="navbar-brand mt-2 mt-lg-0 ms-1" href="index.php">
                     <img src="white.png" height="45" alt="Gudang Resep Logo" loading="lazy" />
                 </a>
 
@@ -85,10 +178,10 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
                         <a class="nav-link" href="../index.php">Live Website</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link" href="index.php">Admin Dashboard</a>
+                        <a class="nav-link" href="approvalPage.php">Approval Page</a>
                     </li>
                     <li class="nav-item ms-4">
-                        <a class="nav-link active" href="#">Tambah Kategori</a>
+                        <a class="nav-link active" href="tambahKategori.php">Add New Category</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -119,16 +212,18 @@ mysqli_fetch_all($result, MYSQLI_ASSOC);
     </nav>
     <!-- Navbar -->
 
-    <div class="container-fluid d-flex flex-row">
-        <div class="w-25 m-3">
-            <h2>Tambah kategori</h2>
-            <form action="" method="POST" id="data-kategori">
-                <label for="namaKategori">Nama Kategori</label>
-                <input type="text" class="form-control" name="namaKategori" id="namaKategori">
-                <div class="d-grid gap-2 mt-3">
-                    <button type="submit" class="btn btn-dark" name="submit" id="submit-kategori">Add</button>
-                </div>
-            </form>
+    <div class="container-fluid d-lg-flex flex-row">
+        <div class="card  m-3">
+            <div class="p-3">
+                <h2>Tambah kategori</h2>
+                <form action="" method="POST" id="data-kategori">
+                    <label for="namaKategori">Nama Kategori</label>
+                    <input type="text" class="form-control" name="namaKategori" id="namaKategori">
+                    <div class="d-grid gap-2 mt-3">
+                        <button type="submit" class="btn btn-dark" name="submit" id="submit-kategori">Add</button>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="table-kategori w-75 m-3">
             <table class="table table-bordered">
