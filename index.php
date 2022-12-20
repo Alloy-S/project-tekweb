@@ -157,7 +157,7 @@ require("connect.php");
                                 </li>
                             </ul>
                         </div>
-                    </div>>
+                    </div>
                 <?php else : ?>
                     <div class="d-flex align-items-center d-flex justify-content-center" id="login-nav">
                         <a class="text-reset me-3" href="login2.php">
