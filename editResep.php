@@ -28,7 +28,7 @@ if (isset($_POST['save'])) {
     // $gambar = upload($data);
     // $gambar = $data["image-name"];
     try {
-        $qry = "UPDATE resep SET nama_resep = '$judul', deskripsi = '$deskripsi', id_kategori = '$kategori', is_private = $is_private";
+        $qry = "UPDATE resep SET nama_resep = '$judul', deskripsi = '$deskripsi', id_kategori = '$kategori', is_private = $is_private WHERE id_resep = $id";
 
         mysqli_query($conn, $qry);
 
@@ -272,9 +272,11 @@ if (isset($_POST['save'])) {
 
                     <select class="form-select mt-3" aria-label="Default select example" name="is_private" id="is_private" required>
                         <?php if ($resep['is_private'] == 0) : ?>
-                            <option value="false">Public</option>
-                        <?php else : ?>
+                            <option value="false" selected>Public</option>
                             <option value="true">Private</option>
+                        <?php else : ?>
+                            <option value="true" selected>Private</option>
+                            <option value="false">Public</option>
                         <?php endif; ?>
                     </select>
                 </div>
