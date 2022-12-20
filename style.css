@@ -99,16 +99,6 @@ html {
   margin-top: 1%;
 }
 
-/* @media (max-width: 991px) {
-  nav .container-fluid {
-    padding: 0px;
-  }
-  .navbar-collapse.show {
-    background-color: #aaadab;
-  }
-  
-} */
-
 @media (min-width: 993px) {
   #search-unit {
     width: 25%;
@@ -123,15 +113,16 @@ html {
   #btn-tambah{
     margin-top: 9%;
   }
+  .navbar-collapse.show {
+    background-color: #aaadab;
+  }
   #logo-dropdown{
     margin-top: 1%;
     margin-left: 3%;
     margin-bottom: 2%;
+    margin-right: 2%;
   }
   nav .container-fluid {
     padding: 0px;
-  }
-  .navbar-collapse.show {
-    background-color: #aaadab;
   }
 }

@@ -24,8 +24,40 @@ if (isset($_GET["submit_btn"])) {
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <!-- <link rel="stylesheet" href="fa_icons/css/all.css"> -->
         <link rel="stylesheet" href="assets/fontawesome/css/all.css">
-        <!-- <link href="style.css" rel="stylesheet" type="text/css" /> -->
-        <link rel="stylesheet" href="style.css">
+
+        <style>
+            @media (min-width: 993px) {
+                #search-unit {
+                    width: 25%;
+                }
+            }
+
+            @media (max-width: 992px) {
+                #search-unit {
+                    width: 65%;
+                    margin-top: 3%;
+                }
+
+                #btn-tambah {
+                    margin-top: 9%;
+                }
+
+                .navbar-collapse.show {
+                    background-color: white;
+                }
+
+                #logo-dropdown {
+                    margin-top: 1%;
+                    margin-left: 3%;
+                    margin-bottom: 2%;
+                    margin-right: 2%;
+                }
+
+                nav .container-fluid {
+                    padding: 0px;
+                }
+            }
+        </style>
 
     </head>
 
@@ -57,35 +89,42 @@ if (isset($_GET["submit_btn"])) {
                         </div>
                     </div>
                     <!-- </div> -->
-                </div>
-                <!-- Collapsible wrapper -->
-                <!-- Right elements -->
-                <?php if (isset($_SESSION["login_user"])) : ?>
-                    <div class="d-flex align-items-center" id="icon-dropdown">
-                        <!-- Avatar -->
-                        <div class="dropdown">
-                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                                <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
-
+                    <!-- Collapsible wrapper -->
+                    <!-- Right elements -->
+                    <?php if (isset($_SESSION["login_user"])) : ?>
+                        <div class="d-flex align-items-center d-flex justify-content-center">
+                            <a class="text-reset me-3" href="tambahResep.php">
+                                <button type="button" class="btn btn-light btn-rounded border border-dark" id="btn-tambah" data-mdb-ripple-color="dark" style="width:150px;">
+                                    <i class="fa-solid fa-pencil"></i>
+                                    Tulis Resep
+                                </button>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                                <li>
-                                    <a class="dropdown-item" href="myprofile.php">My profile</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="logout.php">Logout</a>
-                                </li>
-                            </ul>
                         </div>
-                    </div>
-                <?php else : ?>
-                    <div class="d-flex align-items-center">
-                        <a class="text-reset me-3" href="login2.php">
-                            <button type="button" class="btn btn-light btn-rounded border border-dark" data-mdb-ripple-color="dark">Login</button>
-                        </a>
-                    </div>
-                <?php endif; ?>
-                <!-- Right elements -->
+                        <div class="d-flex justify-content-end" id="logo-dropdown">
+                            <!-- Avatar -->
+                            <div class="dropdown d-flex justify-content-end">
+                                <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                    <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                    <li>
+                                        <a class="dropdown-item" href="myprofile.php">My profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="logout.php">Logout</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    <?php else : ?>
+                        <div class="d-flex align-items-center">
+                            <a class="text-reset me-3" href="login2.php">
+                                <button type="button" class="btn btn-light btn-rounded border border-dark" data-mdb-ripple-color="dark">Login</button>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                    <!-- Right elements -->
+                </div>
             </div>
             <!-- Container wrapper -->
         </nav>
