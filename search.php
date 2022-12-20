@@ -99,7 +99,7 @@ if (isset($_GET["submit_btn"])) {
                     if ($row_cnt > 0) {
                         while ($row = mysqli_fetch_assoc($result)) :
                     ?>
-                            <div class="col-12 col-lg-3">
+                            <div class="col-6 col-lg-3">
                                 <div class="card m-2">
                                     <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
                                         <div class="ratio ratio-16x9">
