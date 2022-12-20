@@ -52,7 +52,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
         }
 
         .menu {
-            min-height: 265px;
+            min-height: 285px;
         }
 
         .empty {
@@ -113,7 +113,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
     </script>
 </head>
 
-<body>
+<body style='background-color: #D0d2d2'>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
@@ -196,7 +196,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                     </li>
                 </ul>
                 <?php if ($resep) : ?>
-                    <div id="my-resep" class="row">
+                    <div id="my-resep" class="row mx-1 my-3">
 
                         <?php foreach ($resep as $row) : ?>
                             <div class="col-6 col-lg-4">
@@ -247,41 +247,41 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
     </div>
     <footer class="text-center text-white" style="background-color: #8a8d8d;">
         <!-- Grid container -->
-        <div class="container-fluid" id="footer-element" style="height:fit-content;">
+        <div class="container-fluid" id="footer-element" style="height:fit-content;margin-top:15%">
             <!-- Section: Images -->
             <section class="">
                 <div class="row">
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 1.jpg" class="w-100" />
+                            <!-- <img src="img/foto 1.jpg" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto2.png" class="w-100" />
+                            <!-- <img src="img/foto2.png" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 3.jpg" class="w-100" />
+                            <!-- <img src="img/foto 3.jpg" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 4.jpg" class="w-100" />
+                            <!-- <img src="img/foto 4.jpg" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <img src="img/foto 5.jpg" class="w-100" />
+                            <!-- <img src="img/foto 5.jpg" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
