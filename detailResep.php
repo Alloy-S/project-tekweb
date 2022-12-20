@@ -213,7 +213,7 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                             </form>
                         </div>
                         <div class="com-sec mx-4">
-                            <?php $query = "SELECT * FROM comments WHERE id_resep = '$id' ORDER BY comment_id ASC";
+                            <?php $query = "SELECT * FROM comments WHERE id_resep = '$id' and reply is null ORDER BY comment_id ASC";
                             $result = mysqli_query($conn, $query);
 
                             $result = mysqli_fetch_all($result, MYSQLI_ASSOC); ?>
