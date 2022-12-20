@@ -381,7 +381,7 @@ $data = query("SELECT * FROM kategori");
                     </select>
                 </div>
 
-                <button class="btn btn-primary" type="submit" id="submit" name="submit">Submit</button>
+                <button class="btn btn-primary mb-4" type="submit" id="submit" name="submit">Submit</button>
 
 
             </form>
