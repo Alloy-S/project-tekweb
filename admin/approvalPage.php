@@ -254,7 +254,7 @@ $kategori = query("SELECT * FROM kategori");
         </div>
     </div>
 
-    <div class="table-responsive">
+    <div class="table-responsive" id="output">
         <table class="table table-dark table-striped align-middle mb-0 bg-secondary text-white">
             <thead class="bg-secondary text-white h5 fw-bold">
                 <tr>
@@ -265,7 +265,7 @@ $kategori = query("SELECT * FROM kategori");
                     <th><strong>Actions</strong></th>
                 </tr>
             </thead>
-            <tbody id="output">
+            <tbody>
                 <?php foreach ($data as $row) : ?>
 
                     <tr>
