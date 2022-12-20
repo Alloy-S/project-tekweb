@@ -72,25 +72,25 @@ require("connect.php");
                         }
                     });
                 }
+            });
 
-                function fetch_resep(page) {
-                    $.ajax({
-                        url: "ajax/pagination.php",
-                        method: "POST",
-                        data: {
-                            page: page
-                        },
-                        success: function(data) {
-                            $("#content-resep").html(data);
-                        }
-                    });
-                }
-                fetch_resep();
-
-                $(document).on("click", ".page-item", function() {
-                    var page = $(this).attr("id");
-                    fetch_resep(page)
+            function fetch_resep(page) {
+                $.ajax({
+                    url: "ajax/pagination.php",
+                    method: "POST",
+                    data: {
+                        page: page
+                    },
+                    success: function(data) {
+                        $("#content-resep").html(data);
+                    }
                 });
+            }
+            fetch_resep();
+
+            $(document).on("click", ".page-item", function() {
+                var page = $(this).attr("id");
+                fetch_resep(page)
             });
 
             $("#navbarDropdownMenuAvatar").click(function() {
