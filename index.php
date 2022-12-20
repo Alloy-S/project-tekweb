@@ -200,9 +200,7 @@ require("connect.php");
     </div>
 
     <!-- Pagination Content -->
-    <div id="content-resep">loading...</div>
-
-
+    <div id="content-resep">Loading...</div>
 
     <footer class="text-center text-white" style="background-color: #8a8d8d;">
         <!-- Grid container -->

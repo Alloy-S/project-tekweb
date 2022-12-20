@@ -19,10 +19,6 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
 // var_dump($data);
 
 $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
-
-// if (isset($_SESSION["login_user"])){
-//      $username =
-// }
 ?>
 
 <!DOCTYPE html>
@@ -32,15 +28,16 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $data[0]["nama_resep"]; ?></title>
     <!-- CSS only -->
     <link rel="stylesheet" href="detail_style.css">
-    <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="assets/fontawesome/css/all.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
+    <!-- Javascript only -->
     <link rel="stylesheet" href="MDB5/css/mdb.min.css" />
     <script type="text/javascript" src="MDB5/js/mdb.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <title><?= $data[0]["nama_resep"]; ?></title>
+    
     <style>
         .coba {
             width: 25%;
@@ -51,7 +48,6 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                 width: 50%;
             }
         }
-
 
         @media screen and (max-width: 480px) {
             .coba {
@@ -66,7 +62,9 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
         <!-- Container wrapper -->
         <div class="container-fluid">
             <!-- Toggle button -->
-            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
 
@@ -81,7 +79,8 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                     <div class="coba form-outline rounded border border-dark" style="--bs-border-opacity: .5;">
                         <form class="d-flex flex-row" action="search.php" method="GET">
                             <input id="search-input" type="search" name="search_index" class="form-control text-dark" />
-                            <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
+                            <button type="submit" id='myBtn' class="btn" name="submit_btn"
+                                style="background-color:transparent; line-height:2.3">
                                 <i class="fas fa-search text-dark"></i>
                             </button>
                         </form>
@@ -93,28 +92,32 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
 
                 <!-- Right elements -->
                 <?php if (isset($_SESSION["login_user"])) : ?>
-                    <div class="d-flex justify-content-end" id="logo-dropdown">
-                        <!-- Avatar -->
-                        <div class="dropdown d-flex justify-content-end">
-                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                                <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                                <li>
-                                    <a class="dropdown-item" href="myprofile.php">My profile</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="logout.php">Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                <?php else : ?>
-                    <div class="d-flex align-items-center">
-                        <a class="text-reset me-3" href="login2.php">
-                            <button type="button" class="btn btn-light btn-rounded border border-dark" data-mdb-ripple-color="dark">Login</button>
+                <div class="d-flex justify-content-end" id="logo-dropdown">
+                    <!-- Avatar -->
+                    <div class="dropdown d-flex justify-content-end">
+                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
+                            id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile"
+                                loading="lazy" />
                         </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                            <li>
+                                <a class="dropdown-item" href="myprofile.php">My profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="logout.php">Logout</a>
+                            </li>
+                        </ul>
                     </div>
+                </div>
+                <?php else : ?>
+                <div class="d-flex align-items-center">
+                    <a class="text-reset me-3" href="login2.php">
+                        <button type="button" class="btn btn-light btn-rounded border border-dark"
+                            data-mdb-ripple-color="dark">Login</button>
+                    </a>
+                </div>
                 <?php endif; ?>
                 <!-- Right elements -->
             </div>
@@ -130,16 +133,13 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                     <article class="article">
                         <div class="article-part">
                             <div class="article-img">
-                                <img class="img-responsive" src="img/resep_img/<?= $data[0]["gambar"]; ?>" title="" alt="">
+                                <img class="img-responsive" src="img/resep_img/<?= $data[0]["gambar"]; ?>" title=""
+                                    alt="">
                             </div>
 
                             <div class="article-title">
                                 <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
-                                <!-- <button class="btn-secondary like">
-                                                <i class="fa fa-heart" aria-hidden="true"></i> Like
-                                            </button>
-                                    
-                                        -->
+
                                 <div class="media">
                                     <div class="media-body">
                                         <label><?= $data[0]["author"]; ?></label>
@@ -157,10 +157,10 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                             <div class="bahan-content">
                                 <p><strong> Bahan & Takaran </strong></p>
                                 <?php while ($r = mysqli_fetch_array($bahan, MYSQLI_ASSOC)) { ?>
-                                    <ul class="list-group">
-                                        <li class="list-group-item mb-2"><b> <?php echo $r['takaran'] ?> </b>
-                                            <?php echo $r['jenis'] ?> </li>
-                                    </ul>
+                                <ul class="list-group">
+                                    <li class="list-group-item mb-2"><b> <?php echo $r['takaran'] ?> </b>
+                                        <?php echo $r['jenis'] ?> </li>
+                                </ul>
 
                                 <?php } ?>
                             </div>
@@ -170,11 +170,11 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                             <div class="langkah-content">
                                 <p><strong> Langkah Pembuatan</strong> </p>
                                 <?php while ($r = mysqli_fetch_array($langkah, MYSQLI_ASSOC)) { ?>
-                                    <ul class="list-group">
-                                        <li class="list-group-item mb-2"><?php echo $r['urutan'] + 1 ?>. <?php echo $r['langkah'] ?>
-                                        </li>
-                                    </ul>
-
+                                <ul class="list-group">
+                                    <li class="list-group-item mb-2"><?php echo $r['urutan'] + 1 ?>.
+                                        <?php echo $r['langkah'] ?>
+                                    </li>
+                                </ul>
                                 <?php } ?>
                             </div>
                         </div>
@@ -192,11 +192,13 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                 <input type="hidden" id="id" name="id_resep" value="<?php echo $id; ?>" required>
                                 <div class="mx-3 my-2">
                                     <div class="col-auto mx-0">
-                                        <textarea class="form-control" name="comment" id="comment" name="comment" placeholder="Berikan komentar!" required></textarea>
+                                        <textarea class="form-control" name="comment" id="comment" name="comment"
+                                            placeholder="Berikan komentar!" required></textarea>
                                     </div>
                                 </div>
                                 <div class="mx-3 mb-2">
-                                    <input type="submit" id="submit" name="submit" class="btn btn-secondary" value="post">
+                                    <input type="submit" id="submit" name="submit" class="btn btn-secondary"
+                                        value="post">
                                 </div>
                             </form>
                         </div>
@@ -206,32 +208,36 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
 
                             $result = mysqli_fetch_all($result, MYSQLI_ASSOC); ?>
                             <?php foreach ($result as $r) : ?>
-                                <div class="comment-header"><b><?= $r['author']; ?></b> on <i><?= $r["date_created"]; ?></i> </div>
-                                <div class="comment-content"><?= $r["comment"] ?></div>
-                                <div class="reply-form">
-                                    <button type="button" class="btn btn-secondary reply mb-2" value="<?= $r["comment_id"]; ?>" style="display:block;" idresep="<?= $r['id_resep']; ?>">Reply</button>
-                                    <?php
+                            <div class="comment-header"><b><?= $r['author']; ?></b> on <i><?= $r["date_created"]; ?></i>
+                            </div>
+                            <div class="comment-content"><?= $r["comment"] ?></div>
+                            <div class="reply-form">
+                                <button type="button" class="btn btn-secondary reply mb-2"
+                                    value="<?= $r["comment_id"]; ?>" style="display:block;"
+                                    idresep="<?= $r['id_resep']; ?>">Reply</button>
+                                <?php
                                     $reply = $r['comment_id'];
                                     $query = "SELECT * FROM comments WHERE reply = '$reply' ORDER BY comment_id ASC";
                                     $child = mysqli_query($conn, $query);
                                     if (mysqli_num_rows($child) > 0) :
                                         $row = mysqli_fetch_all($child, MYSQLI_ASSOC);
                                     ?>
-                                        <?php foreach ($row as $ro) : ?>
-                                            <div class="comment-header mx-4"><b><?= $ro['author']; ?></b> on <i><?= $ro["date_created"]; ?></i> </div>
-                                            <div class="comment-content mx-4"><?= $ro["comment"] ?></div>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                </div>
+                                <?php foreach ($row as $ro) : ?>
+                                <div class="comment-header mx-4"><b><?= $ro['author']; ?></b> on
+                                    <i><?= $ro["date_created"]; ?></i> </div>
+                                <div class="comment-content mx-4"><?= $ro["comment"] ?></div>
+                                <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
                             <?php endforeach; ?>
                         </div>
                         <script>
-                            $(document).ready(function() {
+                            $(document).ready(function () {
 
-                                $("#submit").click(function(event) {
+                                $("#submit").click(function (event) {
                                     event.preventDefault();
                                     var comment = $("#comment").val();
-                                    if(comment == ""){
+                                    if (comment == "") {
                                         alert("Kolom komentar belum terisi")
                                         return
                                     }
@@ -240,19 +246,19 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                         url: "ajax/addComment.php",
                                         type: "POST",
                                         data: $("#comment-form").serialize(),
-                                        success: function(data) {
+                                        success: function (data) {
                                             //    alert(data)
                                             $("#comment-form")[0].reset();
                                             $(".com-sec").html(data);
                                         },
 
-                                        error: function(xhr, status, error) {
+                                        error: function (xhr, status, error) {
                                             console.log(error);
                                         }
                                     })
                                 });
 
-                                $(document).on("click", ".submit-rep", function() {
+                                $(document).on("click", ".submit-rep", function () {
                                     event.preventDefault();
                                     var form = $(this).parent().parent().parent();
                                     var reply = $(this).parent().parent().parent().parent();
@@ -261,23 +267,30 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                         url: "ajax/addChildComment.php",
                                         type: "POST",
                                         data: form.serialize(),
-                                        success: function(data) {
+                                        success: function (data) {
                                             //    alert(data)
                                             // $("#reply-form")[0].reset();
-                                            console.log($(this).parent().parent().parent().parent());
+                                            console.log($(this).parent().parent().parent()
+                                                .parent());
                                             reply.html(data);
-                                    
+
                                         },
 
-                                        error: function(xhr, status, error) {
+                                        error: function (xhr, status, error) {
                                             alert(error);
                                         }
                                     })
                                 });
 
-                                $(document).on("click", ".reply", function() {
+                                $(document).on("click", ".reply", function () {
 
-                                    $(this).parent().html("<div id='reply-form' ><form method='POST' id='reply-form'><div class='col-auto mx-4 mb-2 mt-2'><input type='hidden' name='id-reply' value='" + $(this).val() + "'><input type='hidden' name='id_resep' value='" + $(this).attr("idresep") + "'><textarea class='form-control' id='rep' name='comment' placeholder='Berikan balasan!' required></textarea></div><div class='mx-4 mb-3'><input type='button' id='submit-rep' name='submit-rep' class='btn btn-secondary submit-rep' value='post'></div></form></div>");
+                                    $(this).parent().html(
+                                        "<div id='reply-form' ><form method='POST' id='reply-form'><div class='col-auto mx-4 mb-2 mt-2'><input type='hidden' name='id-reply' value='" +
+                                        $(this).val() +
+                                        "'><input type='hidden' name='id_resep' value='" + $(this)
+                                        .attr("idresep") +
+                                        "'><textarea class='form-control' id='rep' name='comment' placeholder='Berikan balasan!' required></textarea></div><div class='mx-4 mb-3'><input type='button' id='submit-rep' name='submit-rep' class='btn btn-secondary submit-rep' value='post'></div></form></div>"
+                                        );
                                 });
                                 // load_comment()
 
@@ -290,21 +303,11 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                         data: {
                                             resep_id: id
                                         },
-                                        success: function(data) {
+                                        success: function (data) {
                                             $(".com-sec").html(data)
                                         }
                                     })
                                 };
-
-                                // function
-
-                                // $(document).on('click', '.reply', function(){
-
-                                //     var comment_id = $(this).attr("id");
-                                //     $('#comment_id').val(comment_id);
-                                //     $('#comment_name').focus();
-                                // });
-
                             });
 
 
@@ -318,7 +321,7 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
             </div>
         </div>
     </div>
-    
+
     <!-- Footer -->
     <footer class="text-center text-white" style="background-color: #8a8d8d;">
         <!-- Grid container -->
@@ -328,35 +331,30 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                 <div class="row">
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <!-- <img src="img/foto 1.jpg" class="w-100" /> -->
                             <p>C14210134 </p>
                             <p>Clarissa</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <!-- <img src="img/foto2.png" class="w-100" /> -->
                             <p>C14210192</p>
                             <p>Gilbert Lorentz</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <!-- <img src="img/foto 3.jpg" class="w-100" /> -->
                             <p>C14210210</p>
                             <p>Novemelia Wijaya</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <!-- <img src="img/foto 4.jpg" class="w-100" /> -->
                             <p>C14210248</p>
                             <p>Karen Eloise Sunaryo</p>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="bg-image hover-overlay ripple rounded" data-ripple-color="light">
-                            <!-- <img src="img/foto 5.jpg" class="w-100" /> -->
                             <p>C14210265</p>
                             <p>Alloysius Steven</p>
                         </div>
