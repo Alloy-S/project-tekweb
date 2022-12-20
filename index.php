@@ -5,23 +5,9 @@ require("connect.php");
 //     header("Location: login.php");
 // }
 
-if (isset($_GET["page"])) {
-    $page_number  = $_GET["page"];
-} else {
-    $page_number = 1;
-};
-
-$limit = 8;
-$initial_page = ($page_number - 1) * $limit;
-$previous = $page_number - 1;
-$next = $page_number + 1;
-
-$data = query("SELECT * FROM resep WHERE is_approved = 1");
+// $data = query("SELECT * FROM resep WHERE is_approved = 1");
 // var_dump($data);
 // print_r($_SESSION);
-
-$total_rows = count($data);
-$total_pages = ceil($total_rows / $limit);
 
 ?>
 
@@ -90,44 +76,27 @@ $total_pages = ceil($total_rows / $limit);
 
             });
 
-            $("#target-content").load("pagination.php?page=1");
-            $(".page-link").click(function() {
-                var id = $(this).attr("data-id");
-                var select_id = $(this).parent().attr("id");
+            function fetch_resep(page){
+            $.ajax({
+                url: "ajax/pagination.php",
+                method: "POST",
+                data: {
+                    page: page
+                },
+                success: function(data){
+                    $("#content-resep").html(data);
+                }
+            });
+            }
+            fetch_resep();
 
-                $.ajax({
-                    url: "pagination.php",
-                    type: "GET",
-                    data: {
-                        page: id
-                    },
-
-                    cache: false,
-
-                    success: function(dataResult) {
-                        $("#target-content").html(dataResult);
-                        $(".pageitem").removeClass("active");
-                        $("#" + select_id).addClass("active");
-                    }
-                });
+            $(document).on("click", ".page-item", function(){
+                var page = $(this).attr("id");
+                fetch_resep(page)
             });
 
         });
     </script>
-    <style>
-        @media (min-width: 993px) {
-            #search-unit {
-                width: 25%;
-            }
-        }
-
-        @media (max-width: 992px) {
-            #search-unit {
-                width: 65%;
-                margin-top: 3%;
-            }
-        }
-    </style>
 </head>
 
 <body style='background-color:#c6c9ca'>
@@ -147,7 +116,7 @@ $total_pages = ceil($total_rows / $limit);
                     <img src="img\white.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
                 <!-- <div class="container-xl ms-5 position-absolute top-50 start-100 translate-middle"> -->
-                <div class="input-group d-flex justify-content-center ">
+                <div class="input-group d-flex justify-content-center">
                     <div class="coba form-outline rounded border border-light" id="search-unit" style="--bs-border-opacity: .5;">
                         <form class="d-flex flex-row" action="search.php" method="GET">
                             <input id="search-input" type="search" name="search_index" class="form-control text-light" />
@@ -163,16 +132,19 @@ $total_pages = ceil($total_rows / $limit);
                 <!-- Right elements -->
                 <?php if (isset($_SESSION["login_user"])) : ?>
                     <!-- Tambah Resep -->
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center d-flex justify-content-center">
                         <a class="text-reset me-3" href="tambahResep.php">
-                            <button type="button" class="btn btn-light btn-rounded" data-mdb-ripple-color="dark">Tambah Resep</button>
+                            <button type="button" class="btn btn-light btn-rounded" id="btn-tambah" data-mdb-ripple-color="dark" style="width:150px;">
+                                <i class="fa-solid fa-pencil"></i>
+                                Tulis Resep
+                            </button>
                         </a>
                     </div>
 
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex justify-content-end" id="logo-dropdown">
 
                         <!-- Avatar -->
-                        <div class="dropdown">
+                        <div class="dropdown d-flex justify-content-end">
                             <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                                 <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
                             </a>
@@ -209,82 +181,10 @@ $total_pages = ceil($total_rows / $limit);
             </button>
         </div>
     </div>
-
-    <!-- <div class="container" id='card-resep'>
-        <div class="d-flex">
-            <?php if (isset($_SESSION["login_user"])) : ?>
-                <div class="button-group">
-                    <a href="logout.php">
-                        <button type="button" class="btn btn-primary">Logout</button>
-                    </a>
-                    <a href="tambahResep.php">
-                        <button type="button" class="btn btn-primary">tambah resep</button>
-                    </a>
-                </div>
-            <?php endif; ?>
-        </div>
-
-        <div>
-            <div class="row g-2">
-                <?php
-                $data = query("SELECT *FROM resep WHERE is_approved = 1 LIMIT $initial_page, $limit");
-                foreach ($data as $row) : ?>
-                    <div class="col-6 col-lg-3">
-                        <div class="card m-2">
-                            <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
-                                <div class="ratio ratio-16x9">
-                                    <img src="img/resep_img/<?= $row["gambar"]; ?>" class="card-img-top" alt="<?= $row["nama_resep"]; ?>" style="object-fit:cover;">
-                                </div>
-                            </a>
-                            <div class="card text-center">
-                                <a href="detailResep.php?id=<?= $row["id_resep"]; ?>">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= $row["nama_resep"]; ?></h5>
-                                    </div>
-                                </a>
-                                <div class="icon-content d-flex flex-row justify-content-center">
-                                    <div class="icon-field">
-                                        <i class="fa-solid fa-eye"></i><span id="view"><?= $row['views']; ?></span>
-                                    </div>
-                                    <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0">
-                                        <span style="color: red;">
-                                            <i class="fa-regular fa-heart"></i>
-                                        </span>
-                                        <span class="like"><?= $row['likes']; ?></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-
-    </div> -->
-
+    
     <!-- Pagination Content -->
-    <div id="target-content">loading...</div>
+    <div id="content-resep">loading...</div>
 
-    <div class="clearfix">
-        <nav style="margin-bottom: -12%; margin-top: 5%;">
-            <ul class="pagination pagination-md justify-content-center">
-                <?php
-                if (!empty($total_pages)) {
-                    for ($page = 1; $page <= $total_pages; $page++) {
-                        if ($page == 1) {
-                ?>
-                            <li class="pageitem active" id="<?php echo $page; ?>"><a href="JavaScript:Void(0);" data-id="<?php echo $page; ?>" class="page-link"><?php echo $page; ?></a></li>
-
-                        <?php } else {
-                        ?>
-                            <li class="pageitem" id="<?php echo $page; ?>"><a href="JavaScript:Void(0);" class="page-link" data-id="<?php echo $page; ?>"><?php echo $page; ?></a></li>
-                <?php }
-                    }
-                }
-                ?>
-            </ul>
-        </nav>
-    </div>
 
     <footer class="text-center text-white" style="background-color: #8a8d8d;">
         <!-- Grid container -->
