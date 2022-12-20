@@ -7,6 +7,16 @@ if (!isset($_SESSION["login_admin"])) {
 
 $data = query("SELECT * FROM resep");
 $kategori = query("SELECT * FROM kategori");
+
+// if (isset($_POST["kategori-status"])) {
+//     if($_POST["kategori-status"] == 0) {
+//         $data = query("SELECT * FROM resep");
+//     }
+//     elseif($_POST["kategori-status"] == 1) {
+//         $data = query("SELECT * FROM resep WHERE is_private = 1");
+//     }
+// }
+
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +30,8 @@ $kategori = query("SELECT * FROM kategori");
     <link rel="stylesheet" href="../MDB5/css/mdb.min.css" />
     <script type="text/javascript" src="../MDB5/js/mdb.min.js"></script>
     <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
     <style>
         body {
             margin: auto;
@@ -135,6 +147,24 @@ $kategori = query("SELECT * FROM kategori");
             }
         }
     </style>
+
+    <script>
+        $(document).ready(function(){
+            $("#kategori-status").change(function(){
+                var pil = $("#kategori-status").val();
+                $.ajax({
+                    url: "showAll.php",
+                    method: "POST",
+                    data:{
+                        pil: pil
+                    },
+                    success: function(response){
+                        $("#output").html(response);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -205,7 +235,7 @@ $kategori = query("SELECT * FROM kategori");
         <div class="d-flex justify-content-between py-3 ps-3 text-dark sambutan_atas">
             <h3 class="mt-3 salam fst-italic">Hello <?= $_SESSION['name_admin']; ?>, welcome to Approval Page</h3>
 
-            <select class="select dropdown-status rounded p-0">
+            <select class="select dropdown-status rounded p-0" id="kategori-status">
                 <option value="0">Show All</option>
                 <option value="1">Private</option>
                 <option value="2">Live</option>
@@ -235,7 +265,7 @@ $kategori = query("SELECT * FROM kategori");
                     <th><strong>Actions</strong></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="output">
                 <?php foreach ($data as $row) : ?>
 
                     <tr>
