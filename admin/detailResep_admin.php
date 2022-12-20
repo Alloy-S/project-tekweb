@@ -185,16 +185,25 @@ $langkah = mysqli_query($conn, "SELECT * FROM langkah WHERE id_resep = '$id';");
                         <div class="widget-title">
                             <h3 class="text-center mt-4 mb-3">Action</h3>
                         </div>
-                        <div class="card text-center menu-pilihan">
+                        <?php if($data[0]["is_private"] == 0): ?>
+                            <div class="card text-center menu-pilihan">
 
-                            <div class="card-header">Opsi Pilihan</div>
-                            <div class="card-body" style="display: flex; flex-direction: column">
-                                <button method="publish" type="button" value="<?= $data[0]["id_resep"]; ?>" id="publish" class="btn btn-primary btn-action p-lg-3 me-lg-2 mb-2">Publish <i class="fa fa-check" aria-hidden="true"></i></button>
-                                <button method="takedown" type="button" value="<?= $data[0]["id_resep"]; ?>" id="takedown" class="btn btn-warning text-white btn-action p-lg-3 me-lg-2 mb-2"> Takedown <i class="fa-regular fa-clock"></i></button>
-                                <button method="delete" type="button" value="<?= $data[0]["id_resep"]; ?>" id="delete" class="btn btn-danger btn-action p-lg-3 me-lg-2 mb-2"> Delete <i class="fa fa-times" aria-hidden="true"></i></button>
+                                <div class="card-header">Opsi Pilihan</div>
+                                <div class="card-body" style="display: flex; flex-direction: column">
+                                    <button method="publish" type="button" value="<?= $data[0]["id_resep"]; ?>" id="publish" class="btn btn-primary btn-action p-lg-3 me-lg-2 mb-2">Publish <i class="fa fa-check" aria-hidden="true"></i></button>
+                                    <button method="takedown" type="button" value="<?= $data[0]["id_resep"]; ?>" id="takedown" class="btn btn-warning text-white btn-action p-lg-3 me-lg-2 mb-2"> Takedown <i class="fa-regular fa-clock"></i></button>
+                                    <button method="delete" type="button" value="<?= $data[0]["id_resep"]; ?>" id="delete" class="btn btn-danger btn-action p-lg-3 me-lg-2 mb-2"> Delete <i class="fa fa-times" aria-hidden="true"></i></button>
+                                </div>
+                                <!-- <div class="card-footer text-muted">2 days ago</div> -->
                             </div>
-                            <!-- <div class="card-footer text-muted">2 days ago</div> -->
-                        </div>
+                        <?php elseif($data[0]["is_private"] == 1): ?>
+                            <p class="text-center mt-4 mb-3">Resep bersifat private.</p>
+                            <div class="card-header"></div>
+                            <div class="card-body" style="display: flex; flex-direction: column">
+                                <button method="delete" type="button" value="<?= $data[0]["id_resep"]; ?>" id="delete" class="btn btn-danger btn-action p-lg-2 me-lg-2 mb-2"> Delete <i class="fa fa-times" aria-hidden="true"></i></button>
+                            </div>
+                        <?php endif?>
+
                         <?php
                         // foreach ($comments as $comment_key => $comment)
                         //         {
