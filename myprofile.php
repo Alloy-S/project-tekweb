@@ -52,7 +52,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
         }
 
         .menu {
-            min-height: 265px;
+            min-height: 285px;
         }
 
         .empty {
@@ -76,7 +76,6 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
     <script>
         $(document).ready(function() {
             var id = $("#username").html().split("@");
-            console.log(id);
             $("#all").click(function() {
                 $(this).addClass("active");
                 $("#private").removeClass("active");
@@ -109,11 +108,25 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                     }
                 });
             });
+            //     $("#navbarDropdownMenuAvatar").click(function() {
+            //         var WIDTH_LIMIT = 992;
+
+            //         var windowWidth = window.innerWidth;
+
+            //         if (windowWidth <= WIDTH_LIMIT) {
+            //             $("#profile-down").removeClass("dropdown-menu-end");
+            //             $("#profile-down").addClass("dropdown-menu-start");
+            //         } else {
+            //             $("#profile-down").removeClass("dropdown-menu-start");
+            //             $("#profile-down").addClass("dropdown-menu-end");
+            //         }
+            //     });
+            // });
         });
     </script>
 </head>
 
-<body>
+<body style='background-color: #D0d2d2'>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <!-- Container wrapper -->
@@ -129,39 +142,55 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                 <a class="navbar-brand mt-2 mt-lg-0" href="index.php">
                     <img src="img\Gudang Resep.png" height="45" alt="GR Logo" loading="lazy" />
                 </a>
-
-            </div>
-            <!-- Collapsible wrapper -->
-
-            <!-- Right elements -->
-            <?php if (isset($_SESSION["login_user"])) : ?>
-                <div class="d-flex align-items-center">
-
-                    <!-- Avatar -->
-                    <div class="dropdown ">
-
-                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
-                        </a>
-
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
-                            <li>
-                                <a class="dropdown-item" href="#">My profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="logout.php">Logout</a>
-                            </li>
-                        </ul>
+                <div class="input-group d-flex justify-content-center">
+                    <div class="coba form-outline w-25 rounded border border-dark" style="--bs-border-opacity: .5;">
+                        <form class="d-flex flex-row" action="search.php" method="GET">
+                            <input id="search-input" type="search" name="search_index" class="form-control text-dark" />
+                            <button type="submit" id='myBtn' class="btn" name="submit_btn" style="background-color:transparent; line-height:2.3">
+                                <i class="fas fa-search text-dark"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
-            <?php else : ?>
-                <div class="d-flex align-items-center">
-                    <a class="text-reset me-3" href="login2.php">
-                        <button type="button" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">Login</button>
-                    </a>
-                </div>
-            <?php endif; ?>
-            <!-- Right elements -->
+
+                <!-- Collapsible wrapper -->
+
+                <!-- Right elements -->
+                <?php if (isset($_SESSION["login_user"])) : ?>
+                    <div class="d-flex align-items-center d-flex justify-content-center">
+                        <a class="text-reset me-3" href="tambahResep.php">
+                            <button type="button" class="btn btn-light btn-rounded border border-dark" id="btn-tambah" data-mdb-ripple-color="dark" style="width:150px; margin-top:9%">
+                                <i class="fa-solid fa-pencil"></i>
+                                Tulis Resep
+                            </button>
+                        </a>
+                    </div>
+                    <div class="d-flex justify-content-end" id="logo-dropdown">
+                        <!-- Avatar -->
+                        <div class="dropdown d-flex justify-content-end">
+                            <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                                <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
+                                <li>
+                                    <a class="dropdown-item" href="myprofile.php">My profile</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="logout.php">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                <?php else : ?>
+                    <div class="d-flex align-items-center">
+                        <a class="text-reset me-3" href="login2.php">
+                            <button type="button" class="btn btn-outline-primary btn-rounded" data-mdb-ripple-color="dark">Login</button>
+                        </a>
+                    </div>
+                <?php endif; ?>
+                <!-- Right elements -->
+            </div>
         </div>
         <!-- Container wrapper -->
     </nav>
@@ -196,7 +225,7 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                     </li>
                 </ul>
                 <?php if ($resep) : ?>
-                    <div id="my-resep" class="row">
+                    <div id="my-resep" class="row mx-1 my-3">
 
                         <?php foreach ($resep as $row) : ?>
                             <div class="col-6 col-lg-4">
@@ -229,21 +258,21 @@ $resep = mysqli_fetch_all($resep, MYSQLI_ASSOC);
                         <?php endforeach; ?>
 
                     </div>
-                    <?php else : ?>
-                        <div class="empty card d-flex justify-content-center aligns-item-center text-center">
-                            <h2>Kamu Belum Memiliki resep</h2>
-                            <a class="text-reset me-3" href="tambahResep.php">
-                                <button type="button" class="btn btn-dark btn-rounded mt-3" id="btn-tambah" data-mdb-ripple-color="dark" style="width:150px;">
-                                    <i class="fa-solid fa-pencil"></i>
-                                    Tulis Resep
-                                </button>
-                            </a>
-                        </div>
+                <?php else : ?>
+                    <div class="empty card d-flex justify-content-center aligns-item-center text-center">
+                        <h2>Kamu Belum Memiliki resep</h2>
+                        <a class="text-reset me-3" href="tambahResep.php">
+                            <button type="button" class="btn btn-dark btn-rounded mt-3" id="btn-tambah" data-mdb-ripple-color="dark" style="width:150px;">
+                                <i class="fa-solid fa-pencil"></i>
+                                Tulis Resep
+                            </button>
+                        </a>
                     </div>
-
-                    <?php endif; ?>
             </div>
+
+        <?php endif; ?>
         </div>
+    </div>
     </div>
     <footer class="text-center text-white" style="background-color: #8a8d8d;">
         <!-- Grid container -->

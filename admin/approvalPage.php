@@ -163,6 +163,20 @@ $kategori = query("SELECT * FROM kategori");
                     }
                 });
             });
+
+            $("#submit").click(function(){
+                var sentence = $("#form1").val();
+                $.ajax({
+                    url: "search.php",
+                    method: "POST",
+                    data: {
+                        sentence = sentence
+                    },
+                    success: function(response){
+                        $("#output").html(response);
+                    }
+                });
+            });
         });
     </script>
 </head>
@@ -247,7 +261,7 @@ $kategori = query("SELECT * FROM kategori");
                     <input id="search-focus" type="search" id="form1" class="form-control border border-dark rounded h-100" />
                     <!-- <label class="form-label" for="form1">Search</label> -->
                 </div>
-                <button type="button" class="btn btn-primary">
+                <button type="button" class="btn btn-primary" id="search">
                     <i class="fas fa-search"></i>
                 </button>
             </div>
