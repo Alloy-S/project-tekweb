@@ -108,7 +108,7 @@ if (isset($_POST['regis'])) {
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                                 <input type="text" id="loginName" name="loginName" class="form-control" />
-                                <label class="form-label" for="loginName">Email or username</label>
+                                <label class="form-label" for="loginName">Username</label>
                             </div>
 
                             <!-- Password input -->
