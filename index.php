@@ -158,7 +158,7 @@ $total_pages = ceil($total_rows / $limit);
                         </a>
                     </div>
 
-                    <div class="d-flex align-items-end">
+                    <div class="d-flex justify-content-end" id="logo-dropdown">
 
                         <!-- Avatar -->
                         <div class="dropdown d-flex justify-content-end">
