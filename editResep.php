@@ -56,7 +56,7 @@ if (isset($_POST['save'])) {
     }
 
     header("Location: myprofile.php");
-} elseif(isset($_POST['delete'])) {
+} elseif (isset($_POST['delete'])) {
     $delete = mysqli_query($conn, "DELETE FROM resep WHERE id_resep = $id");
     $delete = mysqli_query($conn, "DELETE FROM bahan WHERE id_resep = $id");
     $delete = mysqli_query($conn, "DELETE FROM langkah WHERE id_resep = $id");
@@ -101,6 +101,7 @@ if (isset($_POST['save'])) {
         body {
             background-color: #D0d2d2;
         }
+
         .content {
             width: 40%;
         }
@@ -142,22 +143,18 @@ if (isset($_POST['save'])) {
 
             <!-- Right elements -->
             <?php if (isset($_SESSION["login_user"])) : ?>
-                <div class="d-flex align-items-center mt-md-4">
+                <div class="d-flex align-items-center">
 
                     <!-- Avatar -->
                     <div class="dropdown ">
 
                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user fa-xl"></i>
-                            <!-- <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle" height="25" alt="Black and White Portrait of a Man" loading="lazy" /> -->
+                            <img src="img/anonymous.jpg" class="rounded-circle" height="40" alt="Profile" loading="lazy" />
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
                                 <a class="dropdown-item" href="myprofile.php">My profile</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="#">Settings</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="logout.php">Logout</a>
