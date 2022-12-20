@@ -292,9 +292,6 @@ $data = query("SELECT * FROM kategori");
                     <label class="form-label" for="nama_resep">Judul Resep : </label>
                     <input class="form-control mb-2" type="text" name="nama_resep" id="nama_resep" maxlength="30" required>
 
-
-                    <!-- <label for="nama">deskripsi : </label>
-                <textarea name="deskripsi" id="deskripsi" cols="30" rows="10"></textarea> -->
                     <label for="deskripsi" class="form-label">Deskripsi resep : </label>
                     <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3"></textarea>
 

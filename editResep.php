@@ -211,19 +211,7 @@ if (isset($_POST['save'])) {
                                 </div>
                             </li>
                         <?php endforeach; ?>
-                        <!-- <li>
-                            <div class="row my-2">
-                                <div class="col-5">
-                                    <input type="text" class="form-control" name="detail_takaran[]" placeholder="takaran">
-                                </div>
-                                <div class="col-5">
-                                    <input type="text" class="form-control" name="detail_bahan[]" placeholder="bahan">
-                                </div>
-                                <div class="col-2">
-                                    <a class="delete-bahan"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
-                                </div>
-                            </div>
-                        </li> -->
+            
                     </ol>
                     <button type="button" id="add-row-bahan" class="btn btn-outline-primary">add</button>
                 </div>
@@ -242,33 +230,11 @@ if (isset($_POST['save'])) {
                                 </div>
                             </li>
                         <?php endforeach; ?>
-                        <!-- <li>
-                            <div class="row my-2">
-                                <div class="col-6">
-                                    <input type="text" class="form-control" name="detail_langkah[]">
-                                </div>
-                                <div class="col-2">
-                                    <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="row my-2">
-                                <div class="col-6">
-                                    <input type="text" class="form-control" name="detail_langkah[]">
-                                </div>
-                                <div class="col-2">
-                                    <a class="delete-langkah"><i class="fa-sharp fa-solid fa-xmark fa-xl"></i></a>
-                                </div>
-                            </div>
-                        </li> -->
+                        
                     </ol>
                     <button type="button" id="add-row-langkah" class="btn btn-outline-primary">add</button>
                 </div>
                 <div class="field-input">
-                    <!-- <label for="jurusan">Gambar : </label>
-                    <input class="form-control image" type="file">
-                    <input type="hidden" name="image-name" id="image-name"> -->
 
                     <select class="form-select mt-3" aria-label="Default select example" name="is_private" id="is_private" required>
                         <?php if ($resep['is_private'] == 0) : ?>
