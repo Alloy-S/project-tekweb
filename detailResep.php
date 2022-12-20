@@ -188,7 +188,7 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                         </div>
                         <div class="form-group mx-3">
                             <form method="POST" id="comment-form">
-                                <input type="hidden" id="id" name="id" value="<?php echo $id; ?>" required>
+                                <input type="hidden" id="id" name="id_resep" value="<?php echo $id; ?>" required>
                                 <!-- <input type="hidden" name="comment_id" id="comment_id" value="0" /> -->
                                 <!-- <div class="hstack gap-2 mx-3 my-3">
                                     <label>Your name</label> <br />
@@ -202,70 +202,124 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                                         <label>Comment</label>
                                     </div> -->
                                     <div class="col-auto mx-0">
-                                        <textarea class="form-control" name="comment" id="comment" name="comment" placeholder = "Berikan komentar!" required></textarea>
+                                        <textarea class="form-control" name="comment" id="comment" name="comment" placeholder="Berikan komentar!" required></textarea>
                                     </div>
                                 </div>
 
                                 <div class="mx-3 mb-3">
-                                    <input type="submit" id="submit" name="submit" class="btn btn-secondary" value = "post">
+                                    <input type="submit" id="submit" name="submit" class="btn btn-secondary" value="post">
                                 </div>
 
                             </form>
                         </div>
-                        <div class="com-sec mx-4"></div>
+                        <div class="com-sec mx-4">
+                            <?php $query = "SELECT * FROM comments WHERE id_resep = '$id' ORDER BY comment_id ASC";
+                            $result = mysqli_query($conn, $query);
+
+                            $result = mysqli_fetch_all($result, MYSQLI_ASSOC); ?>
+                            <?php foreach ($result as $r) : ?>
+
+                                <div class="comment-header"><b><?= $r['author']; ?></b> on <i><?= $r["date_created"]; ?></i> </div>
+                                <div class="comment-content"><?= $r["comment"] ?></div>
+                                <div class="reply-form">
+                                    <button type="button" class="btn btn-secondary reply mb-2" value="<?= $r["comment_id"]; ?>" style="display:block;" idresep="<?= $r['id_resep']; ?>">Reply</button>
+                                    <?php
+                                    $reply = $r['comment_id'];
+                                    $query = "SELECT * FROM comments WHERE reply = '$reply' ORDER BY comment_id ASC";
+                                    $child = mysqli_query($conn, $query);
+                                    if (mysqli_num_rows($child) > 0) :
+                                        $row = mysqli_fetch_all($child, MYSQLI_ASSOC);
+                                    ?>
+                                        <?php foreach ($row as $ro) : ?>
+                                            <div class="comment-header mx-4"><b><?= $ro['author']; ?></b> on <i><?= $ro["date_created"]; ?></i> </div>
+                                            <div class="comment-content mx-4"><?= $ro["comment"] ?></div>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                         <script>
                             $(document).ready(function() {
-    
+
                                 $("#submit").click(function(event) {
                                     event.preventDefault();
 
                                     console.log($("#comment-form").serialize());
                                     $.ajax({
-                                        url:"addComment.php",
-                                        type:"POST",
-                                        data:$("#comment-form").serialize(),
-                                        success:function(data){ 
-                                           alert(data)       
-                                           window.location.reload()
-                                            
+                                        url: "ajax/addComment.php",
+                                        type: "POST",
+                                        data: $("#comment-form").serialize(),
+                                        success: function(data) {
+                                            //    alert(data)
+                                            $("#comment-form")[0].reset();
+                                            $(".com-sec").html(data);
+                                            //    window.location.reload()
+
                                         },
-                                 
+
                                         error: function(xhr, status, error) {
                                             console.log(error);
                                         }
                                     })
                                 });
-                
-                            
-                            load_comment()
-                        
-                            function load_comment() {
-                                var id = $("#id").val();
-                                console.log(id)
-                                $.ajax({
-                                url:"showComment.php",
-                                method:"POST",
-                                data : {
-                                    resep_id : id
-                                },   
-                                success:function(data){
-                                    $(".com-sec").html(data) 
-                                }
-                                })
-                            };
-                           
-                            // function
 
-                            // $(document).on('click', '.reply', function(){
-                                
-                            //     var comment_id = $(this).attr("id");
-                            //     $('#comment_id').val(comment_id);
-                            //     $('#comment_name').focus();
-                            // });
+                                $(document).on("click", ".submit-rep", function() {
+                                    // event.preventDefault();
+                                    var form = $(this).parent().parent().parent();
+                                    var reply = $(this).parent().parent().parent().parent();
+                                    console.log($(this).parent().parent().parent().parent());
+                                    $.ajax({
+                                        url: "ajax/addChildComment.php",
+                                        type: "POST",
+                                        data: form.serialize(),
+                                        success: function(data) {
+                                            //    alert(data)
+                                            // $("#reply-form")[0].reset();
+                                            console.log($(this).parent().parent().parent().parent());
+                                            reply.html(data);
+                                            //    window.location.reload()
 
-                        });
-                        
-                        
+                                        },
+
+                                        error: function(xhr, status, error) {
+                                            alert(error);
+                                        }
+                                    })
+                                });
+
+                                $(document).on("click", ".reply", function() {
+
+                                    $(this).parent().html("<div id='reply-form' ><form method='POST' id='reply-form'><div class='col-auto mx-4 mb-2 mt-2'><input type='hidden' name='id-reply' value='" + $(this).val() + "'><input type='hidden' name='id_resep' value='" + $(this).attr("idresep") + "'><textarea class='form-control' id='rep' name='comment' placeholder='Berikan balasan!' required></textarea></div><div class='mx-4 mb-3'><input type='button' id='submit-rep' name='submit-rep' class='btn btn-secondary submit-rep' value='post'></div></form></div>");
+                                });
+                                // load_comment()
+
+                                function load_comment() {
+                                    var id = $("#id").val();
+                                    console.log(id)
+                                    $.ajax({
+                                        url: "showComment.php",
+                                        method: "POST",
+                                        data: {
+                                            resep_id: id
+                                        },
+                                        success: function(data) {
+                                            $(".com-sec").html(data)
+                                        }
+                                    })
+                                };
+
+                                // function
+
+                                // $(document).on('click', '.reply', function(){
+
+                                //     var comment_id = $(this).attr("id");
+                                //     $('#comment_id').val(comment_id);
+                                //     $('#comment_name').focus();
+                                // });
+
+                            });
+
+
                             // });
                         </script>
                         </form>

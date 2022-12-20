@@ -162,13 +162,6 @@ if (isset($_POST['regis'])) {
                                 <label class="form-label" for="registerRepeatPassword">Repeat password</label>
                             </div>
 
-                            <!-- Checkbox -->
-                            <div class="form-check d-flex justify-content-center mb-4">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked aria-describedby="registerCheckHelpText" />
-                                <label class="form-check-label" for="registerCheck">
-                                    I have read and agree to the terms
-                                </label>
-                            </div>
 
                             <!-- Submit button -->
                             <button type="submit" class="btn btn-primary btn-block mb-3" name="regis">Sign Up</button>
