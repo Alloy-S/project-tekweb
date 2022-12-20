@@ -134,7 +134,6 @@ $kategori = query("SELECT * FROM kategori");
                 padding-top: 5px;
                 width: 50%;
             }
-
         }
 
         @media screen and (max-width: 480px) {
@@ -164,13 +163,14 @@ $kategori = query("SELECT * FROM kategori");
                 });
             });
 
-            $("#submit").click(function(){
+            $("#search").click(function(){
                 var sentence = $("#form1").val();
+                console.log(sentence);
                 $.ajax({
                     url: "search.php",
-                    method: "POST",
+                    type: "POST",
                     data: {
-                        sentence = sentence
+                        sen: sentence
                     },
                     success: function(response){
                         $("#output").html(response);
@@ -178,6 +178,22 @@ $kategori = query("SELECT * FROM kategori");
                 });
             });
         });
+
+        // $(document).ready(function(){
+        //     $("#search").click(function(){
+        //         var sentence = $("#form1").val();
+        //         $.ajax({
+        //             url: "search.php",
+        //             method: "POST",
+        //             data: {
+        //                 sentence = sentence
+        //             },
+        //             success: function(response){
+        //                 $("#output").html(response);
+        //             }
+        //         });
+        //     });
+        // });
     </script>
 </head>
 
@@ -258,7 +274,7 @@ $kategori = query("SELECT * FROM kategori");
 
             <div class="input-group input-bar d-flex justify-content-between mt-2">
                 <div class="form-outline">
-                    <input id="search-focus" type="search" id="form1" class="form-control border border-dark rounded h-100" />
+                    <input type="search" id="form1" class="form-control border border-dark rounded h-100"/>
                     <!-- <label class="form-label" for="form1">Search</label> -->
                 </div>
                 <button type="button" class="btn btn-primary" id="search">
