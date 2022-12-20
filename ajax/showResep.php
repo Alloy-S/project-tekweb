@@ -16,7 +16,7 @@ if ($status == "all") {
 <?php if (isset($result)) : ?>
     <?php if (mysqli_num_rows($result) > 0) : ?>
         <?php foreach ($resep as $row) : ?>
-            <div class="col-6 col-lg-3">
+            <div class="col-6 col-lg-4">
                 <div class="card m-2">
                     <a href="editResep.php?id=<?= $row["id_resep"]; ?>">
                         <div class="ratio ratio-16x9">
@@ -44,5 +44,9 @@ if ($status == "all") {
                 </div>
             </div>
         <?php endforeach; ?>
+        <?php else: ?>
+            <div class="d-flex justify-content-center aligns-item-center text-center my-5" style="padding-top: 30px">
+                <h4>Belum ada resep <?= $status?></h4>
+            </div>
     <?php endif; ?>
 <?php endif; ?>
