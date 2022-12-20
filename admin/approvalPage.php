@@ -275,7 +275,7 @@ $kategori = query("SELECT * FROM kategori");
             <div class="input-group input-bar d-flex justify-content-between mt-2">
                 <div class="form-outline">
                     <input type="search" id="form1" class="form-control border border-dark rounded h-100"/>
-                    <!-- <label class="form-label" for="form1">Search</label> -->
+                    <!-- <label class="form-label" for="form1">Status</label> -->
                 </div>
                 <button type="button" class="btn btn-primary" id="search">
                     <i class="fas fa-search"></i>
