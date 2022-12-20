@@ -138,7 +138,16 @@ $que = mysqli_query($conn, "SELECT * FROM comments WHERE id_resep = '$id';");
                             </div>
 
                             <div class="article-title">
-                                <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?> </h2>
+                                <h2 style="display:inline;"> <?= $data[0]["nama_resep"]; ?></h2>
+                                <div class="like-btn" style= "float:right">
+                                    <div class="icon-field btn-like" value="<?= $row['id_resep']; ?>" status="0" >
+                                <span style="color: red;">
+                                    <i class="fa-regular fa-heart"></i>
+                                </span>
+                                <span class="like"><?= $data[0]['likes']; ?></span>
+                                </div>
+                                
+                            </div> 
 
                                 <div class="media">
                                     <div class="media-body">
