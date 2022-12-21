@@ -399,9 +399,9 @@ $data = query("SELECT * FROM kategori");
                 </div>
 
                 <button class="btn btn-success mb-4" type="submit" id="submit" name="submit">Submit</button>
-                <!-- <a href="index.php">
-                    <button class="btn btn-primary mb-4" type="submit">Cancel</button>
-                </a> (mau coba buat tapi entah kenapa gamau jalan -ren)--> 
+                <a href="index.php">
+                    <button class="btn btn-primary mb-4" type="button">Cancel</button>
+                </a> 
 
             </form>
         </div>

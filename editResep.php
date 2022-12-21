@@ -215,7 +215,7 @@ if (isset($_POST['save'])) {
                                 </div>
                             </li>
                         <?php endforeach; ?>
-            
+
                     </ol>
                     <button type="button" id="add-row-bahan" class="btn btn-outline-primary">add</button>
                 </div>
@@ -234,7 +234,7 @@ if (isset($_POST['save'])) {
                                 </div>
                             </li>
                         <?php endforeach; ?>
-                        
+
                     </ol>
                     <button type="button" id="add-row-langkah" class="btn btn-outline-primary">add</button>
                 </div>
@@ -254,6 +254,10 @@ if (isset($_POST['save'])) {
                 <div class="field-input">
                     <button class="btn btn-success" type="submit" id="save" name="save">Save</button>
                     <button class="btn btn-danger" type="submit" id="delete" name="delete">Delete</button>
+                    <a href="myprofile.php">
+                        <button type="button" class="btn btn-primary" name="back" id="back">Back</button>
+
+                    </a>
                 </div>
 
             </form>

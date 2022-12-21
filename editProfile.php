@@ -130,7 +130,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <a href="myprofile.php">
                         <div class="d-grid gap-2 mt-3">
-                            <button type="back" class="btn btn-primary" name="back" id="back">Back</button>
+                            <button type="button" class="btn btn-primary" name="back" id="back">Back</button>
                         </div>
                     </a>
                 </form>
